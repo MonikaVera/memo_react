@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import { colors } from '../../colors';
+import { Link } from 'react-router-dom';
 
 export const StyledButton = styled.button`
-    border: none;
-    box-shadow: 0 0 15px ${colors.forest_green};
     text-shadow: 1px 1px ${colors.forest_green};
-    margin: 0.5em;
+    width: 10em;
+`;
+
+export const StyledLink = styled(Link)`
     width: 10em;
 `;
 

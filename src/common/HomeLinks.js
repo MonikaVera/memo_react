@@ -1,0 +1,55 @@
+import { StyledLink, StyledButton } from "../pages/styles/styles";
+import { PLAY, REGISTER, SIGNIN, STATS } from "../config";
+import { useAuth } from "./AuthContext";
+import { t } from "./translation";
+
+const HomeLinks = () => {
+    const {isAuthenticated, handleSignOut} = useAuth();
+
+    return ( 
+        isAuthenticated ? (
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <StyledLink className="btn btn-primary m-1" to={PLAY}>
+                        <i className="bi bi-puzzle"/>
+                        {t('homePage/buttons/play')}
+                        <i className="bi bi-puzzle"/>
+                    </StyledLink> 
+                </li>
+                <li className="nav-item">
+                    <StyledButton className="btn btn-primary m-1" onClick={handleSignOut}>
+                        <i className="bi bi-door-closed"/>
+                        {t('homePage/buttons/signOut')}
+                        <i className="bi bi-door-closed"/>
+                    </StyledButton>
+                </li>
+                <li className="nav-item">
+                    <StyledLink className="btn btn-primary m-1" to={STATS}>
+                        <i className="bi bi-table"/>
+                        {t('homePage/buttons/stats')}
+                        <i className="bi bi-table"/>
+                    </StyledLink>
+                </li>
+            </ul>   
+        ) : (
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <StyledLink className="btn btn-primary m-1" to={SIGNIN}>
+                        <i className="bi bi-door-open"/>
+                        {t('homePage/buttons/signIn')}
+                        <i className="bi bi-door-open"/>
+                    </StyledLink>  
+                </li>
+                <li className="nav-item">
+                    <StyledLink className="btn btn-primary m-1" to={REGISTER}>
+                        <i className="bi bi-pen"/>
+                        {t('homePage/buttons/register')}
+                        <i className="bi bi-envelope-paper"/>
+                    </StyledLink> 
+                </li>
+            </ul>
+        )
+    )
+}
+
+export default HomeLinks;

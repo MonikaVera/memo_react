@@ -1,19 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { HOME, PLAY, STATS, SINGLEPLAYERMODES } from "../config";
+import { HOME, PLAY, STATS } from "../config";
 import { useAuth } from "./AuthContext";
 import { useLocation} from "react-router-dom";
 import { t } from "./translation";
-import { StyledButton } from "../pages/styles/styles";
+import PlayLinks from "./PlayLinks";
+import HomeLinks from "./HomeLinks";
+import StatLinks from "./StatLinks";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const {isAuthenticated} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     //const regex = new RegExp(`^${PLAY}/${SINGLEPLAYERMODES}/(\\d+)/(\\d+)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$`);
-    
-    const handleOnOptionClick = (path) => {
-      navigate(path);
-    }
 
     const handleOnArrowClick = () => {
       const path = location.pathname; 
@@ -44,55 +43,39 @@ const Navbar = () => {
       <div className="collapse navbar-collapse d-flex flex-wrap justify-content-between" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <button 
+              <Link 
                 className={`nav-link ${isCurrent(HOME) ? 'active' : ''}`} 
-                aria-current={isCurrent(HOME) ? 'page' : undefined} 
-                onClick={() => handleOnOptionClick(HOME)}
+                to={HOME}
               >
                 {t("navbar/home")}
-              </button>
+              </Link>
             </li>
-            <li className="nav-item">
-              <button 
-                className={`nav-link ${isCurrent(PLAY) ? 'active' : ''}`} 
-                aria-current={isCurrent(PLAY)  ? 'page' : undefined} 
-                onClick={() => handleOnOptionClick(PLAY)} 
-                aria-disabled={!isAuthenticated}
-              >
-                {t("navbar/play")}
-              </button>
-            </li>
-            <li className="nav-item">
-              <button 
-                className={`nav-link ${isCurrent(STATS) ? 'active' : ''} cursor-pointer`} 
-                aria-current={isCurrent(STATS) ? 'page' : undefined} 
-                onClick={() => handleOnOptionClick(STATS)} 
-                aria-disabled={!isAuthenticated}
-              >
-                {t("navbar/stats")}
-              </button>
-            </li>
+            { isAuthenticated && 
+              <li className="nav-item">
+                <Link 
+                  className={`nav-link ${isCurrent(PLAY) ? 'active' : ''}`} 
+                  to = {PLAY} 
+                  aria-disabled={!isAuthenticated}
+                >
+                  {t("navbar/play")}
+                </Link>
+              </li>
+            }
+            { isAuthenticated && 
+              <li className="nav-item">
+                <Link 
+                  className={`nav-link ${isCurrent(STATS) ? 'active' : ''} cursor-pointer`} 
+                  to = {STATS} 
+                  aria-disabled={!isAuthenticated}
+                >
+                  {t("navbar/stats")}
+                </Link>
+              </li>
+            }
           </ul>
-          {isCurrent(PLAY) && 
-          <ul className="navbar-nav">
-            <li className="nav-item">
-            <StyledButton 
-                        className="btn btn-primary btn-lg" 
-                        onClick={() => handleOnOptionClick(PLAY + '/' + SINGLEPLAYERMODES)}>
-                            <i class="bi bi-puzzle"/>
-                            {t('playPage/buttons/singlePlayer')}
-                            <i class="bi bi-puzzle"/>
-            </StyledButton>
-            </li>
-            <li className="nav-item">
-               <StyledButton 
-                className="btn btn-primary btn-lg">
-                    <i class="bi bi-globe-europe-africa"/>
-                    {t('playPage/buttons/multiPlayer')}
-                    <i class="bi bi-globe-americas"/>
-            </StyledButton>
-            </li>
-          </ul>}
+          {isCurrent(PLAY) && <PlayLinks/>}
+          {isCurrent(HOME) && <HomeLinks/>}
+          {isCurrent(STATS) && <StatLinks/>}
         </div>
     </div>
   </nav>

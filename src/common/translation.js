@@ -11,7 +11,3 @@ export function t(key) {
 
     return result;
 }
-
-//Fix
-//email elready exits 
-//turning pages
