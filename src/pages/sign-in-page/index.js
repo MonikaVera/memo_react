@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../common/AuthContext";
 import { StyledFrom } from "../styles/styles";
 import { t } from "../../common/translation";
+import Error from "../../common/Error";
 
 const SignIn = () => {
     const [toSend, setToSend] = useState({emailOrUsername:"", password: ""});
@@ -13,13 +14,9 @@ const SignIn = () => {
     const { handleSignIn } = useAuth(); 
 
     useEffect(() => {
-        if(data!=null) {
-            console.log(data);
-            const {token} = data;
-            if(error == null && token) {
-                handleSignIn(token);
-                navigate(HOME);
-            }
+        if(data!==null && error === null) {
+            handleSignIn(data);
+            navigate(HOME);
         }
     }, [data, handleSignIn, navigate, error]);
 
@@ -42,7 +39,7 @@ const SignIn = () => {
             <h1>{t("signInPage/title")}</h1>
             <StyledFrom className="border p-3 border-primary">
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="emailOrUsername">{t("signInPage/title")}</label>
+                    <label className="form-label" htmlFor="emailOrUsername">{t("signInPage/labelUserOrEmail")}</label>
                     <input 
                         type="text" 
                         id="emailOrUsername" 
@@ -51,7 +48,7 @@ const SignIn = () => {
                         className="form-control border-primary"/>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="password">{t("signInPage/labelUserOrEmail")}</label>
+                    <label className="form-label" htmlFor="password">{t("signInPage/labelPassword")}</label>
                     <input 
                         id="password" 
                         type="password" 
@@ -61,7 +58,7 @@ const SignIn = () => {
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("signInPage/button")}</button>  
             </StyledFrom>
-            {error !== null && <div>{error}</div>}      
+            <Error>{error}</Error>    
         </div>
     </div>
 }

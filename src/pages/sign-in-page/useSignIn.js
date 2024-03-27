@@ -7,8 +7,6 @@ const useSignIn = () => {
     const [data, setData] = useState(null);
 
     const getSignInData = async (emailOrUsername, password) => {
-        console.log(emailOrUsername);
-        console.log(password);
         let email = null;
         let userName = null;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,22 +19,14 @@ const useSignIn = () => {
         try {
             const response = await axios.post(LINK + '/api/signIn', {username: userName, email: email, password: password});
             setData(response.data);
-            console.log(response.data);
             setError(null);
         } catch (error) {
             if (error.response) {
-                if (error.response && error.response.status === 401) {
-                    const responseData = error.response.data;
-                    if (responseData.isEmailOrUserNameCorrect === false) {
-                        setError("Incorrect email or username.");
-                    } else if (responseData.isPasswordCorrect === false) {
-                        setError("Incorrect password.");
-                    } else {
-                        setError("An error occurred. Please try again later.");
-                    }
-                } else {
-                    setError("Network error. Please check your connection and try again.");
-                }
+                const responseData = error.response.data;
+                console.log(responseData);
+                setError(responseData);
+            } else {
+                setError(error);
             }
         }
     };

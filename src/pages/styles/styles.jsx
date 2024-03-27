@@ -11,6 +11,10 @@ export const StyledLink = styled(Link)`
     width: 10em;
 `;
 
+export const StyledDiv = styled.div`
+    width: fit-content;
+`;
+
 export const StyledOption = styled.button`
     width: 15em;
     box-shadow: 0 0 15px ${colors.forest_green};
