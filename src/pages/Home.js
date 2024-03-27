@@ -1,17 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import { StyledButton } from "./styles/styles";
-import { PLAY, REGISTER, SIGNIN, STATS } from "../config";
-import { useAuth } from "../common/AuthContext";
 import { t } from "../common/translation";
 
 const Home = () => {
-    const navigate = useNavigate();
-    const {isAuthenticated, handleSignOut} = useAuth();
-
-    const handleClick = (path) => {
-        navigate(path);
-    };
-    
     return (
         <div className="container">
             <h1>
@@ -31,38 +20,6 @@ const Home = () => {
                         <li className="list-group-item border-primary">{t('homePage/firstSection/point5')}</li>
                     </ul>
                 </div>
-                    {isAuthenticated ? (
-                    <div className="col-md-4 d-flex flex-column align-items-center">
-                        <StyledButton className="btn btn-primary btn-lg" onClick={() => handleClick(PLAY)}>
-                            <i className="bi bi-puzzle"/>
-                            {t('homePage/buttons/play')}
-                            <i className="bi bi-puzzle"/>
-                        </StyledButton>
-                        <StyledButton className="btn btn-primary btn-lg" onClick={handleSignOut}>
-                            <i className="bi bi-door-closed"/>
-                            {t('homePage/buttons/signOut')}
-                            <i className="bi bi-door-closed"/>
-                        </StyledButton>
-                        <StyledButton className="btn btn-primary btn-lg" onClick={() => handleClick(STATS)}>
-                            <i className="bi bi-table"/>
-                            {t('homePage/buttons/stats')}
-                            <i className="bi bi-table"/>
-                        </StyledButton>
-                    </div>  
-                    ) : (
-                    <div className="col-md-4 d-flex flex-column align-items-center">
-                        <StyledButton className="btn btn-primary btn-lg" onClick={() => handleClick(SIGNIN)}>
-                            <i className="bi bi-door-open"/>
-                            {t('homePage/buttons/signIn')}
-                            <i className="bi bi-door-open"/>
-                        </StyledButton>
-                        <StyledButton className="btn btn-primary btn-lg" onClick={() => handleClick(REGISTER)}>
-                            <i className="bi bi-pen"/>
-                            {t('homePage/buttons/register')}
-                            <i className="bi bi-envelope-paper"/>
-                        </StyledButton> 
-                    </div>
-                    )}
             </div>
             <h2>{t('homePage/secondSection/title')}</h2>
             <div className="row">
