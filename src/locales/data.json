@@ -1,0 +1,161 @@
+{
+  "homePage": {
+    "title": " Echoes of Memory ",
+    "description": "Dive into the world of fun and challenge your mind like never before! Echoes of Memory is not just a game, it's a journey through a universe of patterns, shapes, and colors, designed to test your memory and sharpen your cognitive skills. Echoes of Memory is more than just entertainment; it's a tool to boost brain power, enhance focus, and improve problem-solving skills. Join a community of players who not only seek to beat their high scores but also to forge sharper minds. Whether you're playing for fun or to give your brain a workout, Echoes of Memory offers an enriching experience that grows with you.",
+    "firstSection" : {
+      "title": "How to Play?",
+      "point1" : "Register and sign in",
+      "point2" : "Choose your game mode and difficulty",
+      "point3" : "Uncover tiles to reveal hidden symbols",
+      "point4" : "Find matching pairs as fast as possible",
+      "point5" : "Track your progress and set new personal records"
+    },
+    "secondSection" : {
+      "title" : "Benefits of playing Echoes of Memory",
+      "card1" : {
+          "title" : " Enhanced Working Memory ",
+          "description" : "Regularly playing memory games helps improve working memory, which is crucial for following instructions, solving problems, and understanding complex thoughts."
+      },
+      "card2" : {
+          "title" : " Increased Focus and Attention ",
+          "description" : "These games require players to concentrate and pay close attention to details, thereby improving their ability to focus and sustain attention over longer periods."
+      },
+      "card3" : {
+          "title" : " Better Cognitive Flexibility ",
+          "description" : "Memory games often involve thinking about multiple concepts simultaneously, which can enhance cognitive flexibility, allowing people to adapt their thinking quickly to new information."
+      },
+      "card4" : {
+          "title" : " Improved Academic Skills ",
+          "description" : "The skills developed through memory games, such as pattern recognition and logical thinking, are directly applicable to academic learning, especially in reading, math, and science."
+      },
+      "card5" : {
+          "title" : " Social Skills Development ",
+          "description" : "When played in groups, memory games can foster social skills like taking turns, practicing patience, and experiencing both winning and losing graciously."
+      },
+      "card6" : {
+          "title" : " Enhanced Problem-Solving Skills ",
+          "description" : "Players learn to identify patterns, anticipate outcomes, and develop strategies on the fly. These critical thinking skills are invaluable, enhancing decision-making in daily life and in complex situations alike."
+      }
+    },
+    "buttons" : {
+      "register" : " Register ",
+      "signIn" : " Sign In ",
+      "signOut" : " Sign Out ",
+      "play" : " Play ",
+      "stats" : " Statistics "
+    }
+  },
+  "signInPage" : {
+    "title" : "Sign In",
+    "labelUserOrEmail" : "Username or email:",
+    "labelPassword" : "Password:",
+    "button" : "Send"
+  },
+  "registerPage" : {
+    "title" : "Register",
+    "labelUser" : "Username:",
+    "labelEmail" : "Email:",
+    "labelPassword" : "Password:",
+    "button" : "Send"
+  },
+  "playPage" : {
+    "title" : "Discover Your Favorite Way to Play!",
+    "description" : "Echoes of Memory offers two exciting modes to cater to every type of player. Whether you're in the mood for a solo challenge or eager to test your skills against friends, we've got you covered. Dive into our Single Player mode for a focused, self-paced experience, or jump into Multiplayer mode to compete and collaborate with others. The choice is yours!",
+    "singlePlayer" : {
+      "subtitle" : " Single Player Mode ",
+      "subDescription" : "In Single Player mode, embark on a personal journey to sharpen your memory and cognitive skills at your own pace. Progress through increasingly difficult levels, beat your high scores, and achieve personal milestones. Enjoy a calm and engaging activity to relax your mind and distract from the day's stresses."
+    },
+    "multiPlayer" : {
+      "subtitle" : " Multiplayer Mode ",
+      "subDescription" : "Ready to share the fun? Multiplayer mode allows you to connect with friends or players from around the globe in real-time. Challenge friends or random opponents to see who has the sharpest memory. Pick up new strategies and tips by observing how other players."
+    },
+    "buttons" : {
+      "singlePlayer" : " Single Player ",
+      "multiPlayer" : " Multiplayer "
+    }
+  },
+  "singlePlayerModesPage" : {
+    "title" : "Game Modes",
+    "beginner" : {
+      "title" : "Beginner",
+      "description" : "Test your memory with a small number of cards and a generous time limit. Perfect for beginners who are just starting to develop their memory skills."
+    },
+    "novice" : {
+      "title" : "Novice",
+      "description" : "Continue building your memory skills by challenging yourself with a manageable number of cards. Ideal for those progressing beyond the beginner level."
+    },
+    "intermediate" : {
+      "title" : "Intermediate",
+      "description" : "Challenge yourself with a slightly shorter time limit. Suitable for players with some experience who want to further hone their memory abilities."
+    },
+    "advanced" : {
+      "title" : "Advanced",
+      "description" : "Challenge yourself with a larger number of cards. This level is designed for experienced players who are confident in their memory abilities and seek a greater challenge."
+    },
+    "expert" : {
+      "title" : "Expert",
+      "description" : "Push your memory skills to the limit with a substantial number of cards and a very tight time limit. Recommended only for those who have mastered the game and want to test the limits of their memory capacity."
+    },
+    "master" : {
+      "title" : "Master",
+      "description" : "Embark on the ultimate memory challenge with an extensive number of cards and an extremely tight time limit. Reserved for the most skilled and dedicated players who seek the most rigorous test of their memory prowess."
+    },
+    "pairs" : "pairs",
+    "min" : "min"
+  },
+  "singlePlayerGamePage" : {
+    "won" : "You won!",
+    "lost" : "You lost!",
+    "newGame" : "New Game",
+    "home" : "Home"
+  },
+  "statsPage" : {
+    "title" : "Statistics",
+    "description" : "Here, you'll find valuable insights into your performance and achievements on our platform, as well as a glimpse into the broader community through our leaderboard.",
+    "singlePlayer" : {
+      "subtitle" : " Your Personal Stats ",
+      "subDescription" : "Clicking the \"My Stats\" button will take you to a page dedicated to your individual performance metrics. Here, you can track your wins, losses, and overall winning rate, providing you with a clear understanding of your gameplay effectiveness. Additionally, you'll find details such as your average remaining time per game and a comprehensive list of all your past games, complete with dates for reference. This personalized dashboard allows you to assess your progress over time and identify areas for improvement."
+    },
+    "multiPlayer" : {
+      "subtitle" : " Leaderboard ",
+      "subDescription" : "Alternatively, if you're curious about how you stack up against other players, click the \"Leaderboard\" button to explore our community-wide rankings. Whether you're aiming for the top spot or simply interested in seeing where you stand among your peers, the leaderboard offers a dynamic view of player standings and achievements."
+    },
+    "conclusion" : "By offering both personal performance insights and a broader perspective through the leaderboard, our statistics page empowers you to track your progress, set goals, and engage with the vibrant community of players on our platform.",
+    "buttons" : {
+      "singlePlayer" : " My Stats ",
+      "multiPlayer" : " Leaderboard "
+    }
+  },
+  "singlePlayerStatsPage" : {
+    "title" : "Single Player Games",
+    "overviewTable" : {
+      "title" : "Overview",
+      "pairs" : "Pairs",
+      "time" : "Time",
+      "numOfGames" : "Number of Games",
+      "wins" : "Wins",
+      "losses" : "Losses",
+      "winningRate" : "Winning Rate",
+      "avgRemTime" : "Avrage Remaining Time (wins only)",
+      "%" : "%"
+    },
+    "gamesTable" : {
+      "title" : "Games",
+      "when" : "when",
+      "pairs" : "Pairs",
+      "time" : "Time",
+      "won" : "Won",
+      "remTime" : "Remaining Time",
+      "yes" : " Yes",
+      "no" : " No",
+      "-" : "-"
+    },
+    "numOfGames" : "Number of Games:",
+    "sec" : "sec"
+  },
+  "navbar" : {
+    "home" : "Home",
+    "stats" : "Statistics",
+    "play" : "Play"
+  }
+}
