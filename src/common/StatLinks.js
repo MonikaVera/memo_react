@@ -7,9 +7,9 @@ const StatLinks = () => {
         <ul className="navbar-nav">
             <li className="nav-item">
                 <StyledLink to={STATS + '/' + SPSTATS} className="btn btn-primary m-1">
-                    <i class="bi bi-award"/>
+                    <i className="bi bi-table"/>
                     {t('statsPage/buttons/singlePlayer')}
-                    <i class="bi bi-award"/>
+                    <i className="bi bi-table"/>
                 </StyledLink>
             </li>
             <li className="nav-item">

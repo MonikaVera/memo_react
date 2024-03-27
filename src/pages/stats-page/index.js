@@ -13,9 +13,9 @@ const Stats = () => {
             </div>    
             <div className="row">
                 <h2>
-                    <i class="bi bi-award"/>
+                    <i className="bi bi-table"/>
                     {t('statsPage/singlePlayer/subtitle')}
-                    <i class="bi bi-award"/>
+                    <i className="bi bi-table"/>
                 </h2>
                 <p>{t('statsPage/singlePlayer/subDescription')}</p>
                 <h2>
