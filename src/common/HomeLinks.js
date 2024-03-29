@@ -1,5 +1,5 @@
 import { StyledLink, StyledButton } from "../pages/styles/styles";
-import { REGISTER, SIGNIN } from "../config";
+import { PLAY, REGISTER, SIGNIN } from "../config";
 import { useAuth } from "./AuthContext";
 import { t } from "./translation";
 
@@ -9,6 +9,13 @@ const HomeLinks = () => {
     return ( 
         isAuthenticated ? (
             <ul className="navbar-nav">
+                <li className="nav-item">
+                    <StyledLink className="btn btn-primary m-1" to={PLAY}>
+                        <i className="bi bi-play"/>
+                        {t('homePage/buttons/play')}
+                        <i className="bi bi-play"/>
+                    </StyledLink>  
+                </li>
                 <li className="nav-item">
                     <StyledButton className="btn btn-primary m-1" onClick={handleSignOut}>
                         <i className="bi bi-door-closed"/>

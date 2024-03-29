@@ -15,7 +15,7 @@ const useRegister = () => {
                 const responseData = error.response.data;
                 setError(responseData);
             } else {
-                setError(error);
+                setError("An unexpected error occurred.");
             }
         }
     };

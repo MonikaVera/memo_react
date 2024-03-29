@@ -34,11 +34,11 @@ const Register = () => {
     return <div>
         <div className="container">
             <h1>{t("registerPage/title")}</h1>
-            <StyledFrom className="border p-3 border-primary">
+            <StyledFrom className="border p-3 border-dark">
                 <div className="mb-3">
                     <label className="form-label" htmlFor="email">{t("registerPage/labelEmail")}</label>
                     <input 
-                        className="form-control border-primary"
+                        className="form-control border-dark"
                         type="text" 
                         id="email" 
                         value={toSend.email} 
@@ -48,7 +48,7 @@ const Register = () => {
                 <div className="mb-3">
                     <label className="form-label" htmlFor="username">{t("registerPage/labelUser")}</label>
                     <input 
-                        className="form-control border-primary"
+                        className="form-control border-dark"
                         type="text" id="username" 
                         value={toSend.username} 
                         onChange={handleChange}
@@ -57,7 +57,7 @@ const Register = () => {
                 <div className="mb-3">
                     <label className="form-label" htmlFor="password">{t("registerPage/labelPassword")}</label>
                     <input 
-                        className="form-control border-primary"
+                        className="form-control border-dark"
                         id="password" 
                         type="password" 
                         value={toSend.password} 

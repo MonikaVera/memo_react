@@ -4,7 +4,7 @@ import { LINK } from "../../config";
 import { useAuth } from "../../common/AuthContext";
 
 const useStartSinglePlayer = () => {
-    const [error, setError] = useState(null);
+    const [errorR, setError] = useState(null);
     const [data, setData] = useState(null);
     const { token } = useAuth();
 
@@ -21,11 +21,17 @@ const useStartSinglePlayer = () => {
             });
             setData(response.data);
             setError(null);
-        } catch (error) {
-            setError(error);
+        } catch (errorR) {
+            if (errorR.response) {
+                const responseData = errorR.response.data;
+                const { status, error } = responseData;
+                setError(status + " " + error);
+            } else {
+                setError("An unexpected error occurred.");
+            }
         }
     };
-    return { error, data, getSinglePlayerStart };
+    return { errorR, data, getSinglePlayerStart };
 };
 
 export default useStartSinglePlayer;

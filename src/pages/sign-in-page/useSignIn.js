@@ -23,10 +23,9 @@ const useSignIn = () => {
         } catch (error) {
             if (error.response) {
                 const responseData = error.response.data;
-                console.log(responseData);
                 setError(responseData);
             } else {
-                setError(error);
+                setError("An unexpected error occurred.");
             }
         }
     };

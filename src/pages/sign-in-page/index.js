@@ -37,7 +37,7 @@ const SignIn = () => {
     return <div>
         <div className="container">
             <h1>{t("signInPage/title")}</h1>
-            <StyledFrom className="border p-3 border-primary">
+            <StyledFrom className="border p-3 border-dark">
                 <div className="mb-3">
                     <label className="form-label" htmlFor="emailOrUsername">{t("signInPage/labelUserOrEmail")}</label>
                     <input 
@@ -45,7 +45,7 @@ const SignIn = () => {
                         id="emailOrUsername" 
                         value={toSend.emailOrUsername} 
                         onChange={handleChange}
-                        className="form-control border-primary"/>
+                        className="form-control border-dark"/>
                 </div>
                 <div className="mb-3">
                     <label className="form-label" htmlFor="password">{t("signInPage/labelPassword")}</label>
@@ -54,7 +54,7 @@ const SignIn = () => {
                         type="password" 
                         value={toSend.password} 
                         onChange={handleChange}
-                        className="form-control border-primary"/> 
+                        className="form-control border-dark"/> 
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("signInPage/button")}</button>  
             </StyledFrom>

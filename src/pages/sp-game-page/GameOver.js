@@ -7,12 +7,12 @@ const GameOver = ({won}) => {
         {won ? <div>{t('singlePlayerGamePage/won')}</div> : null}
         {!won ? <div>{t('singlePlayerGamePage/lost')}</div> : null}
         <StyledLink 
-            className="btn btn-secondary m-1" 
+            className="btn btn-primary m-1" 
             to={PLAY + '/' + SINGLEPLAYERMODES}>
                 {t('singlePlayerGamePage/newGame')}
         </StyledLink>
         <StyledLink 
-            className="btn btn-secondary m-1" 
+            className="btn btn-primary m-1" 
             to={HOME}>
                 {t('singlePlayerGamePage/home')}
         </StyledLink>

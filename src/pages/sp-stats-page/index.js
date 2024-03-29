@@ -41,7 +41,7 @@ const SPStats = () => {
     return isAuthenticated ? <div className="container">
         <h1>{t('singlePlayerStatsPage/title')}</h1>
         <div class="table-responsive">
-            <table className="table table-bordered border-primary caption-top table-striped">
+            <table className="table table-bordered border-dark caption-top table-striped">
                 <caption className="table-title">{t('singlePlayerStatsPage/overviewTable/title')}</caption>
                 <thead>
                     <tr>
@@ -70,7 +70,7 @@ const SPStats = () => {
             </table>
         </div>
         <div className="table-responsive">
-            <table className="table caption-top border-primary table-striped">
+            <table className="table caption-top border-dark table-striped">
                 <caption>{t('singlePlayerStatsPage/gamesTable/title')}</caption>
                 <thead>
                     <tr>

@@ -5,19 +5,20 @@ import { useAuth } from "../../common/AuthContext";
 import { useState, useEffect } from "react";
 import Option from "./Option";
 import { t } from "../../common/translation";
+import Error from "../../common/Error";
 
 const SinglePlayerOptions = () => {
     const navigate = useNavigate();
-    const { error, data, getSinglePlayerStart } = useStartSinglePlayer();
+    const { errorR, data, getSinglePlayerStart } = useStartSinglePlayer();
     const [pairsAndTime, setPairsAndTime] = useState({pairs: null, time: null});
     const { isAuthenticated } = useAuth();
 
     useEffect(() => {
-        if (error === null && data) {
+        if (errorR === null && data) {
             const { sessionId } = data;
             navigate(`${pairsAndTime.pairs}/${pairsAndTime.time}/${sessionId}`);
         }
-    }, [error, data, pairsAndTime, navigate]);
+    }, [errorR, data, pairsAndTime, navigate]);
 
     const handleOptionSelect = (newPairs, newTime) => {
         setPairsAndTime(prevState => ({
@@ -49,7 +50,7 @@ const SinglePlayerOptions = () => {
                 <div class="col d-flex flex-column align-items-center">
                     <Option 
                         title={t('singlePlayerModesPage/beginner/title')} 
-                        pairs={8} min={2} 
+                        pairs={8} min={-2} 
                         handleOptionSelect={handleOptionSelect}
                     />
                     <Option 
@@ -80,7 +81,7 @@ const SinglePlayerOptions = () => {
                 </div>
             </div>
         </div>
-        {error !== null && <div>{error}</div>}
+        <Error>{errorR}</Error>
     </div>) :
     <Navigate to={HOME}/>
 }
