@@ -18,8 +18,14 @@ const useGetSinglePlayerSummary = () => {
             });
             setDataSPSummary(response.data);
             setErrorSPSummary(null);
-        } catch (error) {
-            setErrorSPSummary(error);
+        } catch (errorSPSummary) {
+            if (errorSPSummary.response) {
+                const responseData = errorSPSummary.response.data;
+                const { status, error } = responseData;
+                setErrorSPSummary(status + " " + error);
+            } else {
+                setErrorSPSummary("An unexpected error occurred.");
+            }
         }
     };
     return { errorSPSummary, dataSPSummary, getSinglePlayerSummary };

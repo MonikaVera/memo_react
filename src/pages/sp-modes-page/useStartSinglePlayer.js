@@ -4,8 +4,8 @@ import { LINK } from "../../config";
 import { useAuth } from "../../common/AuthContext";
 
 const useStartSinglePlayer = () => {
-    const [errorR, setError] = useState(null);
-    const [data, setData] = useState(null);
+    const [errorStartSP, setErrorStartSP] = useState(null);
+    const [dataStartSP, setDataStartSP] = useState(null);
     const { token } = useAuth();
 
     const getSinglePlayerStart = async (pairs, time) => {
@@ -19,19 +19,19 @@ const useStartSinglePlayer = () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            setData(response.data);
-            setError(null);
-        } catch (errorR) {
-            if (errorR.response) {
-                const responseData = errorR.response.data;
+            setDataStartSP(response.data);
+            setErrorStartSP(null);
+        } catch (errorStartSP) {
+            if (errorStartSP.response) {
+                const responseData = errorStartSP.response.data;
                 const { status, error } = responseData;
-                setError(status + " " + error);
+                setErrorStartSP(status + " " + error);
             } else {
-                setError("An unexpected error occurred.");
+                setErrorStartSP("An unexpected error occurred.");
             }
         }
     };
-    return { errorR, data, getSinglePlayerStart };
+    return { errorStartSP, dataStartSP, getSinglePlayerStart };
 };
 
 export default useStartSinglePlayer;

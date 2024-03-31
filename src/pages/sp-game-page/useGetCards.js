@@ -19,8 +19,14 @@ const useGetCards = () => {
                 }
             });
             setData(response.data);
-        } catch (error) {
-            setError(error);
+        } catch (errorCards) {
+            if (errorCards.response) {
+                const responseData = errorCards.response.data;
+                const { status, error } = responseData;
+                setError(status + " " + error);
+            } else {
+                setError("An unexpected error occurred.");
+            }
         }
     };
 

@@ -6,6 +6,7 @@ import useGetSinglePlayerSummary from "./useGetSinglePlayerSummary";
 import { useAuth } from "../../common/AuthContext";
 import { Navigate } from "react-router-dom";
 import { t } from "../../common/translation";
+import Error from "../../common/Error";
 
 const SPStats = () => {
     const { isAuthenticated } = useAuth();
@@ -69,6 +70,7 @@ const SPStats = () => {
                 </tbody>
             </table>
         </div>
+        <Error>{errorSPSummary}</Error>
         <div className="table-responsive">
             <table className="table caption-top border-dark table-striped">
                 <caption>{t('singlePlayerStatsPage/gamesTable/title')}</caption>
@@ -123,8 +125,7 @@ const SPStats = () => {
             </div>
             {dataSPAll && <div>{t('singlePlayerStatsPage/numOfGames')} {dataSPAll.totalItems}</div>}
         </div>
-        {errorSPAll !== null && <div>{errorSPAll.message}</div>}
-        {errorSPSummary !== null && <div>{errorSPSummary.message}</div>}
+        <Error>{errorSPAll}</Error>
     </div> : <Navigate to={HOME}/>
 }
 

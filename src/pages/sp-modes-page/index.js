@@ -9,16 +9,16 @@ import Error from "../../common/Error";
 
 const SinglePlayerOptions = () => {
     const navigate = useNavigate();
-    const { errorR, data, getSinglePlayerStart } = useStartSinglePlayer();
+    const { errorStartSP, dataStartSP, getSinglePlayerStart } = useStartSinglePlayer();
     const [pairsAndTime, setPairsAndTime] = useState({pairs: null, time: null});
     const { isAuthenticated } = useAuth();
 
     useEffect(() => {
-        if (errorR === null && data) {
-            const { sessionId } = data;
+        if (errorStartSP === null && dataStartSP) {
+            const { sessionId } = dataStartSP;
             navigate(`${pairsAndTime.pairs}/${pairsAndTime.time}/${sessionId}`);
         }
-    }, [errorR, data, pairsAndTime, navigate]);
+    }, [errorStartSP, dataStartSP, pairsAndTime, navigate]);
 
     const handleOptionSelect = (newPairs, newTime) => {
         setPairsAndTime(prevState => ({
@@ -50,7 +50,7 @@ const SinglePlayerOptions = () => {
                 <div class="col d-flex flex-column align-items-center">
                     <Option 
                         title={t('singlePlayerModesPage/beginner/title')} 
-                        pairs={8} min={-2} 
+                        pairs={8} min={2} 
                         handleOptionSelect={handleOptionSelect}
                     />
                     <Option 
@@ -78,10 +78,10 @@ const SinglePlayerOptions = () => {
                         pairs={24} min={5} 
                         handleOptionSelect={handleOptionSelect}
                     />
+                    <Error>{errorStartSP}</Error>
                 </div>
             </div>
         </div>
-        <Error>{errorR}</Error>
     </div>) :
     <Navigate to={HOME}/>
 }

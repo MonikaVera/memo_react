@@ -17,8 +17,14 @@ const useGetRemainingTime = () => {
                 }
             });
             setData(response.data);
-        } catch (error) {
-            setError(error);
+        } catch (errorRT) {
+            if (errorRT.response) {
+                const responseData = errorRT.response.data;
+                const { status, error } = responseData;
+                setError(status + " " + error);
+            } else {
+                setError("An unexpected error occurred.");
+            }
         }
     };
 

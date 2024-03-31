@@ -23,8 +23,13 @@ const useGetSinglePlayerAllGames = () => {
             });
             setDataSPAll(response.data);
             setErrorSPAll(null);
-        } catch (error) {
-            setErrorSPAll(error);
+        } catch (errorSPAll) {
+            if (errorSPAll.response) {
+                const responseData = errorSPAll.response.data;
+                setErrorSPAll(responseData);
+            } else {
+                setErrorSPAll("An unexpected error occurred.");
+            }
         }
     };
     return { errorSPAll, dataSPAll, getSinglePlayerAllGames };
