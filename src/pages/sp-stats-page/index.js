@@ -6,6 +6,7 @@ import useGetSinglePlayerSummary from "./useGetSinglePlayerSummary";
 import { useAuth } from "../../common/AuthContext";
 import { Navigate } from "react-router-dom";
 import { t } from "../../common/translation";
+import Error from "../../common/Error";
 
 const SPStats = () => {
     const { isAuthenticated } = useAuth();
@@ -41,7 +42,7 @@ const SPStats = () => {
     return isAuthenticated ? <div className="container">
         <h1>{t('singlePlayerStatsPage/title')}</h1>
         <div class="table-responsive">
-            <table className="table table-bordered border-primary caption-top table-striped">
+            <table className="table table-bordered border-dark caption-top table-striped">
                 <caption className="table-title">{t('singlePlayerStatsPage/overviewTable/title')}</caption>
                 <thead>
                     <tr>
@@ -69,8 +70,9 @@ const SPStats = () => {
                 </tbody>
             </table>
         </div>
+        <Error>{errorSPSummary}</Error>
         <div className="table-responsive">
-            <table className="table caption-top border-primary table-striped">
+            <table className="table caption-top border-dark table-striped">
                 <caption>{t('singlePlayerStatsPage/gamesTable/title')}</caption>
                 <thead>
                     <tr>
@@ -123,8 +125,7 @@ const SPStats = () => {
             </div>
             {dataSPAll && <div>{t('singlePlayerStatsPage/numOfGames')} {dataSPAll.totalItems}</div>}
         </div>
-        {errorSPAll !== null && <div>{errorSPAll.message}</div>}
-        {errorSPSummary !== null && <div>{errorSPSummary.message}</div>}
+        <Error>{errorSPAll}</Error>
     </div> : <Navigate to={HOME}/>
 }
 

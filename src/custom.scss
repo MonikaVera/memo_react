@@ -1,9 +1,9 @@
-$primary: #248232ff;
-$secondary: #2ba84aff;
+$primary: #2ba84aff;
+$secondary: #D5EEDBff;
 $dark : #2d3a3aff;
 $light: #959d9bff;
 
-$body-bg: #959d9bff;;
+$body-bg: #c9ceccff;
 $body-color:#040f0fff;
 
 
@@ -11,5 +11,5 @@ $body-color:#040f0fff;
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 .btn-primary {
-    color: $dark !important;
+    color: $body-color !important;
 }

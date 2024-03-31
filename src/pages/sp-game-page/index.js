@@ -8,6 +8,7 @@ import { Navigate, useParams } from "react-router-dom";
 import useGetRemainingTime from "./useGetRemainingTime";
 import { HOME } from "../../config";
 import { useAuth } from "../../common/AuthContext";
+import Error from "../../common/Error";
 
 const SinglePlayerGame = () => {
     const { pairs, time, sessionId } = useParams();
@@ -124,8 +125,8 @@ const SinglePlayerGame = () => {
             </div>
         ) : (
             <GameOver won={(data!=null && data.won)}></GameOver>)}
-        {error!==null ? null : <div>{error}</div>}
-        {errorRT!==null ? null : <div>{errorRT}</div>}
+        <Error>{error}</Error>
+        <Error>{errorRT}</Error>
     </div>) : <Navigate to={HOME}/>
 }
 

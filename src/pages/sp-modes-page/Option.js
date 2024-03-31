@@ -2,7 +2,7 @@ import { StyledOption } from "../styles/styles";
 import { t } from "../../common/translation";
 
 const Option = ({title, pairs, min, handleOptionSelect}) => {
-    return( <StyledOption className="btn btn-secondary fs-3" onClick={() => handleOptionSelect(pairs, min)}>
+    return( <StyledOption className="btn btn-primary fs-3" onClick={() => handleOptionSelect(pairs, min)}>
         <div>
             <i class="bi bi-play-circle"></i>
             {' ' + title}

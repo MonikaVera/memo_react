@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../common/AuthContext";
 import { StyledFrom } from "../styles/styles";
 import { t } from "../../common/translation";
+import Error from "../../common/Error";
 
 const SignIn = () => {
     const [toSend, setToSend] = useState({emailOrUsername:"", password: ""});
@@ -13,13 +14,9 @@ const SignIn = () => {
     const { handleSignIn } = useAuth(); 
 
     useEffect(() => {
-        if(data!=null) {
-            console.log(data);
-            const {token} = data;
-            if(error == null && token) {
-                handleSignIn(token);
-                navigate(HOME);
-            }
+        if(data!==null && error === null) {
+            handleSignIn(data);
+            navigate(HOME);
         }
     }, [data, handleSignIn, navigate, error]);
 
@@ -40,28 +37,28 @@ const SignIn = () => {
     return <div>
         <div className="container">
             <h1>{t("signInPage/title")}</h1>
-            <StyledFrom className="border p-3 border-primary">
+            <StyledFrom className="border p-3 border-dark">
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="emailOrUsername">{t("signInPage/title")}</label>
+                    <label className="form-label" htmlFor="emailOrUsername">{t("signInPage/labelUserOrEmail")}</label>
                     <input 
                         type="text" 
                         id="emailOrUsername" 
                         value={toSend.emailOrUsername} 
                         onChange={handleChange}
-                        className="form-control border-primary"/>
+                        className="form-control border-dark"/>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label" htmlFor="password">{t("signInPage/labelUserOrEmail")}</label>
+                    <label className="form-label" htmlFor="password">{t("signInPage/labelPassword")}</label>
                     <input 
                         id="password" 
                         type="password" 
                         value={toSend.password} 
                         onChange={handleChange}
-                        className="form-control border-primary"/> 
+                        className="form-control border-dark"/> 
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("signInPage/button")}</button>  
             </StyledFrom>
-            {error !== null && <div>{error}</div>}      
+            <Error>{error}</Error>    
         </div>
     </div>
 }
