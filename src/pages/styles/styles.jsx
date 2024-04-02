@@ -15,12 +15,10 @@ export const StyledDiv = styled.div`
 `;
 
 export const StyledOption = styled.button`
-    width: 15em;
     box-shadow: 0 0 15px ${colors.forest_green};
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0.5em;
 `;
 
 export const ContentContainer = styled.div`

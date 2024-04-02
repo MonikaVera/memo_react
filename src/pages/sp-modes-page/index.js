@@ -30,55 +30,45 @@ const SinglePlayerOptions = () => {
     return (
         <PageContainer>
             <h1>{t('singlePlayerModesPage/title')}</h1>
-            <div className="row">
-                <div class="col">
-                    <h2>{t('singlePlayerModesPage/beginner/title')}</h2>
-                    <p>{t('singlePlayerModesPage/beginner/description')}</p>
-                    <h2>{t('singlePlayerModesPage/novice/title')}</h2>
-                    <p>{t('singlePlayerModesPage/novice/description')}</p>
-                    <h2>{t('singlePlayerModesPage/intermediate/title')}</h2>
-                    <p>{t('singlePlayerModesPage/intermediate/description')}</p>
-                    <h2>{t('singlePlayerModesPage/advanced/title')}</h2>
-                    <p>{t('singlePlayerModesPage/advanced/description')}</p>
-                    <h2>{t('singlePlayerModesPage/expert/title')}</h2>
-                    <p>{t('singlePlayerModesPage/expert/description')}</p>
-                    <h2>{t('singlePlayerModesPage/master/title')}</h2>
-                    <p>{t('singlePlayerModesPage/master/description')}</p>
-                </div>
-                <div class="col d-flex flex-column align-items-center">
+                <div class="d-flex flex-wrap justify-content-evenly">
                     <Option 
                         title={t('singlePlayerModesPage/beginner/title')} 
                         pairs={8} min={2} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/beginner/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/novice/title')} 
                         pairs={16} min={5} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/novice/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/intermediate/title')} 
                         pairs={8} min={1} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/intermediate/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/advanced/title')} 
                         pairs={24} min={7} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/advanced/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/expert/title')} 
                         pairs={16} min={2} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/expert/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/master/title')} 
                         pairs={24} min={5} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/master/description')}
                     />
                     <Error>{errorStartSP}</Error>
                 </div>
-            </div>
         </PageContainer>
     );
 }

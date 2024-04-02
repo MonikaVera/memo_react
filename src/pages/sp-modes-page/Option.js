@@ -1,14 +1,21 @@
 import { StyledOption } from "../styles/styles";
 import { t } from "../../common/translation";
 
-const Option = ({title, pairs, min, handleOptionSelect}) => {
-    return( <StyledOption className="btn btn-primary fs-3" onClick={() => handleOptionSelect(pairs, min)}>
-        <div>
-            <i class="bi bi-play-circle"></i>
-            {' ' + title}
+const Option = ({title, pairs, min, handleOptionSelect, description}) => {
+    return ( 
+        <div className="card m-3 border-dark text-bg-secondary" style={{width: "20em"}}>
+            <div className="card-body">
+                <h2 className="card-title">{title}</h2>
+                <p className="card-text">{description}</p>
+                <StyledOption className="btn btn-primary fs-4" onClick={() => handleOptionSelect(pairs, min)}>
+                    <div>
+                        <i class="bi bi-play-circle"></i>
+                        {` Start (${pairs} ${t('singlePlayerModesPage/pairs')} ${min} ${t('singlePlayerModesPage/min')})`}
+                    </div>
+                </StyledOption>
+            </div>
         </div>
-        <div className="opacity-50">({pairs} {t('singlePlayerModesPage/pairs')} {min} {t('singlePlayerModesPage/min')})</div>
-    </StyledOption>);
+    );
 }
 
 export default Option;

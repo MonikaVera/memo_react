@@ -1,11 +1,13 @@
 const Card = ({title, description, iconClass}) => {
-    return  <div className="card col m-2 p-2 border-dark text-bg-secondary">
-        <h3>
-            <i className={`bi ${iconClass}`}/>
-            {title}
-            <i className={`bi ${iconClass}`}/>
-        </h3>
-        <p>{description}</p>
+    return  <div className="card col m-2 border-dark text-bg-secondary">
+        <div  className="card-body">
+            <h3 className="card-title">
+                <i className={`bi ${iconClass}`}/>
+                {title}
+                <i className={`bi ${iconClass}`}/>
+            </h3>
+            <p className="card-text">{description}</p>
+        </div>
     </div>
 };
 
