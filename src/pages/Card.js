@@ -1,5 +1,5 @@
 const Card = ({title, description, iconClass}) => {
-    return  <div className="card col m-2 border-dark text-bg-secondary">
+    return  <div className="card col m-2 p-2 border-dark text-bg-secondary">
         <h3>
             <i className={`bi ${iconClass}`}/>
             {title}

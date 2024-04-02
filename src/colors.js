@@ -4,5 +4,6 @@ export const colors = {
     pigment_green: '#2ba84aff',
     gunmetal: '#2d3a3aff',
     cadet_gray: '#959d9bff',
+    silver: '#c9ceccff',
     baby_powder: '#fcfffcff'
 };

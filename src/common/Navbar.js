@@ -30,7 +30,7 @@ const Navbar = () => {
       return false;
     }
 
-    return <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    return <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container-fluid">
       {isCurrent(HOME) ? null : (
         <button

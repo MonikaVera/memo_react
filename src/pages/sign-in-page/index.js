@@ -3,9 +3,9 @@ import useSignIn from "./useSignIn";
 import { HOME } from "../../config";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../common/AuthContext";
-import { StyledFrom } from "../styles/styles";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
+import PageContainer from "../../common/PageContainer";
 
 const SignIn = () => {
     const [toSend, setToSend] = useState({emailOrUsername:"", password: ""});
@@ -34,10 +34,9 @@ const SignIn = () => {
         }));
     }
 
-    return <div>
-        <div className="container">
+    return <PageContainer>
             <h1>{t("signInPage/title")}</h1>
-            <StyledFrom className="border p-3 border-dark">
+            <form className="border p-3 border-dark mb-3">
                 <div className="mb-3">
                     <label className="form-label" htmlFor="emailOrUsername">{t("signInPage/labelUserOrEmail")}</label>
                     <input 
@@ -57,10 +56,9 @@ const SignIn = () => {
                         className="form-control border-dark"/> 
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("signInPage/button")}</button>  
-            </StyledFrom>
+            </form>
             <Error>{error}</Error>    
-        </div>
-    </div>
+    </PageContainer>
 }
 
 export default SignIn;

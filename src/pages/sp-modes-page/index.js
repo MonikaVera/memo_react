@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Option from "./Option";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
+import PageContainer from "../../common/PageContainer";
 
 const SinglePlayerOptions = () => {
     const navigate = useNavigate();
@@ -29,8 +30,7 @@ const SinglePlayerOptions = () => {
         getSinglePlayerStart(newPairs, newTime);
     };
 
-    return isAuthenticated ? (<div>
-        <div className="container">
+    return isAuthenticated ? (<PageContainer>
             <h1>{t('singlePlayerModesPage/title')}</h1>
             <div className="row">
                 <div class="col">
@@ -81,8 +81,7 @@ const SinglePlayerOptions = () => {
                     <Error>{errorStartSP}</Error>
                 </div>
             </div>
-        </div>
-    </div>) :
+    </PageContainer>) :
     <Navigate to={HOME}/>
 }
 

@@ -23,14 +23,30 @@ export const StyledOption = styled.button`
     margin: 0.5em;
 `;
 
-export const StyledFrom = styled.form`
+export const ContentContainer = styled.div`
     @media (max-width: 800px) {
         width: 100%; 
     }
 
     @media (min-width: 800px) {
-        width: 50%; 
+        width: 65%; 
     }
+
+    background-color: ${colors.silver};
+    overflow-y: auto;
+    padding-top: 4.5em;
+`;
+
+export const BackgroundContainer = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url(/img/green_1.jpg);
+    background-size: cover;
+    background-position: center;
 `;
 
 

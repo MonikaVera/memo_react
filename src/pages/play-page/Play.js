@@ -2,12 +2,13 @@ import { Navigate } from "react-router-dom";
 import { HOME } from "../../config";
 import { useAuth } from "../../common/AuthContext";
 import { t } from "../../common/translation";
+import PageContainer from "../../common/PageContainer";
 
 const Play = () => {
     const {isAuthenticated} = useAuth();
 
     return (
-        isAuthenticated ? (<div className="container">
+        isAuthenticated ? (<PageContainer>
             <h1 className="row">{t('playPage/title')}</h1>
             <div className="row">
                 <p>{t('playPage/description')}</p>
@@ -26,7 +27,7 @@ const Play = () => {
                 </h2>
                 <p>{t('playPage/multiPlayer/subDescription')}</p>
             </div>
-        </div>) : <Navigate to={HOME}/>
+        </PageContainer>) : <Navigate to={HOME}/>
     );
 }
 

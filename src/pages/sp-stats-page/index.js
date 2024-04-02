@@ -7,6 +7,7 @@ import { useAuth } from "../../common/AuthContext";
 import { Navigate } from "react-router-dom";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
+import PageContainer from "../../common/PageContainer";
 
 const SPStats = () => {
     const { isAuthenticated } = useAuth();
@@ -39,7 +40,7 @@ const SPStats = () => {
         page.current-=1;
     }
     
-    return isAuthenticated ? <div className="container">
+    return isAuthenticated ? <PageContainer>
         <h1>{t('singlePlayerStatsPage/title')}</h1>
         <div class="table-responsive">
             <table className="table table-bordered border-dark caption-top table-striped">
@@ -126,7 +127,7 @@ const SPStats = () => {
             {dataSPAll && <div>{t('singlePlayerStatsPage/numOfGames')} {dataSPAll.totalItems}</div>}
         </div>
         <Error>{errorSPAll}</Error>
-    </div> : <Navigate to={HOME}/>
+    </PageContainer> : <Navigate to={HOME}/>
 }
 
 export default SPStats;
