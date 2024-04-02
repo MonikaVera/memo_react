@@ -31,7 +31,8 @@ const Register = () => {
         }));
     }
 
-    return <PageContainer>
+    return (
+        <PageContainer>
             <h1>{t("registerPage/title")}</h1>
             <form className="border p-3 mb-3 border-dark">
                 <div className="mb-3">
@@ -65,7 +66,8 @@ const Register = () => {
                 <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("registerPage/button")}</button>
             </form>
             <Error>{error}</Error>
-    </PageContainer>
+        </PageContainer>
+    );
 }
 
 export default Register;

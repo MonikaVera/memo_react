@@ -25,7 +25,7 @@ const Navbar = () => {
     
     function isCurrent(path) {
       if(location.pathname===path) {
-          return true;
+        return true;
       } 
       return false;
     }

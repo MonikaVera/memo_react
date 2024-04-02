@@ -34,7 +34,8 @@ const SignIn = () => {
         }));
     }
 
-    return <PageContainer>
+    return (
+        <PageContainer>
             <h1>{t("signInPage/title")}</h1>
             <form className="border p-3 border-dark mb-3">
                 <div className="mb-3">
@@ -58,7 +59,8 @@ const SignIn = () => {
                 <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("signInPage/button")}</button>  
             </form>
             <Error>{error}</Error>    
-    </PageContainer>
+        </PageContainer>
+    );
 }
 
 export default SignIn;

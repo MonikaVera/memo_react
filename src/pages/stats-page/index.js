@@ -1,13 +1,9 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../../common/AuthContext";
-import { HOME } from "../../config";
 import { t } from "../../common/translation";
 import PageContainer from "../../common/PageContainer";
 
 const Stats = () => {
-    const { isAuthenticated } = useAuth();
-
-    return isAuthenticated ? (<PageContainer>
+    return (
+        <PageContainer>
             <h1>{t('statsPage/title')}</h1>
             <div className="row">
                 <p className="col">{t('statsPage/description')}</p>
@@ -28,9 +24,7 @@ const Stats = () => {
             </div>
             <p>{t('statsPage/conclusion')}</p>
         </PageContainer>   
-    ) : (
-        <Navigate to={HOME}/>
-    )
+    );
 }
 
 export default Stats;

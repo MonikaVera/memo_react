@@ -1,7 +1,5 @@
-import {HOME} from "../../config";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStartSinglePlayer from "./useStartSinglePlayer";
-import { useAuth } from "../../common/AuthContext";
 import { useState, useEffect } from "react";
 import Option from "./Option";
 import { t } from "../../common/translation";
@@ -12,7 +10,6 @@ const SinglePlayerOptions = () => {
     const navigate = useNavigate();
     const { errorStartSP, dataStartSP, getSinglePlayerStart } = useStartSinglePlayer();
     const [pairsAndTime, setPairsAndTime] = useState({pairs: null, time: null});
-    const { isAuthenticated } = useAuth();
 
     useEffect(() => {
         if (errorStartSP === null && dataStartSP) {
@@ -30,7 +27,8 @@ const SinglePlayerOptions = () => {
         getSinglePlayerStart(newPairs, newTime);
     };
 
-    return isAuthenticated ? (<PageContainer>
+    return (
+        <PageContainer>
             <h1>{t('singlePlayerModesPage/title')}</h1>
             <div className="row">
                 <div class="col">
@@ -81,8 +79,8 @@ const SinglePlayerOptions = () => {
                     <Error>{errorStartSP}</Error>
                 </div>
             </div>
-    </PageContainer>) :
-    <Navigate to={HOME}/>
+        </PageContainer>
+    );
 }
 
 export default SinglePlayerOptions;
