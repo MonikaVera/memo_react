@@ -35,6 +35,12 @@ export const ContentContainer = styled.div`
     padding-top: 4.5em;
 `;
 
+export const GameContentContainer = styled.div`
+    background-color: ${colors.silver};
+    overflow-y: auto;
+    padding-top: 4.5em;
+`;
+
 export const BackgroundContainer = styled.div`
     position: fixed;
     top: 0;
