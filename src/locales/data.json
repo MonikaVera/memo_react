@@ -60,19 +60,20 @@
   },
   "playPage" : {
     "title" : "Discover Your Favorite Way to Play!",
-    "description" : "Echoes of Memory offers two exciting modes to cater to every type of player. Whether you're in the mood for a solo challenge or eager to test your skills against friends, we've got you covered. Dive into our Single Player mode for a focused, self-paced experience, or jump into Multiplayer mode to compete and collaborate with others. The choice is yours!",
+    "description" : "Echoes of Memory offers two thrilling modes designed to suit every type of player. Whether you're seeking a solitary challenge or craving the excitement of competing with friends, we've got you covered. Dive into our Single Player mode for a focused, self-paced experience, or jump into Multiplayer mode to engage in both competition and collaboration. The choice is entirely yours!",
     "singlePlayer" : {
       "subtitle" : " Single Player Mode ",
-      "subDescription" : "In Single Player mode, embark on a personal journey to sharpen your memory and cognitive skills at your own pace. Progress through increasingly difficult levels, beat your high scores, and achieve personal milestones. Enjoy a calm and engaging activity to relax your mind and distract from the day's stresses."
+      "subDescription" : "In Single Player mode, embark on a personal journey to hone your memory and cognitive skills at your own pace. Progress through an array of increasingly challenging levels, aiming to surpass your previous high scores and achieve personal milestones along the way. Immerse yourself in a serene and captivating activity that serves to both relax your mind and divert your attention from the stresses of the day. With no external pressures, you can truly focus on sharpening your mental acuity and enjoying the journey of self-improvement."
     },
     "multiPlayer" : {
       "subtitle" : " Multiplayer Mode ",
-      "subDescription" : "Ready to share the fun? Multiplayer mode allows you to connect with friends or players from around the globe in real-time. Challenge friends or random opponents to see who has the sharpest memory. Pick up new strategies and tips by observing how other players."
+      "subDescription" : "Ready to share the excitement? Multiplayer mode allows you to connect with players from around the globe in real-time. Take on random opponents to determine who possesses the sharpest memory and quickest wit. Engage in thrilling battles of memory prowess as you race against the clock to outperform your rivals. Additionally, Multiplayer mode offers a unique opportunity to learn and grow as a player by observing the strategies and techniques employed by others. Whether you're seeking to dominate the leaderboard or simply looking to enjoy some friendly competition, Multiplayer mode provides an exhilarating and dynamic gaming experience that is sure to keep you coming back for more."
     },
     "buttons" : {
       "singlePlayer" : " Single Player ",
       "multiPlayer" : " Multiplayer "
-    }
+    },
+    "summary" : "No matter which mode you choose, Echoes of Memory promises to deliver hours of entertainment and mental stimulation. So, what are you waiting for? Dive in and discover your favorite way to play today!"
   },
   "singlePlayerModesPage" : {
     "title" : "Game Modes",

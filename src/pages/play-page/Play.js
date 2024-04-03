@@ -4,8 +4,8 @@ import PageContainer from "../../common/PageContainer";
 const Play = () => {
     return (
         <PageContainer>
-            <h1 className="row">{t('playPage/title')}</h1>
             <div className="row">
+                <h1>{t('playPage/title')}</h1>
                 <p>{t('playPage/description')}</p>
             </div>
             <div className="row">
@@ -21,6 +21,9 @@ const Play = () => {
                     <i class="bi bi-globe-americas"/>
                 </h2>
                 <p>{t('playPage/multiPlayer/subDescription')}</p>
+            </div>
+            <div className="row">
+                <p>{t('playPage/summary')}</p>
             </div>
         </PageContainer>
     );
