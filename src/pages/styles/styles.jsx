@@ -27,18 +27,34 @@ export const ContentContainer = styled.div`
     }
 
     @media (min-width: 800px) {
-        width: 65%; 
+        width: 800px; 
     }
 
     background-color: ${colors.silver};
     overflow-y: auto;
-    padding-top: 4.5em;
+
+    @media (max-width: 992px) {
+       padding-top: 12em; 
+    }
+
+    @media (min-width: 992px) {
+        padding-top: 4.5em;
+    }
+    
 `;
 
-export const GameContentContainer = styled.div`
+export const GameOverContentContainer = styled.div`
+    @media (max-width: 992px) {
+        margin-top: 12em; 
+    }
+ 
+    @media (min-width: 992px) {
+        margin-top: 4.5em;
+    }
+    
     background-color: ${colors.silver};
-    overflow-y: auto;
-    padding-top: 4.5em;
+    padding: 2em;
+    border-radius: 10px;
 `;
 
 export const BackgroundContainer = styled.div`

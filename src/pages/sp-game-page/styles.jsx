@@ -22,7 +22,13 @@ export const CardContainer = styled.div`
     border-radius: 10px;
     background-color: ${colors.silver};
     overflow-y: auto;
-    margin-top: 4.5em;
+    @media (max-width: 992px) {
+        margin-top: 12em; 
+    }
+ 
+    @media (min-width: 992px) {
+        margin-top: 4.5em;
+    }
 
     @media (max-width: 375px) {
         grid-template-columns: repeat(2, 1fr);
