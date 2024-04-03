@@ -157,6 +157,6 @@
   "navbar" : {
     "home" : "Home",
     "stats" : "Statistics",
-    "play" : "Play"
+    "game" : "Game"
   }
 }

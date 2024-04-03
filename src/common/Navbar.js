@@ -56,7 +56,7 @@ const Navbar = () => {
                   to = {PLAY} 
                   aria-disabled={!isAuthenticated}
                 >
-                  {t("navbar/play")}
+                  {t("navbar/game")}
                 </Link>
               </li>
             }
