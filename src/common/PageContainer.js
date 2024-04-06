@@ -19,7 +19,6 @@ const PageContainer = ({children}) => {
 
     function isGamePage() {
         const regex = new RegExp(`^${PLAY}/${SINGLEPLAYERMODES}/(\\d+)/(\\d+)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$`);
-        console.log(regex.test(location.pathname));
         return regex.test(location.pathname);
     }
 
