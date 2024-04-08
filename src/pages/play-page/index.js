@@ -10,15 +10,15 @@ const Play = () => {
             </div>
             <div className="row">
                 <h2>
-                    <i class="bi bi-puzzle"/>
+                    <i className="bi bi-puzzle"/>
                     {t('playPage/singlePlayer/subtitle')}
-                    <i class="bi bi-puzzle"/>
+                    <i className="bi bi-puzzle"/>
                 </h2>
                 <p>{t('playPage/singlePlayer/subDescription')}</p>
                 <h2>
-                    <i class="bi bi-globe-europe-africa"/>
+                    <i className="bi bi-globe-europe-africa"/>
                     {t('playPage/multiPlayer/subtitle')}
-                    <i class="bi bi-globe-americas"/>
+                    <i className="bi bi-globe-americas"/>
                 </h2>
                 <p>{t('playPage/multiPlayer/subDescription')}</p>
             </div>

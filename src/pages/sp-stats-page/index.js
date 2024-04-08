@@ -39,7 +39,7 @@ const SPStats = () => {
     return (
         <PageContainer>
             <h1>{t('singlePlayerStatsPage/title')}</h1>
-            <div class="table-responsive">
+            <div className="table-responsive">
                 <table className="table table-bordered border-dark caption-top table-striped">
                     <caption className="table-title">{t('singlePlayerStatsPage/overviewTable/title')}</caption>
                     <thead>

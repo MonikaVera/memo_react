@@ -30,7 +30,7 @@ const SinglePlayerOptions = () => {
     return (
         <PageContainer>
             <h1>{t('singlePlayerModesPage/title')}</h1>
-                <div class="d-flex flex-wrap justify-content-evenly">
+                <div className="d-flex flex-wrap justify-content-evenly">
                     <Option 
                         title={t('singlePlayerModesPage/beginner/title')} 
                         pairs={8} min={2} 

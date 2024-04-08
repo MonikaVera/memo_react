@@ -14,9 +14,9 @@ const StatLinks = () => {
             </li>
             <li className="nav-item">
                 <StyledLink className="btn btn-primary m-1">
-                    <i class="bi bi-trophy"/>
+                    <i className="bi bi-trophy"/>
                     {t('statsPage/buttons/multiPlayer')}
-                    <i class="bi bi-trophy"/> 
+                    <i className="bi bi-trophy"/> 
                 </StyledLink>
             </li>
         </ul>

@@ -7,3 +7,4 @@ export const PLAY = "/game";
 export const HOME = "/";
 export const STATS = '/stats';
 export const SPSTATS = 'sp';
+export const MULTYPLAYERMODES = "multiplayer";
