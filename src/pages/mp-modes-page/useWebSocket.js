@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import SockJS from 'sockjs-client';
 import { useRef } from 'react';
+import { useState } from 'react';
 
-function useWebSocket(url, onMessage) {
-    const socketRef = useRef(null);
+function useWebSocket() {
+    /*const socketRef = useRef(null);
     useEffect(() => {
       const socket = new SockJS(url);
       socketRef.current = socket;
@@ -34,7 +35,7 @@ function useWebSocket(url, onMessage) {
 
     // Function to join a game
     const joinGame = (numOfPairs) => {
-        sendMessage({ action: 'join_game', data: numOfPairs  });
+        sendMessage({ action: 'api/game/join', data: numOfPairs  });
     };
 
     // Function to leave a game
@@ -51,7 +52,7 @@ function useWebSocket(url, onMessage) {
         sendMessage({ action: '/game.test', data: testData });
     };
 
-    return { joinGame, leaveGame, makeMove, sendTestMessage };
+    return { joinGame, leaveGame, makeMove, sendTestMessage };*/
 }
   
 export default useWebSocket;
