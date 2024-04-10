@@ -2,7 +2,7 @@ import PageContainer from "../../common/PageContainer";
 import useMultiPlayerStart from "./useMultiPlayerStart";
 import useWebSocket from "./useWebSocket";
 import {LINK} from "../../config";
-import Stomp from 'react-stomp';
+import SockJsClient from 'react-stomp';
 import { useState, useRef } from "react";
 
 const MultiPlayerOptions = () => {
@@ -25,11 +25,6 @@ const MultiPlayerOptions = () => {
 
     const [connected, setConnected] = useState(false);
     const [playerName, setPlayerName] = useState('');
-
-    const onConnect = () => {
-        setConnected(true);
-        console.log('Connected');
-    };
 
     const onMessage = (msg) => {
         if (msg && msg.body) {
@@ -61,9 +56,14 @@ const MultiPlayerOptions = () => {
     const joinGame = () => {
         const message = {
             player: playerName,
-            numOfPairs: 2 // Assuming numOfPairs is needed for joining the game
+            numOfPairs: 8
         };
         stompClientRef.current.sendMessage('/app/game.join', JSON.stringify(message));
+    };
+
+    const onConnect = () => {
+        console.log('Connected to server');
+        setConnected(true);
     };
 
     
@@ -73,15 +73,15 @@ const MultiPlayerOptions = () => {
             <button onClick={connectHandler} disabled={connected}>Connect</button>
             <button onClick={disconnectHandler} disabled={!connected}>Disconnect</button>
             <button onClick={joinGame} disabled={!connected}>Join Game</button>
-            <Stomp
+            <SockJsClient 
+                topics={['/topic/game.state']}
+                ref={stompClientRef}
                 url={LINK + '/ws'}
                 onConnect={onConnect}
                 onDisconnect={() => setConnected(false)}
-                onMessage={onMessage}
+                onMessage={(msg) => onMessage(msg)}
                 onError={onError}
-                debug={true}
-                ref={stompClientRef}
-            />
+                debug={true} />
         </PageContainer>
     )
 }
