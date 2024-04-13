@@ -4,7 +4,6 @@ const Card = ({index, num, handleOnCardClicks, isClickable, isActive, pairs}) =>
     if(num===null) {
         isFound=false;
     };
-    
     const onClickHandler = (isClickable && (num===null)) ? () => handleOnCardClicks({ index: index }) : null;
     return (
         <StyledCard 
