@@ -1,4 +1,4 @@
-import PageContainer from "../../common/PageContainer";
+/*import PageContainer from "../../common/PageContainer";
 //import useMultiPlayerStart from "./useMultiPlayerStart";
 //import useWebSocket from "./useWebSocket";
 import {LINK} from "../../config";
@@ -21,7 +21,7 @@ const MultiPlayerOptions = () => {
         joinGame(num);
     };
     
-    useWebSocket(LINK + '/ws', handleMessage);*/
+    useWebSocket(LINK + '/ws', handleMessage);
     
 
     const [connected, setConnected] = useState(true);
@@ -62,11 +62,6 @@ const MultiPlayerOptions = () => {
         stompClientRef.current.sendMessage('/app/game.join', JSON.stringify(message));
     };
 
-    /*const onConnect = () => {
-        console.log('Connected to server');
-        setConnected(true);
-    };*/
-
     
 
     
@@ -88,3 +83,320 @@ const MultiPlayerOptions = () => {
 }
 
 export default MultiPlayerOptions;
+*/
+
+
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+import { LINK } from '../../config';
+import PageContainer from '../../common/PageContainer';
+import { useAuth } from '../../common/AuthContext';
+import { useCallback, useEffect, useState, useRef } from 'react';
+import Card from '../sp-game-page/Card';
+import { CardContainer } from '../sp-game-page/styles';
+
+const MultiPlayer = () => {
+    const { token } = useAuth();
+    const [receivedMessage, setReceivedMessage] = useState();
+    const [pairs, setPairs] = useState();
+    const url = LINK + '/ws';
+    const topicGameState = '/topic/game.state';
+    const [topicGamePlay, setTopicGamePlay] = useState(null);
+    const [isConnected, setIsConnected] = useState(false);
+    const [isJoined, setJoined] = useState(false);
+    const stompClientRef = useRef(null);
+
+    useEffect(() => {
+        const socket = new SockJS(url);
+        const stompClient = Stomp.over(socket);
+    
+        stompClient.connect({}, () => {
+            console.log('Connected to STOMP broker');
+            setIsConnected(true);
+            stompClientRef.current = stompClient;
+            subscribeToTopic(topicGameState);
+        }, error => {
+            console.error('Error connecting to STOMP broker:', error);
+        });
+    
+        return () => {
+            if (stompClientRef.current) {
+                stompClientRef.current.disconnect();
+            }
+        };
+    }, []);
+
+
+    const subscribeToTopic = useCallback((topic) => {
+        const onMessage = (message) => {
+            const parsedMessage = JSON.parse(message.body);
+            if(parsedMessage.type==='game.left') {
+                setJoined(false);
+            }
+    
+            if (parsedMessage.senderToken === token || topic==="/topic/game." + parsedMessage.gameId) {
+                setReceivedMessage(parsedMessage);
+            }
+    
+            if (parsedMessage.gameId && ("/topic/game." + parsedMessage.gameId)!==topicGamePlay) {
+                setTopicGamePlay("/topic/game." + parsedMessage.gameId);
+            }
+        };
+
+        stompClientRef.current.subscribe(topic, onMessage)
+    }, [ token, topicGamePlay]);
+
+
+    useEffect(() => {
+        if(isConnected && topicGamePlay!==null) {
+            subscribeToTopic(topicGamePlay);
+        }
+        if(receivedMessage && receivedMessage.gameOver) {
+            setJoined(false);
+        }
+        
+    }, [topicGamePlay, subscribeToTopic, isConnected, receivedMessage]);
+   
+
+    const joinGame = (numOfPairs) => {
+        setPairs(8);
+        setJoined(true);
+        const message = {
+            token: token,
+            numOfPairs: numOfPairs
+        };
+        stompClientRef.current.send('/app/game.join', {}, JSON.stringify(message));
+    };
+
+    const handleOnCardClicks = ({index}) => {
+        console.log(index);
+        const message = {
+            senderToken: token,
+            index: index,
+            gameId: receivedMessage.gameId,
+        };
+        stompClientRef.current.send('/app/game.move', {}, JSON.stringify(message));
+    }
+
+    const leaveGame = () => {
+        const message = {
+            token: token,
+        };
+        stompClientRef.current.send('/app/game.leave', {}, JSON.stringify(message));
+    }
+
+    function isActiveCard(index) {
+        let isActive = false;
+        const lastMove = receivedMessage.lastMove;
+        if (lastMove!==null && (index.toString() in lastMove)) {
+            isActive = true;
+        }
+        return isActive;
+    }
+
+    function getNum(num, index) {
+        if(num!==null) {
+            return num;
+        }
+        const lastMove = receivedMessage.lastMove;
+        if(lastMove!==null && lastMove.hasOwnProperty(index.toString())) {
+            return lastMove[index.toString()];
+        }
+        return null;
+    }
+
+    return (
+        <PageContainer>
+            {(receivedMessage && receivedMessage.gameOver) &&
+                <div>Winner: {receivedMessage.winner}</div>
+            }
+            {!isJoined ?
+            <div>
+                <button onClick={() => joinGame(8)}>Join Easy Game</button>
+                <button onClick={() => joinGame(16)}>Join Medium Game</button>
+                <button onClick={() => joinGame(24)}>Join Hard Game</button>  
+            </div>
+            :
+            <div>
+                <button onClick={() => leaveGame()}>Leave</button>
+                {receivedMessage && 
+                    <div>
+                        <div>{JSON.stringify(receivedMessage)}</div>
+                        <div>Players:</div>
+                        <div>{receivedMessage.player1Name}</div>
+                        <div>{receivedMessage.player2Name}</div>
+                        <div>{receivedMessage.turn}'s turn</div>
+                        <CardContainer $pairs={parseInt(pairs)}>
+                            {receivedMessage.board.map((num, index) => (
+                                <Card 
+                                    key={index} 
+                                    index={index} 
+                                    num={getNum(num, index)} 
+                                    handleOnCardClicks={handleOnCardClicks} 
+                                    pairs={parseInt(pairs)}
+                                    isClickable={true}
+                                    isActive={isActiveCard(index)}
+                                />
+                            ))}
+                        </CardContainer>         
+                    </div>
+                }
+            </div>
+            }
+        </PageContainer>
+    )
+}
+
+export default MultiPlayer;
+
+
+/*
+
+import SockJS from 'sockjs-client';
+import Stomp from 'stompjs';
+import { LINK } from '../../config';
+import PageContainer from '../../common/PageContainer';
+import { useAuth } from '../../common/AuthContext';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Card from '../sp-game-page/Card';
+import { CardContainer } from '../sp-game-page/styles';
+
+const MultiPlayer = () => {
+    const { token } = useAuth();
+    const [receivedMessage, setReceivedMessage] = useState();
+    const [pairs, setPairs] = useState();
+    const url = LINK + '/ws';
+    const topicGameState = '/topic/game.state';
+    const [topicGamePlay, setTopicGamePlay] = useState(null);
+    const [isConnected, setIsConnected] = useState(false);
+    const [isJoined, setJoined] = useState(false);
+
+    const socket = new SockJS(url);
+    const stompClient = Stomp.over(socket);
+
+    stompClient.connect({}, () => {
+        console.log('Connected to STOMP broker');
+        setIsConnected(true);
+        subscribeToTopic(topicGameState);
+    }, error => {
+        console.error('Error connecting to STOMP broker:', error);
+    });
+
+
+    const subscribeToTopic = useCallback((topic) => {
+        const onMessage = (message) => {
+            const parsedMessage = JSON.parse(message.body);
+            if(parsedMessage.type==='game.left') {
+                setJoined(false);
+            }
+    
+            if (parsedMessage.senderToken === token || topic==="/topic/game." + parsedMessage.gameId) {
+                setReceivedMessage(parsedMessage);
+            }
+    
+            if (parsedMessage.gameId && ("/topic/game." + parsedMessage.gameId)!==topicGamePlay) {
+                setTopicGamePlay("/topic/game." + parsedMessage.gameId);
+            }
+        };
+
+        stompClient.subscribe(topic, onMessage)
+    }, [stompClient, token, topicGamePlay]);
+
+
+    useEffect(() => {
+        if(isConnected && topicGamePlay!==null) {
+            stompClient.connect({}, () => { 
+                subscribeToTopic(topicGamePlay);
+            }, error => {
+                console.error('Error connecting to STOMP broker:', error);
+            });
+        }
+        
+    }, [topicGamePlay, subscribeToTopic, isConnected, stompClient]);
+   
+
+    const joinGame = (numOfPairs) => {
+        setPairs(8);
+        setJoined(true);
+        const message = {
+            token: token,
+            numOfPairs: numOfPairs
+        };
+        stompClient.send('/app/game.join', {}, JSON.stringify(message));
+    };
+
+    const handleOnCardClicks = ({index}) => {
+        console.log(index);
+        const message = {
+            senderToken: token,
+            index: index,
+            gameId: receivedMessage.gameId,
+        };
+        stompClient.send('/app/game.move', {}, JSON.stringify(message));
+    }
+
+    const leaveGame = () => {
+        const message = {
+            token: token,
+        };
+        stompClient.send('/app/game.leave', {}, JSON.stringify(message));
+    }
+
+    function isActiveCard(index) {
+        let isActive = false;
+        const lastMove = receivedMessage.lastMove;
+        if (lastMove!==null && (index.toString() in lastMove)) {
+            isActive = true;
+        }
+        return isActive;
+    }
+
+    function getNum(num, index) {
+        if(num!==null) {
+            return num;
+        }
+        const lastMove = receivedMessage.lastMove;
+        if(lastMove!==null && lastMove.hasOwnProperty(index.toString())) {
+            return lastMove[index.toString()];
+        }
+        return null;
+    }
+
+    return (
+        <PageContainer>
+            {!isJoined ?
+            <div>
+                <button onClick={() => joinGame(8)}>Join Easy Game</button>
+                <button onClick={() => joinGame(16)}>Join Medium Game</button>
+                <button onClick={() => joinGame(24)}>Join Hard Game</button>  
+            </div>
+            :
+            <div>
+                <button onClick={() => leaveGame()}>Leave</button>
+                {receivedMessage && 
+                    <div>
+                        <div>{JSON.stringify(receivedMessage)}</div>
+                        <CardContainer $pairs={parseInt(pairs)}>
+                            {receivedMessage.board.map((num, index) => (
+                                <Card 
+                                    key={index} 
+                                    index={index} 
+                                    num={getNum(num, index)} 
+                                    handleOnCardClicks={handleOnCardClicks} 
+                                    pairs={parseInt(pairs)}
+                                    isClickable={true}
+                                    isActive={isActiveCard(index)}
+                                />
+                            ))}
+                        </CardContainer>         
+                    </div>
+                }
+            </div>
+            }
+        </PageContainer>
+    )
+}
+
+export default MultiPlayer;
+
+*/

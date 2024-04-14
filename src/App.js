@@ -12,8 +12,7 @@ import { AuthProvider } from './common/AuthContext';
 import Stats from './pages/stats-page';
 import SPStats from './pages/sp-stats-page';
 import Navbar from './common/Navbar';
-import NewMultiPlayer from './pages/mp-modes-page/index2';
-
+import MultiPlayer from './pages/mp-modes-page/index';
 //npm start
 
 function App() {
@@ -41,7 +40,7 @@ function App() {
                 <Route path = {SINGLEPLAYERGAME} element={ <SinglePlayerGame/>}/>
               </Route>
               <Route path={MULTYPLAYERMODES}>
-                <Route index={true} element={<NewMultiPlayer/>}/>
+                <Route index={true} element={<MultiPlayer/>}/>
               </Route>
             </Route>
             <Route path={STATS}>
