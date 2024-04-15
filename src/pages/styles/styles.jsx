@@ -67,7 +67,23 @@ export const InfoContentContainer = styled.div`
         margin-top: 4.5em;
     }
 
-    width: 825px;
+    @media (min-width: 500px) {
+        width: 450px;
+    }
+
+    @media (min-width: 675px) {
+        width: 625px;
+    }
+
+    @media (min-width: 875px) {
+        width: 825px;
+    }
+
+    @media (min-width: 1250px) {
+        width: 1200px;
+    }
+
+    
     background-color: ${colors.silver};
     padding: 2em;
     border-radius: 10px;

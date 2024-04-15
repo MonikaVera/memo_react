@@ -1,6 +1,7 @@
 import { GameOverContentContainer, InfoContentContainer } from "../styles/styles";
 import { t } from "../../common/translation";
 import JoinCard from "./JoinCard";
+import Score from "./Score";
 
 const ReceivedInfo = ({receivedInfo, leaveGame, joinGame}) => {
     return (
@@ -16,17 +17,11 @@ const ReceivedInfo = ({receivedInfo, leaveGame, joinGame}) => {
                 ) : (
                     <InfoContentContainer>
                         <h1 className="fs-3">Players</h1>
-                        <div className="d-flex flex-wrap justify-content-around">
-                            <div>{receivedInfo.player1Name}</div>
-                            <div>{receivedInfo.player2Name}</div>
-                        </div>
-                        <div className="d-flex flex-wrap justify-content-around">
-                            <div>{receivedInfo.player1GuessedCards}</div>
-                            <div>{receivedInfo.player2GuessedCards}</div>
-                        </div>
                         <div className="d-flex flex-wrap justify-content-between">
-                            <div>{receivedInfo.turn}'s turn</div>
-                            <button className='btn btn-primary' onClick={() => leaveGame()}>Leave</button>  
+                            <Score receivedInfo={receivedInfo}/>
+                            <div className="d-flex flex-wrap justify-content-center m-1">
+                                <button className=' btn btn-primary' onClick={() => leaveGame()}>Leave</button>  
+                            </div>           
                         </div>
                     </InfoContentContainer>
                 )}
