@@ -10,7 +10,7 @@ const Option = ({title, pairs, min, handleOptionSelect, description}) => {
                 <StyledOption className="btn btn-primary fs-4" onClick={() => handleOptionSelect(pairs, min)}>
                     <div>
                         <i className="bi bi-play-circle"></i>
-                        {` Start (${pairs} ${t('singlePlayerModesPage/pairs')} ${min} ${t('singlePlayerModesPage/min')})`}
+                        {` ${t('singlePlayerModesPage/start')} (${pairs} ${t('singlePlayerModesPage/pairs')} ${min} ${t('singlePlayerModesPage/min')})`}
                     </div>
                 </StyledOption>
             </div>

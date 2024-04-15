@@ -95,7 +95,7 @@ const SinglePlayerGame = () => {
     return (
         <PageContainer>
             {(data==null || (data.ended!==null && data.ended===false)) && (dataRT==null || dataRT.remainingTime!==0)? (
-                <CardContainer $pairs={parseInt(pairs)}>
+                <CardContainer $pairs={parseInt(pairs)} $isSp={true}>
                     <GameTimer timeSec={timeSec} sessionId={sessionId}/>
                     {data ? (data.guessedBoard.map((num, index) => (
                         <Card 

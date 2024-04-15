@@ -23,11 +23,23 @@ export const CardContainer = styled.div`
     background-color: ${colors.silver};
     overflow-y: auto;
     @media (max-width: 992px) {
-        margin-top: 12em; 
+        margin-top:  ${({ $isSp }) => { 
+            if($isSp===true) {
+                return '12em';
+            } else {
+                return '0.5em';
+            }
+        }}; 
     }
  
     @media (min-width: 992px) {
-        margin-top: 4.5em;
+        margin-top: ${({ $isSp }) => { 
+            if($isSp===true) {
+                return '4.5em';
+            } else {
+                return '0.5em';
+            }
+        }}; 
     }
 
     @media (max-width: 375px) {

@@ -102,7 +102,8 @@
       "description" : "Embark on the ultimate memory challenge with an extensive number of cards and an extremely tight time limit. Reserved for the most skilled and dedicated players who seek the most rigorous test of their memory prowess."
     },
     "pairs" : "pairs",
-    "min" : "min"
+    "min" : "min",
+    "start" : "Start"
   },
   "singlePlayerGamePage" : {
     "won" : "You won!",
@@ -158,5 +159,23 @@
     "home" : "Home",
     "stats" : "Statistics",
     "game" : "Game"
+  },
+  "multiPlayerPage" : {
+    "join" : {
+      "easy" : {
+        "title" : "Friendly Rivalry",
+        "description" : "Engage in a friendly memory showdown with 8 pairs of cards. Challenge others to see who can uncover the most pairs. Can you outmatch your opponent and claim victory?"
+      },
+      "medium" : {
+        "title" : "Competitive Duel",
+        "description" : "Enter the arena for an exhilarating memory duel with 16 pairs of cards. Compete against others to see who can uncover the most pairs. Test your skills and strategy in this thrilling match. Will you emerge as the memory champion?"
+      },
+      "hard" : {
+        "title" : "Intense Battle",
+        "description" : "Brace yourself for an intense memory battle with 24 pairs of cards. Face off against a formidable opponent in a high-stakes match to uncover the most pairs. With the pressure on, every move counts. Can you outwit your adversary and seize victory in this challenging showdown?"
+      },
+      "pairs" : "pairs",
+      "start" : "Start"
+    }
   }
 }

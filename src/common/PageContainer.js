@@ -27,7 +27,7 @@ const PageContainer = ({children}) => {
         isGamePage() ? (
             <div>
                 <BackgroundContainer/>
-                <div className="d-flex justify-content-center align-items-center">
+                <div className="d-flex flex-column align-items-center">
                   {children}  
                 </div>
             </div>

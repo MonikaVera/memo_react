@@ -55,6 +55,22 @@ export const GameOverContentContainer = styled.div`
     background-color: ${colors.silver};
     padding: 2em;
     border-radius: 10px;
+    margin-bottom: 1em;
+`;
+
+export const InfoContentContainer = styled.div`
+    @media (max-width: 992px) {
+        margin-top: 12em; 
+    }
+
+    @media (min-width: 992px) {
+        margin-top: 4.5em;
+    }
+
+    width: 825px;
+    background-color: ${colors.silver};
+    padding: 2em;
+    border-radius: 10px;
 `;
 
 export const BackgroundContainer = styled.div`

@@ -8,7 +8,6 @@ import Card from '../sp-game-page/Card';
 import { CardContainer } from '../sp-game-page/styles';
 import { useInit } from './useInit';
 import ReceivedInfo from './receivedInfo';
-import { GameOverContentContainer } from '../styles/styles';
 
 const MultiPlayer = () => {
     const { token } = useAuth();
@@ -72,7 +71,7 @@ const MultiPlayer = () => {
    
 
     const joinGame = (numOfPairs) => {
-        setPairs(8);
+        setPairs(numOfPairs);
         setJoined(true);
         const message = {
             token: token,
@@ -120,32 +119,21 @@ const MultiPlayer = () => {
 
     return (
         <PageContainer>
-            <ReceivedInfo receivedInfo={receivedMessage}/>
-            {!isJoined ?
-            <GameOverContentContainer>
-                <button onClick={() => joinGame(8)}>Join Easy Game</button>
-                <button onClick={() => joinGame(16)}>Join Medium Game</button>
-                <button onClick={() => joinGame(24)}>Join Hard Game</button>  
-            </GameOverContentContainer>
-            :
-            <div>
-                <button onClick={() => leaveGame()}>Leave</button>
-                {receivedMessage && 
-                    <CardContainer $pairs={parseInt(pairs)}>
-                        {receivedMessage.board.map((num, index) => (
-                            <Card 
-                                key={index} 
-                                index={index} 
-                                num={getNum(num, index)} 
-                                handleOnCardClicks={handleOnCardClicks} 
-                                pairs={parseInt(pairs)}
-                                isClickable={true}
-                                isActive={isActiveCard(index)}
-                            />
-                        ))}
-                    </CardContainer>
-                }
-            </div>
+            <ReceivedInfo receivedInfo={receivedMessage} leaveGame={leaveGame} joinGame={joinGame}/> 
+            {isJoined && receivedMessage && 
+                <CardContainer $pairs={parseInt(pairs)} $isSp={false}>
+                    {receivedMessage.board.map((num, index) => (
+                        <Card 
+                            key={index} 
+                            index={index} 
+                            num={getNum(num, index)} 
+                            handleOnCardClicks={handleOnCardClicks} 
+                            pairs={parseInt(pairs)}
+                            isClickable={true}
+                            isActive={isActiveCard(index)}
+                        />
+                    ))}
+                </CardContainer>
             }
         </PageContainer>
     )
