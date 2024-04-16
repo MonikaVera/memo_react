@@ -1,4 +1,4 @@
-import { StyledDiv } from "../pages/styles/styles";
+import { StyledDiv } from "../styles/styles";
 
 const Error = ({children}) => {
     return children!==null ? (

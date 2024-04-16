@@ -1,6 +1,6 @@
-import { StyledLink } from "../pages/styles/styles";
-import { SPSTATS, STATS } from "../config";
-import { t } from "./translation";
+import { StyledLink } from "../../styles/styles";
+import { SPSTATS, STATS } from "../../config";
+import { t } from "../translation";
 
 const StatLinks = () => {
     return (

@@ -1,6 +1,6 @@
-import { MULTYPLAYERMODES, PLAY, SINGLEPLAYERMODES } from "../config";
-import { t } from "./translation";
-import { StyledLink } from "../pages/styles/styles";
+import { MULTYPLAYERMODES, PLAY, SINGLEPLAYERMODES } from "../../config";
+import { t } from "../translation";
+import { StyledLink } from "../../styles/styles";
 
 const PlayLinks = () => {
     return (

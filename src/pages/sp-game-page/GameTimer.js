@@ -1,4 +1,4 @@
-import { TimerContainer } from "./styles";
+import { TimerContainer } from "../../styles/styles";
 
 const GameTimer = ({timeSec, sessionId}) => {
     const minutes = Math.floor(timeSec / 60);

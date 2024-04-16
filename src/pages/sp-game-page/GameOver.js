@@ -1,4 +1,4 @@
-import { StyledLink, GameOverContentContainer } from "../styles/styles";
+import { StyledLink, GameOverContentContainer } from "../../styles/styles";
 import { HOME, SINGLEPLAYERMODES, PLAY } from "../../config";
 import { t } from "../../common/translation";
 

@@ -1,4 +1,4 @@
-import { StyledOption } from "../styles/styles";
+import { StyledOption } from "../../styles/styles";
 import { t } from "../../common/translation";
 
 const JoinCard = ({title, desc, joinGame, pairs}) => {
@@ -10,7 +10,7 @@ const JoinCard = ({title, desc, joinGame, pairs}) => {
                 <StyledOption className="btn btn-primary fs-4" onClick={() => joinGame(pairs)}>
                     <div>
                         <i className="bi bi-play-circle"></i>
-                        {` ${t('multiPlayerPage/join/start')} (${pairs} ${t('multiPlayerPage/join/pairs')})`}
+                        {` ${t('multiPlayerPage/join/join')} (${pairs} ${t('multiPlayerPage/join/pairs')})`}
                     </div>
                 </StyledOption>
             </div>

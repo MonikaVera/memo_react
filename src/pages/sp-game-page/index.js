@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef} from "react";
-import { CardContainer} from "./styles";
+import { CardContainer} from "../../styles/styles";
 import useGetCards from "./useGetCards";
 import GameOver from "./GameOver";
-import Card from "./Card";
+import GameCard from "../../common/GameCard";
 import GameTimer from "./GameTimer";
 import { useParams } from "react-router-dom";
 import useGetRemainingTime from "./useGetRemainingTime";
@@ -98,7 +98,7 @@ const SinglePlayerGame = () => {
                 <CardContainer $pairs={parseInt(pairs)} $isSp={true}>
                     <GameTimer timeSec={timeSec} sessionId={sessionId}/>
                     {data ? (data.guessedBoard.map((num, index) => (
-                        <Card 
+                        <GameCard 
                             key={index} 
                             index={index} 
                             num={getNum(num, index)} 
@@ -109,7 +109,7 @@ const SinglePlayerGame = () => {
                         />
                     ))) : 
                     (new Array(pairs*2).fill(null)).map((num, index) => (
-                        <Card 
+                        <GameCard 
                             key={index} 
                             index={index} 
                             num={num} 

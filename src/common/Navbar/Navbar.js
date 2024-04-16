@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { HOME, PLAY, STATS } from "../config";
-import { useAuth } from "./AuthContext";
+import { HOME, PLAY, STATS } from "../../config";
+import { useAuth } from "../AuthContext";
 import { useLocation} from "react-router-dom";
-import { t } from "./translation";
+import { t } from "../translation";
 import PlayLinks from "./PlayLinks";
 import HomeLinks from "./HomeLinks";
 import StatLinks from "./StatLinks";

@@ -1,7 +1,7 @@
 
-import { t } from "../common/translation";
-import Card from "./Card";
-import PageContainer from "../common/PageContainer";
+import { t } from "../../common/translation";
+import InfoCard from "./InfoCard";
+import PageContainer from "../../common/PageContainer";
 
 const Home = () => {
     return (
@@ -24,32 +24,32 @@ const Home = () => {
             </div>
             <div>
                 <h2>{t('homePage/secondSection/title')}</h2>
-                <Card 
+                <InfoCard 
                     title={t('homePage/secondSection/card1/title')}
                     description={t('homePage/secondSection/card1/description')}
                     iconClass={"bi-graph-up-arrow"}
                 />
-                <Card
+                <InfoCard
                     title={t('homePage/secondSection/card2/title')}
                     description={t('homePage/secondSection/card2/description')}
                     iconClass={"bi-crosshair"}
                 />
-                <Card
+                <InfoCard
                     title={t('homePage/secondSection/card3/title')}
                     description={t('homePage/secondSection/card3/description')}
                     iconClass={"bi-reception-4"}
                 />
-                <Card
+                <InfoCard
                     title={t('homePage/secondSection/card4/title')}
                     description={t('homePage/secondSection/card4/description')}
                     iconClass={"bi-book"}
                 />
-                <Card
+                <InfoCard
                     title={t('homePage/secondSection/card5/title')}
                     description={t('homePage/secondSection/card5/description')}
                     iconClass={"bi-chat-dots"}
                 />
-                <Card
+                <InfoCard
                     title={t('homePage/secondSection/card6/title')}
                     description={t('homePage/secondSection/card6/description')}
                     iconClass={"bi-lightbulb"}

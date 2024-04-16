@@ -1,5 +1,5 @@
 import { HOME, REGISTER, SIGNIN, PLAY, SINGLEPLAYERMODES, MULTYPLAYERMODES } from "../config";
-import { ContentContainer, BackgroundContainer } from "../pages/styles/styles";
+import { ContentContainer, BackgroundContainer } from "../styles/styles";
 import { useAuth } from "./AuthContext";
 import { Navigate, useLocation } from "react-router-dom";
 

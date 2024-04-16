@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
-import Home from './pages/Home';
+import Home from './pages/home-page/Home';
 import SinglePlayerOptions from './pages/sp-modes-page';
 import SinglePlayerGame from './pages/sp-game-page';
 import SignIn from './pages/sign-in-page';
@@ -11,7 +11,7 @@ import Play from './pages/play-page';
 import { AuthProvider } from './common/AuthContext';
 import Stats from './pages/stats-page';
 import SPStats from './pages/sp-stats-page';
-import Navbar from './common/Navbar';
+import Navbar from './common/Navbar/Navbar';
 import MultiPlayer from './pages/mp-modes-page/index';
 //npm start
 

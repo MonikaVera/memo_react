@@ -1,4 +1,4 @@
-const Card = ({title, description, iconClass}) => {
+const InfoCard = ({title, description, iconClass}) => {
     return  <div className="card col m-2 border-dark text-bg-secondary">
         <div  className="card-body">
             <h3 className="card-title">
@@ -11,4 +11,4 @@ const Card = ({title, description, iconClass}) => {
     </div>
 };
 
-export default Card;
+export default InfoCard;

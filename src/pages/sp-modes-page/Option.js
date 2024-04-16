@@ -1,4 +1,4 @@
-import { StyledOption } from "../styles/styles";
+import { StyledOption } from "../../styles/styles";
 import { t } from "../../common/translation";
 
 const Option = ({title, pairs, min, handleOptionSelect, description}) => {

@@ -4,10 +4,10 @@ import { LINK } from '../../config';
 import PageContainer from '../../common/PageContainer';
 import { useAuth } from '../../common/AuthContext';
 import { useCallback, useEffect, useState, useRef } from 'react';
-import Card from '../sp-game-page/Card';
-import { CardContainer } from '../sp-game-page/styles';
+import { CardContainer } from '../../styles/styles';
 import { useInit } from './useInit';
 import ReceivedInfo from './receivedInfo';
+import GameCard from '../../common/GameCard';
 
 const MultiPlayer = () => {
     const { token } = useAuth();
@@ -123,7 +123,7 @@ const MultiPlayer = () => {
             {isJoined && receivedMessage && 
                 <CardContainer $pairs={parseInt(pairs)} $isSp={false}>
                     {receivedMessage.board.map((num, index) => (
-                        <Card 
+                        <GameCard 
                             key={index} 
                             index={index} 
                             num={getNum(num, index)} 
