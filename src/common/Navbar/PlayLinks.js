@@ -1,6 +1,6 @@
-import { PLAY, SINGLEPLAYERMODES } from "../config";
-import { t } from "./translation";
-import { StyledLink } from "../pages/styles/styles";
+import { MULTYPLAYERMODES, PLAY, SINGLEPLAYERMODES } from "../../config";
+import { t } from "../translation";
+import { StyledLink } from "../../styles/styles";
 
 const PlayLinks = () => {
     return (
@@ -9,17 +9,18 @@ const PlayLinks = () => {
               <StyledLink 
                 className="btn btn-primary m-1" 
                 to={PLAY + '/' + SINGLEPLAYERMODES}>
-                    <i class="bi bi-puzzle"/>
+                    <i className="bi bi-puzzle"/>
                     {t('playPage/buttons/singlePlayer')}
-                    <i class="bi bi-puzzle"/>
+                    <i className="bi bi-puzzle"/>
               </StyledLink>
             </li>
             <li className="nav-item">
               <StyledLink 
-                className="btn btn-primary btn-md m-1">
-                    <i class="bi bi-globe-europe-africa"/>
+                className="btn btn-primary btn-md m-1"
+                to={PLAY + '/' + MULTYPLAYERMODES}>
+                    <i className="bi bi-globe-europe-africa"/>
                     {t('playPage/buttons/multiPlayer')}
-                    <i class="bi bi-globe-americas"/>
+                    <i className="bi bi-globe-americas"/>
               </StyledLink>
             </li>
         </ul>

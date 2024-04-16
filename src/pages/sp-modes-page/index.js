@@ -1,17 +1,15 @@
-import {HOME} from "../../config";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStartSinglePlayer from "./useStartSinglePlayer";
-import { useAuth } from "../../common/AuthContext";
 import { useState, useEffect } from "react";
 import Option from "./Option";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
+import PageContainer from "../../common/PageContainer";
 
 const SinglePlayerOptions = () => {
     const navigate = useNavigate();
     const { errorStartSP, dataStartSP, getSinglePlayerStart } = useStartSinglePlayer();
     const [pairsAndTime, setPairsAndTime] = useState({pairs: null, time: null});
-    const { isAuthenticated } = useAuth();
 
     useEffect(() => {
         if (errorStartSP === null && dataStartSP) {
@@ -29,61 +27,50 @@ const SinglePlayerOptions = () => {
         getSinglePlayerStart(newPairs, newTime);
     };
 
-    return isAuthenticated ? (<div>
-        <div className="container">
+    return (
+        <PageContainer>
             <h1>{t('singlePlayerModesPage/title')}</h1>
-            <div className="row">
-                <div class="col">
-                    <h2>{t('singlePlayerModesPage/beginner/title')}</h2>
-                    <p>{t('singlePlayerModesPage/beginner/description')}</p>
-                    <h2>{t('singlePlayerModesPage/novice/title')}</h2>
-                    <p>{t('singlePlayerModesPage/novice/description')}</p>
-                    <h2>{t('singlePlayerModesPage/intermediate/title')}</h2>
-                    <p>{t('singlePlayerModesPage/intermediate/description')}</p>
-                    <h2>{t('singlePlayerModesPage/advanced/title')}</h2>
-                    <p>{t('singlePlayerModesPage/advanced/description')}</p>
-                    <h2>{t('singlePlayerModesPage/expert/title')}</h2>
-                    <p>{t('singlePlayerModesPage/expert/description')}</p>
-                    <h2>{t('singlePlayerModesPage/master/title')}</h2>
-                    <p>{t('singlePlayerModesPage/master/description')}</p>
-                </div>
-                <div class="col d-flex flex-column align-items-center">
+                <div className="d-flex flex-wrap justify-content-evenly">
                     <Option 
                         title={t('singlePlayerModesPage/beginner/title')} 
                         pairs={8} min={2} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/beginner/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/novice/title')} 
                         pairs={16} min={5} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/novice/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/intermediate/title')} 
                         pairs={8} min={1} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/intermediate/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/advanced/title')} 
                         pairs={24} min={7} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/advanced/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/expert/title')} 
                         pairs={16} min={2} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/expert/description')}
                     />
                     <Option 
                         title={t('singlePlayerModesPage/master/title')} 
                         pairs={24} min={5} 
                         handleOptionSelect={handleOptionSelect}
+                        description={t('singlePlayerModesPage/master/description')}
                     />
                     <Error>{errorStartSP}</Error>
                 </div>
-            </div>
-        </div>
-    </div>) :
-    <Navigate to={HOME}/>
+        </PageContainer>
+    );
 }
 
 export default SinglePlayerOptions;

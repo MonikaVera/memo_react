@@ -1,7 +1,7 @@
-import { StyledLink, StyledButton } from "../pages/styles/styles";
-import { PLAY, REGISTER, SIGNIN } from "../config";
-import { useAuth } from "./AuthContext";
-import { t } from "./translation";
+import { StyledLink, StyledButton } from "../../styles/styles";
+import { PLAY, REGISTER, SIGNIN } from "../../config";
+import { useAuth } from "../AuthContext";
+import { t } from "../translation";
 
 const HomeLinks = () => {
     const {isAuthenticated, handleSignOut} = useAuth();

@@ -1,14 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import LINK from "../../config";
-import { useAuth } from "../../common/AuthContext";
+import { LINK } from "../config";
 
 const useSignOut = () => {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
-    const { token } = useAuth();
 
-    const getSignOutData = async () => {
+    const getSignOutData = async (token) => {
         try {
             const response = await axios.post(LINK + '/api/signOut', {},
             {
@@ -16,9 +14,15 @@ const useSignOut = () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            setData(response.data);
-        } catch (error) {
-            setError(error);
+            setData(response);
+        } catch (errorSO) {
+            if (errorSO.response) {
+                const responseData = errorSO.response.data;
+                const { status, error } = responseData;
+                setError(status + " " + error);
+            } else {
+                setError("An unexpected error occurred.");
+            }
         }
     };
 

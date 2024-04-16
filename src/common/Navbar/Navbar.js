@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { HOME, PLAY, STATS } from "../config";
-import { useAuth } from "./AuthContext";
+import { HOME, PLAY, STATS } from "../../config";
+import { useAuth } from "../AuthContext";
 import { useLocation} from "react-router-dom";
-import { t } from "./translation";
+import { t } from "../translation";
 import PlayLinks from "./PlayLinks";
 import HomeLinks from "./HomeLinks";
 import StatLinks from "./StatLinks";
@@ -12,7 +12,6 @@ const Navbar = () => {
     const {isAuthenticated} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    //const regex = new RegExp(`^${PLAY}/${SINGLEPLAYERMODES}/(\\d+)/(\\d+)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$`);
 
     const handleOnArrowClick = () => {
       const path = location.pathname; 
@@ -25,12 +24,12 @@ const Navbar = () => {
     
     function isCurrent(path) {
       if(location.pathname===path) {
-          return true;
+        return true;
       } 
       return false;
     }
 
-    return <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    return <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container-fluid">
       {isCurrent(HOME) ? null : (
         <button
@@ -57,7 +56,7 @@ const Navbar = () => {
                   to = {PLAY} 
                   aria-disabled={!isAuthenticated}
                 >
-                  {t("navbar/play")}
+                  {t("navbar/game")}
                 </Link>
               </li>
             }

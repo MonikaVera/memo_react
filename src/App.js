@@ -1,18 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; 
-import Home from './pages/Home';
+import Home from './pages/home-page/Home';
 import SinglePlayerOptions from './pages/sp-modes-page';
 import SinglePlayerGame from './pages/sp-game-page';
 import SignIn from './pages/sign-in-page';
 import './App.css';
 import Register from './pages/register-page';
-import { REGISTER, SINGLEPLAYERGAME, SINGLEPLAYERMODES, SIGNIN, HOME, PLAY, STATS, SPSTATS } from './config';
-import Play from './pages/play-page/Play';
+import { REGISTER, SINGLEPLAYERGAME, SINGLEPLAYERMODES, SIGNIN, HOME, PLAY, STATS, SPSTATS, MULTYPLAYERMODES } from './config';
+import Play from './pages/play-page';
 import { AuthProvider } from './common/AuthContext';
 import Stats from './pages/stats-page';
 import SPStats from './pages/sp-stats-page';
-import Navbar from './common/Navbar';
-
+import Navbar from './common/Navbar/Navbar';
+import MultiPlayer from './pages/mp-modes-page/index';
 //npm start
 
 function App() {
@@ -38,6 +38,9 @@ function App() {
               <Route path={SINGLEPLAYERMODES}>
                 <Route index={true} element={<SinglePlayerOptions/>}/>
                 <Route path = {SINGLEPLAYERGAME} element={ <SinglePlayerGame/>}/>
+              </Route>
+              <Route path={MULTYPLAYERMODES}>
+                <Route index={true} element={<MultiPlayer/>}/>
               </Route>
             </Route>
             <Route path={STATS}>

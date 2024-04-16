@@ -1,18 +1,16 @@
 import { useState, useEffect, useRef} from "react";
-import { CardContainer} from "./styles";
+import { CardContainer} from "../../styles/styles";
 import useGetCards from "./useGetCards";
 import GameOver from "./GameOver";
-import Card from "./Card";
+import GameCard from "../../common/GameCard";
 import GameTimer from "./GameTimer";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useGetRemainingTime from "./useGetRemainingTime";
-import { HOME } from "../../config";
-import { useAuth } from "../../common/AuthContext";
 import Error from "../../common/Error";
+import PageContainer from "../../common/PageContainer";
 
 const SinglePlayerGame = () => {
     const { pairs, time, sessionId } = useParams();
-    const { isAuthenticated } = useAuth();
 
     const [timeSec, setTime] = useState(time * 60);
     const [isTurn, setTurn] = useState(true);
@@ -94,13 +92,13 @@ const SinglePlayerGame = () => {
         return null;
     }
     
-    return isAuthenticated ? (<div>
-        {(data==null || (data.ended!==null && data.ended===false)) && (dataRT==null || dataRT.remainingTime!==0)? (
-            <div>
-                <CardContainer $pairs={parseInt(pairs)}>
+    return (
+        <PageContainer>
+            {(data==null || (data.ended!==null && data.ended===false)) && (dataRT==null || dataRT.remainingTime!==0)? (
+                <CardContainer $pairs={parseInt(pairs)} $isSp={true}>
                     <GameTimer timeSec={timeSec} sessionId={sessionId}/>
                     {data ? (data.guessedBoard.map((num, index) => (
-                        <Card 
+                        <GameCard 
                             key={index} 
                             index={index} 
                             num={getNum(num, index)} 
@@ -111,7 +109,7 @@ const SinglePlayerGame = () => {
                         />
                     ))) : 
                     (new Array(pairs*2).fill(null)).map((num, index) => (
-                        <Card 
+                        <GameCard 
                             key={index} 
                             index={index} 
                             num={num} 
@@ -122,12 +120,12 @@ const SinglePlayerGame = () => {
                         />
                     ))}
                 </CardContainer>
-            </div>
-        ) : (
-            <GameOver won={(data!=null && data.won)}></GameOver>)}
-        <Error>{error}</Error>
-        <Error>{errorRT}</Error>
-    </div>) : <Navigate to={HOME}/>
+            ) : (
+                <GameOver won={(data!=null && data.won)}></GameOver>)}
+            <Error>{error}</Error>
+            <Error>{errorRT}</Error>
+        </PageContainer>
+    );
 }
 
 export default SinglePlayerGame;

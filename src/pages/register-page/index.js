@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import useRegister from "./useRegister";
 import { SIGNIN } from "../../config";
 import { useNavigate } from "react-router-dom";
-import { StyledFrom } from "../styles/styles";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
+import PageContainer from "../../common/PageContainer";
 
 const Register = () => {
     const [toSend, setToSend] = useState({email:"", username:"", password: ""});
@@ -31,10 +31,10 @@ const Register = () => {
         }));
     }
 
-    return <div>
-        <div className="container">
+    return (
+        <PageContainer>
             <h1>{t("registerPage/title")}</h1>
-            <StyledFrom className="border p-3 border-dark">
+            <form className="border p-3 mb-3 border-dark">
                 <div className="mb-3">
                     <label className="form-label" htmlFor="email">{t("registerPage/labelEmail")}</label>
                     <input 
@@ -64,10 +64,10 @@ const Register = () => {
                         onChange={handleChange}/>
                 </div>
                 <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("registerPage/button")}</button>
-            </StyledFrom>
+            </form>
             <Error>{error}</Error>
-        </div>
-    </div>
+        </PageContainer>
+    );
 }
 
 export default Register;
