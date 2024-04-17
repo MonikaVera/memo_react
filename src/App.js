@@ -6,13 +6,14 @@ import SinglePlayerGame from './pages/sp-game-page';
 import SignIn from './pages/sign-in-page';
 import './App.css';
 import Register from './pages/register-page';
-import { REGISTER, SINGLEPLAYERGAME, SINGLEPLAYERMODES, SIGNIN, HOME, PLAY, STATS, SPSTATS, MULTYPLAYERMODES } from './config';
+import { REGISTER, SINGLEPLAYERGAME, SINGLEPLAYERMODES, SIGNIN, HOME, PLAY, STATS, SPSTATS, MULTYPLAYERMODES, MPSTATS } from './config';
 import Play from './pages/play-page';
 import { AuthProvider } from './common/AuthContext';
 import Stats from './pages/stats-page';
 import SPStats from './pages/sp-stats-page';
 import Navbar from './common/Navbar/Navbar';
 import MultiPlayer from './pages/mp-modes-page/index';
+import Leaderboard from './pages/mp-stats-page/index';
 //npm start
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
             </Route>
             <Route path={STATS}>
               <Route index={true} element={<Stats/>}/>
+              <Route path={MPSTATS} element={<Leaderboard/>}/>
               <Route path={SPSTATS} element={<SPStats />} />
             </Route>
         </Routes>

@@ -1,5 +1,5 @@
 import { StyledLink } from "../../styles/styles";
-import { SPSTATS, STATS } from "../../config";
+import { MPSTATS, SPSTATS, STATS } from "../../config";
 import { t } from "../translation";
 
 const StatLinks = () => {
@@ -13,7 +13,7 @@ const StatLinks = () => {
                 </StyledLink>
             </li>
             <li className="nav-item">
-                <StyledLink className="btn btn-primary m-1">
+                <StyledLink to={STATS + '/' + MPSTATS} className="btn btn-primary m-1">
                     <i className="bi bi-trophy"/>
                     {t('statsPage/buttons/multiPlayer')}
                     <i className="bi bi-trophy"/> 
