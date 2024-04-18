@@ -181,5 +181,17 @@
     "leave" : "Leave",
     "winner" : "Winner:",
     "players": "Players"
+  },
+  "multiPlayerStatsPage" : {
+    "title" : "Leaderboard",
+    "rank" : "Rank",
+    "wins" : "Wins",
+    "name" : "Name",
+    "pairs" : "pairs",
+    "links" : {
+      "easy" : "Easy",
+      "medium" : "Medium",
+      "hard" : "Hard"
+    }
   }
 }

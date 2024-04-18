@@ -46,8 +46,8 @@ function App() {
             </Route>
             <Route path={STATS}>
               <Route index={true} element={<Stats/>}/>
-              <Route path={MPSTATS} element={<Leaderboard/>}/>
               <Route path={SPSTATS} element={<SPStats />} />
+              <Route path={MPSTATS} element={<Leaderboard/>}/>
             </Route>
         </Routes>
       </Router>

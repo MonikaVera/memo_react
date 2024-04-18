@@ -7,6 +7,7 @@ import PlayLinks from "./PlayLinks";
 import HomeLinks from "./HomeLinks";
 import StatLinks from "./StatLinks";
 import { Link } from "react-router-dom";
+import MpStatLinks from "./MpStatLinks";
 
 const Navbar = () => {
     const {isAuthenticated} = useAuth();
@@ -26,6 +27,10 @@ const Navbar = () => {
       if(location.pathname===path) {
         return true;
       } 
+      if(path==="Leaderboard") {
+        const regex = new RegExp(`^${STATS}/(\\d+)`)
+        return regex.test(location.pathname);
+      }
       return false;
     }
 
@@ -75,6 +80,7 @@ const Navbar = () => {
           {isCurrent(PLAY) && <PlayLinks/>}
           {isCurrent(HOME) && <HomeLinks/>}
           {isCurrent(STATS) && <StatLinks/>}
+          {isCurrent("Leaderboard") && <MpStatLinks/>}
         </div>
     </div>
   </nav>

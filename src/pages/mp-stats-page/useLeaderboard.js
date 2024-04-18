@@ -10,7 +10,12 @@ const useLeaderboard = () => {
 
     const getLeaderboard = async (numOfPairs) => {
         try {
-            const response = await axios.post(LINK + '/api/multiPlayerStatistics', {}, {
+            const response = await axios.post(LINK + '/api/multiPlayerStatistics',
+            null, 
+            {
+                params: {
+                    pairs: numOfPairs
+                },
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }

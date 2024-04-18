@@ -1,30 +1,34 @@
 import PageContainer from '../../common/PageContainer';
 import useLeaderboard from './useLeaderboard';
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { t } from "../../common/translation";
 import Error from '../../common/Error';
+import { useParams } from 'react-router-dom';
 
 const MultiPlayerStats = () => {
+    const { pairs } = useParams();
     const {data, error, getLeaderboard} = useLeaderboard();
 
-    const fetchLeaderboard = useCallback(() => {
-        getLeaderboard();
-    }, [getLeaderboard]);
-
-    useEffect(() => {
-        fetchLeaderboard();
-    }, [fetchLeaderboard]);
+    useEffect(( ) => {
+        getLeaderboard(parseInt(pairs));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pairs]);
 
     return (
         <PageContainer>
-            <h1>{t('singlePlayerStatsPage/title')}</h1>
+            <h1>{t('multiPlayerStatsPage/title')}</h1>
             <div className="table-responsive">
-                <table className="table table-bordered border-dark table-striped">
+                <table className="table table-bordered border-dark caption-top table-striped">
+                    <caption>
+                        {pairs === '8' && `${t('multiPlayerStatsPage/links/easy')} (${pairs} ${t('multiPlayerStatsPage/pairs')})`}
+                        {pairs === '16' && `${t('multiPlayerStatsPage/links/medium')} (${pairs} ${t('multiPlayerStatsPage/pairs')})`}
+                        {pairs === '24' && `${t('multiPlayerStatsPage/links/hard')} (${pairs} ${t('multiPlayerStatsPage/pairs')})`}
+                    </caption>
                     <thead>
                         <tr>
-                            <th>Rank</th>
-                            <th>Name</th>
-                            <th>Wins</th>
+                            <th>{t('multiPlayerStatsPage/rank')}</th>
+                            <th>{t('multiPlayerStatsPage/name')}</th>
+                            <th>{t('multiPlayerStatsPage/wins')}</th>
                         </tr>
                     </thead>
                     <tbody>

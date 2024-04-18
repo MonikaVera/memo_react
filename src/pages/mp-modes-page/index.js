@@ -14,7 +14,7 @@ const MultiPlayer = () => {
     const [receivedMessage, setReceivedMessage] = useState();
     const [pairs, setPairs] = useState();
     const topicGameState = '/topic/game.state';
-    const [topicGamePlay, setTopicGamePlay] = useState(null);
+    const [newGameId, setnewGameId] = useState(null);
     const [isConnected, setIsConnected] = useState(false);
     const [isJoined, setJoined] = useState(false);
     const stompClientRef = useRef(null);
@@ -26,17 +26,17 @@ const MultiPlayer = () => {
                 setJoined(false);
             }
     
-            if (parsedMessage.senderToken === token || topic==="/topic/game." + parsedMessage.gameId) {
+            if (parsedMessage.senderToken === token || parsedMessage.gameId===newGameId || topic==="/topic/game." + parsedMessage.gameId) {
                 setReceivedMessage(parsedMessage);
             }
     
-            if (parsedMessage.gameId && ("/topic/game." + parsedMessage.gameId)!==topicGamePlay) {
-                setTopicGamePlay("/topic/game." + parsedMessage.gameId);
+            if (parsedMessage.gameId && (parsedMessage.gameId)!==newGameId) {
+                setnewGameId(parsedMessage.gameId);
             }
         };
 
         stompClientRef.current.subscribe(topic, onMessage)
-    }, [ token, topicGamePlay]);
+    }, [ token, newGameId]);
 
     useInit(() => {
         const url = LINK + '/ws';
@@ -60,14 +60,14 @@ const MultiPlayer = () => {
     });
 
     useEffect(() => {
-        if(isConnected && topicGamePlay!==null) {
-            subscribeToTopic(topicGamePlay);
+        if(isConnected && newGameId!==null) {
+            subscribeToTopic("/topic/game." + newGameId);
         }
         if(receivedMessage && receivedMessage.gameOver) {
             setJoined(false);
         }
         
-    }, [topicGamePlay, subscribeToTopic, isConnected, receivedMessage]);
+    }, [newGameId, subscribeToTopic, isConnected, receivedMessage]);
    
 
     const joinGame = (numOfPairs) => {
@@ -159,7 +159,7 @@ const MultiPlayer = () => {
     const [pairs, setPairs] = useState();
     const url = LINK + '/ws';
     const topicGameState = '/topic/game.state';
-    const [topicGamePlay, setTopicGamePlay] = useState(null);
+    const [newGameId, setnewGameId] = useState(null);
     const [isConnected, setIsConnected] = useState(false);
     const [isJoined, setJoined] = useState(false);
 
@@ -186,25 +186,25 @@ const MultiPlayer = () => {
                 setReceivedMessage(parsedMessage);
             }
     
-            if (parsedMessage.gameId && ("/topic/game." + parsedMessage.gameId)!==topicGamePlay) {
-                setTopicGamePlay("/topic/game." + parsedMessage.gameId);
+            if (parsedMessage.gameId && ("/topic/game." + parsedMessage.gameId)!==newGameId) {
+                setnewGameId("/topic/game." + parsedMessage.gameId);
             }
         };
 
         stompClient.subscribe(topic, onMessage)
-    }, [stompClient, token, topicGamePlay]);
+    }, [stompClient, token, newGameId]);
 
 
     useEffect(() => {
-        if(isConnected && topicGamePlay!==null) {
+        if(isConnected && newGameId!==null) {
             stompClient.connect({}, () => { 
-                subscribeToTopic(topicGamePlay);
+                subscribeToTopic(newGameId);
             }, error => {
                 console.error('Error connecting to STOMP broker:', error);
             });
         }
         
-    }, [topicGamePlay, subscribeToTopic, isConnected, stompClient]);
+    }, [newGameId, subscribeToTopic, isConnected, stompClient]);
    
 
     const joinGame = (numOfPairs) => {
