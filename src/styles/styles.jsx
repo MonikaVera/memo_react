@@ -46,17 +46,18 @@ export const ContentContainer = styled.div`
 export const GameOverContentContainer = styled.div`
     @media (max-width: 992px) {
         margin-top: 12em; 
+        width: 90%;
     }
  
     @media (min-width: 992px) {
         margin-top: 4.5em;
+        width: 60%;
     }
     
     background-color: ${colors.silver};
     padding: 2em;
     border-radius: 10px;
     margin-bottom: 1em;
-    max-width: 35em;
 `;
 
 export const InfoContentContainer = styled.div`

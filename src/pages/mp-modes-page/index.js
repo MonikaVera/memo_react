@@ -9,7 +9,7 @@ import { useInit } from './useInit';
 import ReceivedInfo from './receivedInfo';
 import GameCard from '../../common/GameCard';
 
-const MultiPlayer = () => {
+const MultiPlayer = ({data}) => {
     const { token } = useAuth();
     const [receivedMessage, setReceivedMessage] = useState();
     const [pairs, setPairs] = useState();
@@ -23,18 +23,21 @@ const MultiPlayer = () => {
 
     const onMessage = useCallback((topic, message) => {
             const parsedMessage = JSON.parse(message.body);
-            if(parsedMessage.type==='game.left') {
-                setJoined(false);
+            console.log(data);
+            console.log(data.userId===parsedMessage.player1);
+            console.log(data.userId===parsedMessage.player2);
+            if(data!==null && (data.userId===parsedMessage.player1 || data.userId===parsedMessage.player2)) {
+                if(parsedMessage.type==='game.left') {
+                    setJoined(false);
+                }
+                if (parsedMessage.gameId===sessionId.current) {
+                    setReceivedMessage(parsedMessage);
+                }
+                if (parsedMessage.gameId!==null && (parsedMessage.gameId)!==sessionId.current) {
+                    sessionId.current=parsedMessage.gameId;
+                }
             }
-    
-            if (parsedMessage.senderToken === token || parsedMessage.gameId===sessionId.current || topic==="/topic/game." + parsedMessage.gameId) {
-                setReceivedMessage(parsedMessage);
-            }
-    
-            if (parsedMessage.gameId!==null && (parsedMessage.gameId)!==sessionId.current) {
-                sessionId.current=parsedMessage.gameId;
-            }
-        }, [token]);
+        }, [data]);
 
     const subscribeToTopic = useCallback((topic) => {
         const subscription = stompClientRef.current.subscribe(topic, (message) => onMessage(topic, message))
@@ -47,7 +50,6 @@ const MultiPlayer = () => {
         const url = LINK + '/ws';
         const socket = new SockJS(url);
         const stompClient = Stomp.over(socket);
-    
         stompClient.connect({}, () => {
             console.log('Connected to STOMP broker');
             setIsConnected(true);

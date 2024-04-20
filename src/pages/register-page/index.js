@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
+import { GameOverContentContainer } from "../../styles/styles";
 
 const Register = () => {
     const [toSend, setToSend] = useState({email:"", username:"", password: ""});
@@ -33,39 +34,41 @@ const Register = () => {
 
     return (
         <PageContainer>
-            <h1>{t("registerPage/title")}</h1>
-            <form className="border p-3 mb-3 border-dark">
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="email">{t("registerPage/labelEmail")}</label>
-                    <input 
-                        className="form-control border-dark"
-                        type="text" 
-                        id="email" 
-                        value={toSend.email} 
-                        onChange={handleChange}
-                        placeholder="example@stmail.com"/>  
-                </div>
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="username">{t("registerPage/labelUser")}</label>
-                    <input 
-                        className="form-control border-dark"
-                        type="text" id="username" 
-                        value={toSend.username} 
-                        onChange={handleChange}
-                        placeholder="john_doe_0720"/>
-                </div>
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="password">{t("registerPage/labelPassword")}</label>
-                    <input 
-                        className="form-control border-dark"
-                        id="password" 
-                        type="password" 
-                        value={toSend.password} 
-                        onChange={handleChange}/>
-                </div>
-                <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("registerPage/button")}</button>
-            </form>
-            <Error>{error}</Error>
+            <GameOverContentContainer>
+                <h1>{t("registerPage/title")}</h1>
+                <form className="border p-3 mb-3 border-dark">
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="email">{t("registerPage/labelEmail")}</label>
+                        <input 
+                            className="form-control border-dark"
+                            type="text" 
+                            id="email" 
+                            value={toSend.email} 
+                            onChange={handleChange}
+                            placeholder="example@stmail.com"/>  
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="username">{t("registerPage/labelUser")}</label>
+                        <input 
+                            className="form-control border-dark"
+                            type="text" id="username" 
+                            value={toSend.username} 
+                            onChange={handleChange}
+                            placeholder="john_doe_0720"/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="password">{t("registerPage/labelPassword")}</label>
+                        <input 
+                            className="form-control border-dark"
+                            id="password" 
+                            type="password" 
+                            value={toSend.password} 
+                            onChange={handleChange}/>
+                    </div>
+                    <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("registerPage/button")}</button>
+                </form>
+                <Error>{error}</Error>
+            </GameOverContentContainer>
         </PageContainer>
     );
 }

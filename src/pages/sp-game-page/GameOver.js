@@ -4,6 +4,11 @@ import { t } from "../../common/translation";
 
 const GameOver = ({won}) => {
     return <GameOverContentContainer className="d-flex flex-column align-items-center">
+        <h2>
+            <i className="bi bi-stars"/>
+            {' ' + t('multiPlayerPage/result/title') + ' '}
+            <i className="bi bi-stars"/>
+        </h2>
         {won ? <div>{t('singlePlayerGamePage/won')}</div> : null}
         {!won ? <div>{t('singlePlayerGamePage/lost')}</div> : null}
         <StyledLink 

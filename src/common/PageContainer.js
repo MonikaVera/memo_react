@@ -20,7 +20,8 @@ const PageContainer = ({children}) => {
     function isGamePage() {
         const regex = new RegExp(`^${PLAY}/${SINGLEPLAYERMODES}/(\\d+)/(\\d+)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$`);
         const regex2 = new RegExp(`^${PLAY}/${MULTYPLAYERMODES}`)
-        return (regex.test(location.pathname) || regex2.test(location.pathname));
+        return (regex.test(location.pathname) || regex2.test(location.pathname) 
+            || location.pathname===SIGNIN || location.pathname===REGISTER);
     }
 
     return isPageAvailable() ? (
