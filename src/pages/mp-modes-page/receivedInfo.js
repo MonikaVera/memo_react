@@ -2,6 +2,7 @@ import { GameOverContentContainer, InfoContentContainer } from "../../styles/sty
 import { t } from "../../common/translation";
 import JoinCard from "./JoinCard";
 import Score from "./Score";
+import MpResult from "./MpResult";
 
 const ReceivedInfo = ({receivedInfo, leaveGame, joinGame}) => {
     return (
@@ -9,7 +10,7 @@ const ReceivedInfo = ({receivedInfo, leaveGame, joinGame}) => {
             <div>
                 {receivedInfo.gameOver ? (
                     <GameOverContentContainer className='d-flex flex-column align-items-center'>
-                        <div>{t('multiPlayerPage/winner')} {receivedInfo.winner}</div>
+                        <MpResult receivedInfo={receivedInfo}/>
                         <JoinCard title={t('multiPlayerPage/join/easy/title')} desc={t('multiPlayerPage/join/easy/description')} joinGame={joinGame} pairs={8}/>
                         <JoinCard title={t('multiPlayerPage/join/medium/title')} desc={t('multiPlayerPage/join/medium/description')} joinGame={joinGame} pairs={16}/>
                         <JoinCard title={t('multiPlayerPage/join/hard/title')} desc={t('multiPlayerPage/join/hard/description')} joinGame={joinGame} pairs={24}/> 

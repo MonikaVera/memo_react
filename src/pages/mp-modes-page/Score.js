@@ -15,7 +15,7 @@ const Score = ({receivedInfo, leaveGame, pairs}) => {
                 </div>
             
                 <div className="d-flex flex-wrap justify-content-around" style={{gap:"0.5em", marginTop:"0.5em"}}>
-                    <div>{receivedInfo.player2Name}</div>
+                    <div>{receivedInfo.player2Name!==null ? receivedInfo.player2Name : 'waiting...'}</div>
                     <div className="badge rounded-pill text-bg-dark">{receivedInfo.player2GuessedCards}</div> 
                 </div>                   
             </div>
@@ -35,7 +35,7 @@ const Score = ({receivedInfo, leaveGame, pairs}) => {
                 </div>
                 <div className="badge text-bg-dark">{receivedInfo.turn}{t('multiPlayerPage/turn')}</div>
                 <div className="d-flex flex-wrap justify-content-around" style={{gap:"0.5em"}}>
-                    <div>{receivedInfo.player2Name}</div>
+                    <div>{receivedInfo.player2Name!==null ? receivedInfo.player2Name : 'waiting...'}</div>
                     <div className="badge rounded-pill text-bg-dark">{receivedInfo.player2GuessedCards}</div> 
                 </div>                   
             </div>

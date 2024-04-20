@@ -56,6 +56,7 @@ export const GameOverContentContainer = styled.div`
     padding: 2em;
     border-radius: 10px;
     margin-bottom: 1em;
+    max-width: 35em;
 `;
 
 export const InfoContentContainer = styled.div`

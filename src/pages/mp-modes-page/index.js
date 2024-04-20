@@ -14,29 +14,34 @@ const MultiPlayer = () => {
     const [receivedMessage, setReceivedMessage] = useState();
     const [pairs, setPairs] = useState();
     const topicGameState = '/topic/game.state';
-    const [newGameId, setnewGameId] = useState(null);
     const [isConnected, setIsConnected] = useState(false);
     const [isJoined, setJoined] = useState(false);
     const stompClientRef = useRef(null);
+    const sessionId = useRef(null);
+    const [subscribed, setSubscribed] = useState(false);
+    const subscriptionToGame = useRef();
 
-    const subscribeToTopic = useCallback((topic) => {
-        const onMessage = (message) => {
+    const onMessage = useCallback((topic, message) => {
             const parsedMessage = JSON.parse(message.body);
             if(parsedMessage.type==='game.left') {
                 setJoined(false);
             }
     
-            if (parsedMessage.senderToken === token || parsedMessage.gameId===newGameId || topic==="/topic/game." + parsedMessage.gameId) {
+            if (parsedMessage.senderToken === token || parsedMessage.gameId===sessionId.current || topic==="/topic/game." + parsedMessage.gameId) {
                 setReceivedMessage(parsedMessage);
             }
     
-            if (parsedMessage.gameId && (parsedMessage.gameId)!==newGameId) {
-                setnewGameId(parsedMessage.gameId);
+            if (parsedMessage.gameId!==null && (parsedMessage.gameId)!==sessionId.current) {
+                sessionId.current=parsedMessage.gameId;
             }
-        };
+        }, [token]);
 
-        stompClientRef.current.subscribe(topic, onMessage)
-    }, [ token, newGameId]);
+    const subscribeToTopic = useCallback((topic) => {
+        const subscription = stompClientRef.current.subscribe(topic, (message) => onMessage(topic, message))
+        if(topic==="/topic/game." + sessionId.current) {
+            subscriptionToGame.current = subscription;
+        }
+    }, [ onMessage ]);
 
     useInit(() => {
         const url = LINK + '/ws';
@@ -60,14 +65,18 @@ const MultiPlayer = () => {
     });
 
     useEffect(() => {
-        if(isConnected && newGameId!==null) {
-            subscribeToTopic("/topic/game." + newGameId);
+        if(isConnected && sessionId.current!==null && !subscribed) {
+            setSubscribed(true);
+            subscribeToTopic("/topic/game." + sessionId.current);
         }
         if(receivedMessage && receivedMessage.gameOver) {
             setJoined(false);
+            setSubscribed(false);
+            sessionId.current=null;
+            subscriptionToGame.current.unsubscribe();
         }
         
-    }, [newGameId, subscribeToTopic, isConnected, receivedMessage]);
+    }, [ subscribeToTopic, isConnected, receivedMessage, subscribed]);
    
 
     const joinGame = (numOfPairs) => {

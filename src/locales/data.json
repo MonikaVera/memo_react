@@ -177,9 +177,15 @@
       "pairs" : "pairs",
       "join" : "Join"
     },
+    "result": {
+      "title" : "Result",
+      "pairs" : "pairs",
+      "guessed" : "guessed",
+      "left" : " left the game",
+      "winner" : "Winner:"
+    },
     "turn" : "'s turn",
     "leave" : "Leave",
-    "winner" : "Winner:",
     "players": "Players"
   },
   "multiPlayerStatsPage" : {
