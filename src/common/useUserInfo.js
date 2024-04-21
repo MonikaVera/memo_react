@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from 'axios';
-import { LINK } from "../../config";
-import { useAuth } from "../../common/AuthContext";
+import { LINK } from "../config";
+import { useAuth } from "./AuthContext";
 
 const useUserInfo = () => {
     const [error, setError] = useState(null);
@@ -16,7 +16,6 @@ const useUserInfo = () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            console.log(response.data);
             setData(response.data);
         } catch (errorUser) {
             if (errorUser.response) {

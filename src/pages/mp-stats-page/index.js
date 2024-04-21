@@ -1,6 +1,6 @@
 import PageContainer from '../../common/PageContainer';
 import useLeaderboard from './useLeaderboard';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { t } from "../../common/translation";
 import Error from '../../common/Error';
 import { useParams } from 'react-router-dom';
@@ -8,11 +8,14 @@ import { useParams } from 'react-router-dom';
 const MultiPlayerStats = () => {
     const { pairs } = useParams();
     const {data, error, getLeaderboard} = useLeaderboard();
+    const [prevPairs, setPrevPairs] = useState();
 
     useEffect(( ) => {
-        getLeaderboard(parseInt(pairs));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [pairs]);
+        if(data===null || prevPairs!==pairs) {
+          getLeaderboard(parseInt(pairs));  
+          setPrevPairs(pairs);
+        }
+    }, [pairs, getLeaderboard, data, prevPairs]);
 
     return (
         <PageContainer>

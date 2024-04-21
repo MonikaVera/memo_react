@@ -20,7 +20,6 @@ const useLeaderboard = () => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-                console.log(response.data);
                 setData(response.data);
         } catch (error) {
             if (error.response) {

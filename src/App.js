@@ -12,44 +12,47 @@ import { AuthProvider } from './common/AuthContext';
 import Stats from './pages/stats-page';
 import SPStats from './pages/sp-stats-page';
 import Navbar from './common/Navbar/Navbar';
-import MultiPlayerGame from './pages/mp-modes-page/index2';
+import MultiPlayerGame from './pages/mp-modes-page/index';
 import Leaderboard from './pages/mp-stats-page/index';
+import { WebSocketProvider } from './common/useWebsocket';
 //npm start
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <Navbar/>
-        <Routes>
-            <Route 
-              path={SIGNIN} 
-              element={<SignIn/>} 
-            />
-            <Route 
-              path={REGISTER} 
-              element={<Register/>}
-            />
-            <Route 
-              path={HOME}  
-              element={<Home/>}
-            />
-            <Route path={PLAY}>
-              <Route index={true} element={<Play/>}/>
-              <Route path={SINGLEPLAYERMODES}>
-                <Route index={true} element={<SinglePlayerOptions/>}/>
-                <Route path = {SINGLEPLAYERGAME} element={ <SinglePlayerGame/>}/>
+        <Router>
+          <WebSocketProvider>
+          <Navbar/>
+          <Routes>
+              <Route 
+                path={SIGNIN} 
+                element={<SignIn/>} 
+              />
+              <Route 
+                path={REGISTER} 
+                element={<Register/>}
+              />
+              <Route 
+                path={HOME}  
+                element={<Home/>}
+              />
+              <Route path={PLAY}>
+                <Route index={true} element={<Play/>}/>
+                <Route path={SINGLEPLAYERMODES}>
+                  <Route index={true} element={<SinglePlayerOptions/>}/>
+                  <Route path = {SINGLEPLAYERGAME} element={ <SinglePlayerGame/>}/>
+                </Route>
+                <Route path={MULTYPLAYERMODES}>
+                  <Route index={true} element={<MultiPlayerGame/>}/>
+                </Route>
               </Route>
-              <Route path={MULTYPLAYERMODES}>
-                <Route index={true} element={<MultiPlayerGame/>}/>
+              <Route path={STATS}>
+                <Route index={true} element={<Stats/>}/>
+                <Route path={SPSTATS} element={<SPStats />} />
+                <Route path={MPSTATS} element={<Leaderboard/>}/>
               </Route>
-            </Route>
-            <Route path={STATS}>
-              <Route index={true} element={<Stats/>}/>
-              <Route path={SPSTATS} element={<SPStats />} />
-              <Route path={MPSTATS} element={<Leaderboard/>}/>
-            </Route>
-        </Routes>
+          </Routes>
+        </WebSocketProvider>
       </Router>
     </AuthProvider>
   );
