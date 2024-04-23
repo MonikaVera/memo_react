@@ -13,7 +13,7 @@ const StatLinks = () => {
                 </StyledLink>
             </li>
             <li className="nav-item">
-                <StyledLink className="btn btn-primary m-1">
+                <StyledLink to={STATS + '/8' } className="btn btn-primary m-1">
                     <i className="bi bi-trophy"/>
                     {t('statsPage/buttons/multiPlayer')}
                     <i className="bi bi-trophy"/> 

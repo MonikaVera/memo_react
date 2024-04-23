@@ -1,17 +1,24 @@
 import { useState } from "react";
 import axios from "axios";
 import { LINK } from "../../config";
+import { useAuth } from "../../common/AuthContext";
 
-const useMultiPlayerStart = () => {
+const useLeaderboard = () => {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
+    const { token } = useAuth();
 
-    const getmultiPlayerStart = async (numOfPairs) => {
+    const getLeaderboard = async (numOfPairs) => {
         try {
-            const response = await axios.post(LINK + '/api/multiplayer/index', numOfPairs, {
-                headers: {
-                    'Content-Type': 'application/json',
+            const response = await axios.post(LINK + '/api/multiPlayerStatistics',
+            null, 
+            {
+                params: {
+                    pairs: numOfPairs
                 },
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             });
                 setData(response.data);
         } catch (error) {
@@ -23,7 +30,7 @@ const useMultiPlayerStart = () => {
             }
         }
     }
-    return {data, error, getmultiPlayerStart};
+    return {data, error, getLeaderboard};
 }
 
-export default useMultiPlayerStart;
+export default useLeaderboard;
