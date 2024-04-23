@@ -14,6 +14,7 @@ const SinglePlayerGame = () => {
 
     const [timeSec, setTime] = useState(time * 60);
     const [isTurn, setTurn] = useState(true);
+    const [board, setBoard] = useState(new Array(pairs*2).fill(null));
 
     const isClickable = useRef(true);
     const evenForSec = useRef(true);
@@ -23,6 +24,8 @@ const SinglePlayerGame = () => {
     
     useEffect(() => {
         if (data !== null) {
+            setTime(data.remainingTime);
+            setBoard(data.guessedBoard);
             console.log(JSON.stringify(data));
             if(Object.keys(data.cards).length===1) {
                 setTurn(false);
@@ -50,7 +53,6 @@ const SinglePlayerGame = () => {
     useEffect(() => {
         if(timeSec===0 && dataRT==null) {
             getRemainingTime(sessionId);
-           console.log(dataRT);
         }
     },  [timeSec, sessionId, getRemainingTime, dataRT]);
 
@@ -74,9 +76,11 @@ const SinglePlayerGame = () => {
 
     function isActiveCard(index) {
         let isActive = false;
-        const numOfCards = Object.keys(data.cards).length;
-        if ((index.toString() in data.cards) && ((numOfCards===2 && isTurn) || (numOfCards===1))) {
-            isActive = true;
+        if(data!==null) {
+            const numOfCards = Object.keys(data.cards).length;
+            if ((index.toString() in data.cards) && ((numOfCards===2 && isTurn) || (numOfCards===1))) {
+                isActive = true;
+            }
         }
         return isActive;
     }
@@ -85,9 +89,11 @@ const SinglePlayerGame = () => {
         if(num!==null) {
             return num;
         }
-        const numOfCards = Object.keys(data.cards).length;
-        if((data.cards.hasOwnProperty(index.toString())) && ((numOfCards===2 && isTurn) || (numOfCards===1))) {
-            return data.cards[index.toString()];
+        if(data!==null) {
+            const numOfCards = Object.keys(data.cards).length;
+            if((data.cards.hasOwnProperty(index.toString())) && ((numOfCards===2 && isTurn) || (numOfCards===1))) {
+                return data.cards[index.toString()];
+            }
         }
         return null;
     }
@@ -97,23 +103,12 @@ const SinglePlayerGame = () => {
             {(data==null || (data.ended!==null && data.ended===false)) && (dataRT==null || dataRT.remainingTime!==0)? (
                 <CardContainer $pairs={parseInt(pairs)} $isSp={true}>
                     <GameTimer timeSec={timeSec} sessionId={sessionId}/>
-                    {data ? (data.guessedBoard.map((num, index) => (
+                    {board.map((num, index) => (
                         <GameCard 
                             key={index} 
                             index={index} 
                             num={getNum(num, index)} 
                             isActive={isActiveCard(index)} 
-                            isClickable={isClickable.current} 
-                            handleOnCardClicks={handleOnCardClicks} 
-                            pairs={parseInt(pairs)}
-                        />
-                    ))) : 
-                    (new Array(pairs*2).fill(null)).map((num, index) => (
-                        <GameCard 
-                            key={index} 
-                            index={index} 
-                            num={num} 
-                            isActive={false} 
                             isClickable={isClickable.current} 
                             handleOnCardClicks={handleOnCardClicks} 
                             pairs={parseInt(pairs)}

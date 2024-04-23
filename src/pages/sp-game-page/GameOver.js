@@ -1,9 +1,9 @@
-import { StyledLink, GameOverContentContainer } from "../../styles/styles";
+import { StyledLink, SmallContentContainer } from "../../styles/styles";
 import { HOME, SINGLEPLAYERMODES, PLAY } from "../../config";
 import { t } from "../../common/translation";
 
 const GameOver = ({won}) => {
-    return <GameOverContentContainer className="d-flex flex-column align-items-center">
+    return <SmallContentContainer className="d-flex flex-column align-items-center" $smallMT='9.5em'>
         <h2>
             <i className="bi bi-stars"/>
             {' ' + t('multiPlayerPage/result/title') + ' '}
@@ -21,7 +21,7 @@ const GameOver = ({won}) => {
             to={HOME}>
                 {t('singlePlayerGamePage/home')}
         </StyledLink>
-    </GameOverContentContainer>
+    </SmallContentContainer>
 }
 
 export default GameOver;

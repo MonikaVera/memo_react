@@ -1,9 +1,10 @@
 import { StyledOption } from "../../styles/styles";
 import { t } from "../../common/translation";
+import { StyledDiv } from "../../styles/styles";
 
 const Option = ({title, pairs, min, handleOptionSelect, description}) => {
     return ( 
-        <div className="card m-3 border-dark text-bg-secondary" style={{width: "20em"}}>
+        <StyledDiv className="card m-3 border-dark text-bg-secondary" $width="20em">
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <p className="card-text">{description}</p>
@@ -14,7 +15,7 @@ const Option = ({title, pairs, min, handleOptionSelect, description}) => {
                     </div>
                 </StyledOption>
             </div>
-        </div>
+        </StyledDiv>
     );
 }
 

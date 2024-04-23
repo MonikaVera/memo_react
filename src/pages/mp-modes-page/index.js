@@ -8,7 +8,7 @@ import GameCard from '../../common/GameCard';
 import { useWebSocket } from '../../common/useWebsocket';
 
 const MultiPlayerGame = () => {
-    const { token } = useAuth();
+    const { token, userName } = useAuth();
     const [pairs, setPairs] = useState();
     const { stompClientRef, isJoined, receivedMessage, errorR } = useWebSocket();
 
@@ -22,12 +22,14 @@ const MultiPlayerGame = () => {
     };
 
     const handleOnCardClicks = ({index}) => {
-        const message = {
-            senderToken: token,
-            index: index,
-            gameId: receivedMessage.gameId,
-        };
-        stompClientRef.current.send('/app/game.move', {}, JSON.stringify(message));
+        if(receivedMessage.turn===userName && receivedMessage.gameStarted) {
+            const message = {
+                senderToken: token,
+                index: index,
+                gameId: receivedMessage.gameId,
+            };
+            stompClientRef.current.send('/app/game.move', {}, JSON.stringify(message));
+        }
     }
 
     const leaveGame = () => {
@@ -75,7 +77,7 @@ const MultiPlayerGame = () => {
                     ))}
                 </CardContainer>
             }
-            <Error>{errorR.current}</Error>
+            <Error>{errorR}</Error>
         </PageContainer>
     )
 }

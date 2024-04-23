@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
-import { GameOverContentContainer } from "../../styles/styles";
+import { SmallContentContainer } from "../../styles/styles";
 
 const Register = () => {
     const [toSend, setToSend] = useState({email:"", username:"", password: ""});
@@ -34,7 +34,7 @@ const Register = () => {
 
     return (
         <PageContainer>
-            <GameOverContentContainer>
+            <SmallContentContainer $smallMT='4.5em'>
                 <h1>{t("registerPage/title")}</h1>
                 <form className="border p-3 mb-3 border-dark">
                     <div className="mb-3">
@@ -68,7 +68,7 @@ const Register = () => {
                     <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("registerPage/button")}</button>
                 </form>
                 <Error>{error}</Error>
-            </GameOverContentContainer>
+            </SmallContentContainer>
         </PageContainer>
     );
 }

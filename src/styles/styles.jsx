@@ -11,7 +11,7 @@ export const StyledLink = styled(Link)`
 `;
 
 export const StyledDiv = styled.div`
-    width: fit-content;
+    width: ${({ $width }) => $width}
 `;
 
 export const StyledOption = styled.button`
@@ -34,7 +34,7 @@ export const ContentContainer = styled.div`
     overflow-y: auto;
 
     @media (max-width: 992px) {
-       padding-top: 12em; 
+       padding-top: 9.5em; 
     }
 
     @media (min-width: 992px) {
@@ -43,9 +43,9 @@ export const ContentContainer = styled.div`
     
 `;
 
-export const GameOverContentContainer = styled.div`
+export const SmallContentContainer = styled.div`
     @media (max-width: 992px) {
-        margin-top: 12em; 
+        margin-top:  ${({ $smallMT }) => $smallMT};
         width: 90%;
     }
  
@@ -62,7 +62,7 @@ export const GameOverContentContainer = styled.div`
 
 export const InfoContentContainer = styled.div`
     @media (max-width: 992px) {
-        margin-top: 12em; 
+        margin-top: 9em; 
     }
 
     @media (min-width: 992px) {
@@ -133,7 +133,7 @@ export const CardContainer = styled.div`
     @media (max-width: 992px) {
         margin-top:  ${({ $isSp }) => { 
             if($isSp===true) {
-                return '12em';
+                return '9.5em';
             } else {
                 return '0.5em';
             }

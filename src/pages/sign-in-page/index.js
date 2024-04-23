@@ -6,7 +6,7 @@ import { useAuth } from "../../common/AuthContext";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
-import { GameOverContentContainer } from "../../styles/styles";
+import { SmallContentContainer } from "../../styles/styles";
 
 const SignIn = () => {
     const [toSend, setToSend] = useState({emailOrUsername:"", password: ""});
@@ -37,7 +37,7 @@ const SignIn = () => {
 
     return (
         <PageContainer>
-            <GameOverContentContainer>
+            <SmallContentContainer $smallMT='4.5em'>
                 <h1>{t("signInPage/title")}</h1>
                 <form className="border p-3 border-dark mb-3">
                     <div className="mb-3">
@@ -61,7 +61,7 @@ const SignIn = () => {
                     <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("signInPage/button")}</button>  
                 </form>
                 <Error>{error}</Error>    
-            </GameOverContentContainer>
+            </SmallContentContainer>
         </PageContainer>
     );
 }

@@ -3,7 +3,6 @@ import Stomp from 'stompjs';
 import { LINK, MULTYPLAYERMODES, PLAY } from '../config';
 import { useLocation } from 'react-router-dom';
 import SockJS from 'sockjs-client';
-import useUserInfo from './useUserInfo';
 import { useAuth } from './AuthContext';
 
 const WebSocketContext = createContext(null);
@@ -18,14 +17,18 @@ export const WebSocketProvider = ({ children }) => {
     const [subscribed, setSubscribed] = useState(false);
     const subscriptionToGame = useRef(null);
     const subscriptionToState = useRef(null);
-    const errorR = useRef(null);
+    const [errorR, setErrorR] = useState(null);
     const location = useLocation();
-    const { error, data, getUserInfo } = useUserInfo();
-    const {isAuthenticated} = useAuth();
+    const {isAuthenticated, userId} = useAuth();
 
     const onMessage = useCallback((message) => {
             const parsedMessage = JSON.parse(message.body);
-            if(data.userId===parsedMessage.player1 || data.userId===parsedMessage.player2) {
+            if(parsedMessage.type==="error") {
+                setErrorR(parsedMessage.content);
+            } else {
+                setErrorR(null);
+            }
+            if(userId===parsedMessage.player1 || userId===parsedMessage.player2) {
                 if(parsedMessage.type==='game.left') {
                     setJoined(false);
                 }
@@ -39,7 +42,7 @@ export const WebSocketProvider = ({ children }) => {
                     setReceivedMessage(parsedMessage);
                 }
             }
-        }, [data]);
+        }, [userId]);
 
     const subscribeToTopic = useCallback((topic) => {
         const subscription = stompClientRef.current.subscribe(topic, (message) => onMessage(message))
@@ -53,12 +56,6 @@ export const WebSocketProvider = ({ children }) => {
 
     useEffect(() => {
         if(isAuthenticated) {
-            if(data===null) {
-                getUserInfo();
-            }
-            if(error!=null) {
-                errorR.current=error;
-            }
             if(location.pathname===PLAY + "/" + MULTYPLAYERMODES && !isConnected) {
                 const url = LINK + '/ws';
                 const socket = new SockJS(url);
@@ -68,7 +65,7 @@ export const WebSocketProvider = ({ children }) => {
                     stompClientRef.current = stompClient;
                     subscribeToTopic(topicGameState);
                 }, error => {
-                    errorR.current = 'Error connecting to STOMP broker:' + error;
+                    setErrorR('Error connecting to STOMP broker:' + error);
                 });
             
                 return () => {
@@ -103,7 +100,7 @@ export const WebSocketProvider = ({ children }) => {
             }
         }
     }, [subscribeToTopic, location.pathname, isConnected, subscribed,
-        getUserInfo, data, isAuthenticated, receivedMessage, error])
+         isAuthenticated, receivedMessage])
 
     return (
         <WebSocketContext.Provider value={{ stompClientRef, isConnected, isJoined, receivedMessage, errorR }}>

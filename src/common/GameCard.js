@@ -12,7 +12,7 @@ const GameCard = ({index, num, handleOnCardClicks, isClickable, isActive, pairs}
             $isFound={isFound} 
             $isActive={isActive} 
             $pairs={pairs}
-        >{num}</StyledCard>
+        />
     )
 };
 
