@@ -97,29 +97,36 @@ const SinglePlayerGame = () => {
         }
         return null;
     }
+
+    const leaveGame = () => {
+
+    }
     
     return (
-        <PageContainer>
-            {(data==null || (data.ended!==null && data.ended===false)) && (dataRT==null || dataRT.remainingTime!==0)? (
-                <CardContainer $pairs={parseInt(pairs)} $isSp={true}>
-                    <GameTimer timeSec={timeSec} sessionId={sessionId}/>
-                    {board.map((num, index) => (
-                        <GameCard 
-                            key={index} 
-                            index={index} 
-                            num={getNum(num, index)} 
-                            isActive={isActiveCard(index)} 
-                            isClickable={isClickable.current} 
-                            handleOnCardClicks={handleOnCardClicks} 
-                            pairs={parseInt(pairs)}
-                        />
-                    ))}
-                </CardContainer>
+        (data==null || (data.ended!==null && data.ended===false)) && (dataRT==null || dataRT.remainingTime!==0)? (
+                <PageContainer>
+                    <GameTimer timeSec={timeSec} sessionId={sessionId} pairs={pairs} leaveGame={leaveGame} guessed={data ? data.numOfGuessed : '0'}/>
+                    <CardContainer $pairs={parseInt(pairs)}>
+                        {board.map((num, index) => (
+                            <GameCard 
+                                key={index} 
+                                index={index} 
+                                num={getNum(num, index)} 
+                                isActive={isActiveCard(index)} 
+                                isClickable={isClickable.current} 
+                                handleOnCardClicks={handleOnCardClicks} 
+                                pairs={parseInt(pairs)}
+                            />
+                        ))}
+                    </CardContainer>
+                    <Error>{error}</Error>
+                </PageContainer>
             ) : (
-                <GameOver won={(data!=null && data.won)}></GameOver>)}
-            <Error>{error}</Error>
-            <Error>{errorRT}</Error>
-        </PageContainer>
+            <PageContainer>
+                <GameOver won={(data!=null && data.won)}></GameOver>
+                <Error>{errorRT}</Error>
+            </PageContainer>
+        )     
     );
 }
 

@@ -5,7 +5,7 @@ const Play = () => {
     return (
         <PageContainer>
             <div className="row">
-                <h1>{t('playPage/title')}</h1>
+                <h1 className="text-center">{t('playPage/title')}</h1>
                 <p>{t('playPage/description')}</p>
             </div>
             <div className="row">

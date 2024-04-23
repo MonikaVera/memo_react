@@ -29,7 +29,7 @@ const SinglePlayerOptions = () => {
 
     return (
         <PageContainer>
-            <h1>{t('singlePlayerModesPage/title')}</h1>
+            <h1 className="text-center">{t('singlePlayerModesPage/title')}</h1>
                 <div className="d-flex flex-wrap justify-content-evenly">
                     <Option 
                         title={t('singlePlayerModesPage/beginner/title')} 

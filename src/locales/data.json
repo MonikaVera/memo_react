@@ -161,6 +161,7 @@
     "game" : "Game"
   },
   "multiPlayerPage" : {
+    "title" : "Game Modes",
     "join" : {
       "easy" : {
         "title" : "Friendly Rivalry",

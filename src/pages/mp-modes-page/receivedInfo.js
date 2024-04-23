@@ -13,6 +13,7 @@ const ReceivedInfo = ({receivedInfo, leaveGame, joinGame}) => {
             </InfoContentContainer>
         ) : (
             <ContentContainer className='d-flex flex-column align-items-center'>
+                <h1 className="text-center">{t('multiPlayerPage/title')}</h1>
                 <MpResult receivedInfo={receivedInfo}/>
                 <JoinCard title={t('multiPlayerPage/join/easy/title')} desc={t('multiPlayerPage/join/easy/description')} joinGame={joinGame} pairs={8}/>
                 <JoinCard title={t('multiPlayerPage/join/medium/title')} desc={t('multiPlayerPage/join/medium/description')} joinGame={joinGame} pairs={16}/>

@@ -6,7 +6,7 @@ import PageContainer from "../../common/PageContainer";
 const Home = () => {
     return (
         <PageContainer>
-            <h1>
+            <h1 className="text-center">
                 <i className="bi bi-stars"/>
                 {t('homePage/title')}
                 <i className="bi bi-stars"/>
@@ -14,7 +14,7 @@ const Home = () => {
             <div>
                 <p>{t('homePage/description')}</p>
                 <h2>{t('homePage/firstSection/title')}</h2>
-                <ul className="list-group list-group-numbered border-dark m-2 fs-4">
+                <ul className="list-group list-group-numbered border-dark mb-2 fs-4">
                     <li className="list-group-item border-dark list-group-item-primary">{t('homePage/firstSection/point1')}</li>
                     <li className="list-group-item border-dark list-group-item-primary">{t('homePage/firstSection/point2')}</li>
                     <li className="list-group-item border-dark list-group-item-primary">{t('homePage/firstSection/point3')}</li>

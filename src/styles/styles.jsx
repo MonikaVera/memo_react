@@ -61,6 +61,7 @@ export const SmallContentContainer = styled.div`
 `;
 
 export const InfoContentContainer = styled.div`
+  
     @media (max-width: 992px) {
         margin-top: 9em; 
     }
@@ -95,7 +96,7 @@ export const InfoContentContainer = styled.div`
     @media (min-width: 1250px) {
         width: ${({ $pairs }) => {
             if($pairs === 24) {
-                return '1200px;';
+                return '1210px;';
             } else {
                 return '825px';
             }
@@ -121,6 +122,7 @@ export const BackgroundContainer = styled.div`
 `;
 
 export const CardContainer = styled.div`
+    z-index: 300;
     display: grid;
     width: fit-content;
     padding: 1em;
@@ -130,25 +132,7 @@ export const CardContainer = styled.div`
     border-radius: 10px;
     background-color: ${colors.silver};
     overflow-y: auto;
-    @media (max-width: 992px) {
-        margin-top:  ${({ $isSp }) => { 
-            if($isSp===true) {
-                return '9.5em';
-            } else {
-                return '0.5em';
-            }
-        }}; 
-    }
- 
-    @media (min-width: 992px) {
-        margin-top: ${({ $isSp }) => { 
-            if($isSp===true) {
-                return '4.5em';
-            } else {
-                return '0.5em';
-            }
-        }}; 
-    }
+    margin-top: 0.5em;
 
     @media (max-width: 375px) {
         grid-template-columns: repeat(2, 1fr);
@@ -284,15 +268,22 @@ export const StyledCard = styled.div`
 `;
 
 export const TimerContainer = styled.div`
+    @media (max-width: 992px) {
+        margin-top: 12em;
+    }
+
+    @media (min-width: 992px) {
+        margin-top: 5.25em;
+    }
     color: ${colors.rich_black};
-    width: 5em;
-    margin-top: 0.85em;
-    padding: 0, 0.25em;
     text-align: center;
     position: absolute;
+    padding-top: 0.75em;
     left: 50%;
     top: 0%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
+    z-index: 999;
+    width: 10em;
 `;
 
 

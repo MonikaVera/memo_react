@@ -19,7 +19,7 @@ const MultiPlayerStats = () => {
 
     return (
         <PageContainer>
-            <h1>{t('multiPlayerStatsPage/title')}</h1>
+            <h1 className="text-center">{t('multiPlayerStatsPage/title')}</h1>
             <div className="table-responsive">
                 <table className="table table-bordered border-dark caption-top table-striped">
                     <caption>
