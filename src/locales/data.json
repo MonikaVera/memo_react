@@ -109,7 +109,9 @@
     "won" : "You won!",
     "lost" : "You lost!",
     "newGame" : "New Game",
-    "home" : "Home"
+    "home" : "Home",
+    "guessed" : "Guessed",
+    "leave" : "Leave"
   },
   "statsPage" : {
     "title" : "Statistics",
@@ -176,8 +178,22 @@
         "description" : "Brace yourself for an intense memory battle with 24 pairs of cards. Face off against a formidable opponent in a high-stakes match to uncover the most pairs. With the pressure on, every move counts. Can you outwit your adversary and seize victory in this challenging showdown?"
       },
       "pairs" : "pairs",
-      "join" : "Join"
+      "join" : "Join",
+      "friendCard" : {
+        "desc" : "Gather your friends and delve into the world of Echoes of Memory. Discover who among you has the sharpest mind through this playful yet challenging memory game. It's more than just fun; it's a way to connect, compete, and create lasting memories.",
+        "title" : "Play With Friends",
+        "createLobby" : {
+          "title" : "Create a Lobby",
+          "button" : "Create Lobby"
+        },
+        "joinLobby" : {
+          "title" : "Join Lobby",
+          "button": "Join Friend",
+          "gameId": "Game id"
+        }
+      }
     },
+    
     "result": {
       "title" : "Result",
       "pairs" : "pairs",
