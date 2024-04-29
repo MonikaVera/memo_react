@@ -203,7 +203,9 @@
     },
     "turn" : "'s turn",
     "leave" : "Leave",
-    "players": "Players"
+    "players": "Players",
+    "copy" : "Copy ID",
+    "gameId" : "Game ID:"
   },
   "multiPlayerStatsPage" : {
     "title" : "Leaderboard",

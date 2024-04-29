@@ -61,7 +61,6 @@ export const SmallContentContainer = styled.div`
 `;
 
 export const InfoContentContainer = styled.div`
-  
     @media (max-width: 992px) {
         margin-top: 9em; 
     }
@@ -75,18 +74,31 @@ export const InfoContentContainer = styled.div`
         margin-left: 0.5em;
     }
 
-    @media (min-width: 500px) {
-        width: 450px;
+    @media (max-width: 300px) {
+        width: 230px;
+    }
+
+    @media (min-width: 300px) {
+        width: 290px;
+    }
+
+    @media (min-width: 400px) {
+        width: 360px;
+    }
+
+    @media (min-width: 530px) {
+        width: ${({ $pairs }) => {
+            if($pairs === 24) {
+                return '510px';
+            } else {
+                return '360px';
+            }
+        }};
     }
 
     @media (min-width: 675px) {
-        width: ${({ $pairs }) => {
-            if($pairs === 24) {
-                return '625px';
-            } else {
-                return '450px';
-            }
-        }};
+        width: 660px;
+        
     }
 
     @media (min-width: 875px) {
@@ -103,7 +115,6 @@ export const InfoContentContainer = styled.div`
         }};
     }
 
-    
     background-color: ${colors.silver};
     padding: 2em;
     border-radius: 10px;
@@ -134,11 +145,10 @@ export const CardContainer = styled.div`
     overflow-y: auto;
     margin-top: 0.5em;
 
-    @media (max-width: 375px) {
+    @media (max-width: 240px) {
         grid-template-columns: repeat(2, 1fr);
-    } 
-
-    @media (min-width: 375px) {
+    }
+    @media (min-width: 240px) {
         grid-template-columns: ${({ $pairs }) => {
             if ($pairs === 24) {
                 return 'repeat(3, 1fr)';
@@ -146,13 +156,13 @@ export const CardContainer = styled.div`
                 return 'repeat(2, 1fr)';
             }
         }};
+    } 
+
+    @media (min-width: 300px) {
+        grid-template-columns: repeat(4, 1fr);
     }
 
-    @media (min-width: 500px) {
-        grid-template-columns: repeat(4, 1fr); 
-    }
-
-    @media (min-width: 675px) {
+    @media (min-width: 530px) {
         grid-template-columns: ${({ $pairs }) => {
             if ($pairs === 24) {
                 return 'repeat(6, 1fr)';
@@ -162,7 +172,7 @@ export const CardContainer = styled.div`
         }};
     }
 
-    @media (min-width: 875px) {
+    @media (min-width: 675px) {
         grid-template-columns: repeat(8, 1fr); // 4 columns on large devices
     }
 
@@ -257,10 +267,23 @@ export const StyledCard = styled.div`
     background-size: cover;
     background-position: center;
     background-color: ${colors.pigment_green};
-    margin: 0.5em;
     border-radius: 5px;
-    height: 5em;
-    width: 5em;
+
+    @media (max-width: 400px) {
+        width: 3em;
+        height: 3em;
+        margin: 0.25em;
+    }
+    @media (min-width: 400px) {
+        width: 4em; 
+        height: 4em;
+        margin: 0.35em;
+    }
+    @media (min-width: 875px) {
+        width: 5em; 
+        height: 5em;
+        margin: 0.5em;
+    }
     text-align: center;
     border: ${({ $isFound, $isActive }) => $isActive ? '3px solid ' + colors.forest_green : ($isFound ? '3px solid ' + colors.rich_black : '3px solid ' + colors.gunmetal)};
     font-size: 1em;

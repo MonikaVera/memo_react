@@ -23,25 +23,25 @@ const FriendCard = ({joinGame}) => {
                         <StyledOption className="btn btn-primary fs-4 mb-3" onClick={() => joinGame(8, true, null)}>
                             <div>
                                 <i className="bi bi-play-circle"/>
-                                {` ${t('multiPlayerPage/join/friendCard/createLobby/button')} 8 (${t('multiPlayerPage/join/pairs')})`}
+                                {` ${t('multiPlayerPage/join/friendCard/createLobby/button')} (8 ${t('multiPlayerPage/join/pairs')})`}
                             </div>
                         </StyledOption>
                         <StyledOption className="btn btn-primary fs-4 mb-3" onClick={() => joinGame(16, true, null)}>
                             <div>
                                 <i className="bi bi-play-circle"/>
-                                {` ${t('multiPlayerPage/join/friendCard/createLobby/button')} 16 (${t('multiPlayerPage/join/pairs')})`}
+                                {` ${t('multiPlayerPage/join/friendCard/createLobby/button')} (16 ${t('multiPlayerPage/join/pairs')})`}
                             </div>
                         </StyledOption>
                         <StyledOption className="btn btn-primary fs-4 mb-3" onClick={() => joinGame(24, true, null)}>
                             <div>
                                 <i className="bi bi-play-circle"/>
-                                {` ${t('multiPlayerPage/join/friendCard/createLobby/button')} 24 (${t('multiPlayerPage/join/pairs')})`}
+                                {` ${t('multiPlayerPage/join/friendCard/createLobby/button')} (24 ${t('multiPlayerPage/join/pairs')})`}
                             </div>
                         </StyledOption>
                     </div>
-                    <StyledDiv $width="22.5em">
+                    <StyledDiv $width="22.25em">
                         <h3>{t('multiPlayerPage/join/friendCard/joinLobby/title')}</h3>
-                        <form className="border p-3 mb-3 border-dark">
+                        <div className="border p-md-3 p-sm-2 border-dark">
                             <div className="mb-3">
                                 <label className="form-label" htmlFor="gameId">
                                     {t('multiPlayerPage/join/friendCard/joinLobby/gameId')}
@@ -53,13 +53,13 @@ const FriendCard = ({joinGame}) => {
                                     onChange={handleChange}
                                     placeholder="db35a3a7-496e-4a21-971b-de22f4c2dd8c"/>
                             </div>
-                            <StyledOption className="btn btn-primary fs-4" onClick={() => joinGame(null, true, toSend.gameId)}>
+                            <StyledOption className="btn btn-primary fs-4" onClick={() => joinGame(0, true, toSend.gameId)}>
                                 <div>
                                     <i className="bi bi-play-circle"/>
                                     {' ' + t('multiPlayerPage/join/friendCard/joinLobby/button')}
                                 </div>
                             </StyledOption>
-                        </form>
+                        </div>
                     </StyledDiv>    
                 </div>
             </div>

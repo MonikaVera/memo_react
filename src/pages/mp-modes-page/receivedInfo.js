@@ -10,8 +10,12 @@ const ReceivedInfo = ({receivedInfo, leaveGame, joinGame, wantToPlayWithFriend})
         receivedInfo && !receivedInfo.gameOver ? (
             <InfoContentContainer $pairs={parseInt(receivedInfo.board.length)/2}>
                 <h1 className="fs-3">{t('multiPlayerPage/players')}</h1>
-                {wantToPlayWithFriend && receivedInfo.gameId}
-                <Score receivedInfo={receivedInfo} leaveGame={leaveGame} pairs={parseInt(receivedInfo.board.length)/2}/>           
+                <Score 
+                    receivedInfo={receivedInfo} 
+                    leaveGame={leaveGame} 
+                    pairs={parseInt(receivedInfo.board.length)/2} 
+                    wantToPlayWithFriend={wantToPlayWithFriend}
+                />           
             </InfoContentContainer>
         ) : (
             <ContentContainer className='d-flex flex-column align-items-center'>
