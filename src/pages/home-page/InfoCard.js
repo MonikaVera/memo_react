@@ -1,5 +1,5 @@
 const InfoCard = ({title, description, iconClass}) => {
-    return  <div className="card col m-2 border-dark text-bg-secondary">
+    return  <div className="card col mb-2 border-dark text-bg-secondary">
         <div  className="card-body">
             <h3 className="card-title">
                 <i className={`bi ${iconClass}`}/>

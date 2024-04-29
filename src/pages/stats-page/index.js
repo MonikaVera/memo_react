@@ -4,7 +4,7 @@ import PageContainer from "../../common/PageContainer";
 const Stats = () => {
     return (
         <PageContainer>
-            <h1>{t('statsPage/title')}</h1>
+            <h1 className="text-center">{t('statsPage/title')}</h1>
             <div className="row">
                 <p className="col">{t('statsPage/description')}</p>
             </div>    

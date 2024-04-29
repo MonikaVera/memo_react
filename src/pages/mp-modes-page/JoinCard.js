@@ -7,9 +7,9 @@ const JoinCard = ({title, desc, joinGame, pairs}) => {
             <div className="card-body">
                 <h2 className="card-title">{title}</h2>
                 <p className="card-text">{desc}</p>
-                <StyledOption className="btn btn-primary fs-4" onClick={() => joinGame(pairs)}>
+                <StyledOption className="btn btn-primary fs-4" onClick={() => joinGame(pairs, false, null)}>
                     <div>
-                        <i className="bi bi-play-circle"></i>
+                        <i className="bi bi-play-circle"/>
                         {` ${t('multiPlayerPage/join/join')} (${pairs} ${t('multiPlayerPage/join/pairs')})`}
                     </div>
                 </StyledOption>

@@ -9,14 +9,16 @@ import { useWebSocket } from '../../common/useWebsocket';
 
 const MultiPlayerGame = () => {
     const { token, userName } = useAuth();
-    const [pairs, setPairs] = useState();
     const { stompClientRef, isJoined, receivedMessage, errorR } = useWebSocket();
+    const [ wantToPlayWithFriend, setWantToPlayWithFriend] = useState();
 
-    const joinGame = (numOfPairs) => {
-        setPairs(numOfPairs);
+    const joinGame = (numOfPairs, wantToPlayWithFriend, friendRoomId) => {
+        setWantToPlayWithFriend(wantToPlayWithFriend);
         const message = {
             token: token,
-            numOfPairs: numOfPairs
+            numOfPairs: numOfPairs,
+            wantToPlayWithFriend: wantToPlayWithFriend,
+            friendRoomId: friendRoomId
         };
         stompClientRef.current.send('/app/game.join', {}, JSON.stringify(message));
     };
@@ -61,16 +63,21 @@ const MultiPlayerGame = () => {
 
     return (
         <PageContainer>
-            <ReceivedInfo receivedInfo={receivedMessage} leaveGame={leaveGame} joinGame={joinGame}/> 
+            <ReceivedInfo 
+                receivedInfo={receivedMessage} 
+                leaveGame={leaveGame} 
+                joinGame={joinGame} 
+                wantToPlayWithFriend={wantToPlayWithFriend}
+            /> 
             {isJoined && receivedMessage && 
-                <CardContainer $pairs={parseInt(pairs)} $isSp={false}>
+                <CardContainer $pairs={parseInt(receivedMessage.board.length/2)}>
                     {receivedMessage.board.map((num, index) => (
                         <GameCard 
                             key={index} 
                             index={index} 
                             num={getNum(num, index)} 
                             handleOnCardClicks={handleOnCardClicks} 
-                            pairs={parseInt(pairs)}
+                            pairs={parseInt(receivedMessage.board.length/2)}
                             isClickable={true}
                             isActive={isActiveCard(index)}
                         />
