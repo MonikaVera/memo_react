@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { t } from "../../common/translation";
 import { StyledDiv } from '../../styles/styles';
 
 const Score = ({receivedInfo, leaveGame, pairs, wantToPlayWithFriend}) => {
   const isMobile = useMediaQuery({ maxWidth: pairs===24 ? 675 : 875 });
+  const [isCopied, setCopied] = useState(false);
 
   const handleCopy = () => {
     const tempInput = document.createElement('input');
@@ -13,7 +14,8 @@ const Score = ({receivedInfo, leaveGame, pairs, wantToPlayWithFriend}) => {
     tempInput.select();
     document.execCommand('copy');
     document.body.removeChild(tempInput);
-    alert('Room ID copied to clipboard: ' + receivedInfo.gameId);
+    setCopied(true);
+    console.log(isCopied);
   };
 
   return (
@@ -25,7 +27,10 @@ const Score = ({receivedInfo, leaveGame, pairs, wantToPlayWithFriend}) => {
             <div className="d-flex flex-wrap justify-content-between">
                 <StyledDiv className="d-flex flex-wrap justify-content-between mb-1 mt-1" $width="100%">
                     {wantToPlayWithFriend && <div>
-                        <button className=' btn btn-primary' onClick={handleCopy}>{t('multiPlayerPage/copy')}</button> 
+                        <button className=' btn btn-primary' onClick={handleCopy}>
+                            {t('multiPlayerPage/copy') + " "}
+                            {isCopied ? <i className="bi bi-check"/> : null}
+                        </button> 
                     </div>}
                     <div className="btn btn-dark">{receivedInfo.turn}{t('multiPlayerPage/turn')}</div>
                     <div className="d-flex flex-wrap justify-content-center">
@@ -48,7 +53,10 @@ const Score = ({receivedInfo, leaveGame, pairs, wantToPlayWithFriend}) => {
         <div>
            {wantToPlayWithFriend && <div className='d-flex flex-wrap justify-content-between m-1'>
                 <div className='fs-5 mt-1'>{t('multiPlayerPage/gameId')} {receivedInfo.gameId}</div>
-                <button className=' btn btn-primary' onClick={handleCopy}>{t('multiPlayerPage/copy')}</button> 
+                <button className=' btn btn-primary' onClick={handleCopy}>
+                    {t('multiPlayerPage/copy') + " "}
+                    {isCopied ? <i className="bi bi-check-lg"/> : null}
+                </button> 
             </div>} 
             <div className="d-flex flex-wrap justify-content-between">
                 <StyledDiv className="d-flex flex-wrap justify-content-between fs-4 badge text-bg-primary rounded-pill" $width="80%">
