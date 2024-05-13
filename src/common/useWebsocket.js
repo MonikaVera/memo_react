@@ -24,22 +24,24 @@ export const WebSocketProvider = ({ children }) => {
     const onMessage = useCallback((message) => {
             const parsedMessage = JSON.parse(message.body);
             if(parsedMessage.type==="error") {
-                setErrorR(parsedMessage.content);
+                if(parsedMessage.player1===userId) {
+                    setErrorR(parsedMessage.content);
+                }
             } else {
                 setErrorR(null);
-            }
-            if(userId===parsedMessage.player1 || userId===parsedMessage.player2) {
-                if(parsedMessage.type==='game.left') {
-                    setJoined(false);
-                }
-                if(parsedMessage.type==='game.joined') {
-                    setJoined(true);
-                }
-                if (parsedMessage.gameId!==null && (parsedMessage.gameId)!==sessionId.current) {
-                    sessionId.current=parsedMessage.gameId;
-                }
-                if (parsedMessage.gameId===sessionId.current) {
-                    setReceivedMessage(parsedMessage);
+                if(userId===parsedMessage.player1 || userId===parsedMessage.player2) {
+                    if(parsedMessage.type==='game.left') {
+                        setJoined(false);
+                    }
+                    if(parsedMessage.type==='game.joined') {
+                        setJoined(true);
+                    }
+                    if (parsedMessage.gameId!==null && (parsedMessage.gameId)!==sessionId.current) {
+                        sessionId.current=parsedMessage.gameId;
+                    }
+                    if (parsedMessage.gameId===sessionId.current) {
+                        setReceivedMessage(parsedMessage);
+                    }
                 }
             }
         }, [userId]);
