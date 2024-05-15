@@ -24,6 +24,7 @@ const SinglePlayerGame = () => {
 
     const isClickable = useRef(true);
     const evenForSec = useRef(true);
+    const [isValidated, setIsValidated] = useState(false);
 
     const { error, data, getCards } = useGetCards();
     const { errorRT, dataRT, getRemainingTime } = useGetRemainingTime();
@@ -67,11 +68,12 @@ const SinglePlayerGame = () => {
         if(dataIV && !dataIV.isValid) {
             navigate(-1);
         }
-        if(dataIV && dataIV.isValid && data===null) {
+        if(dataIV && dataIV.isValid && !isValidated) {
             setBoard(dataIV.guessedBoard);
             setTime(dataIV.remainingTime);
             setNumOfGuessed(dataIV.numOfGuessed);
             setCards(dataIV.cards);
+            setIsValidated(true);
         }
         if(timeSec===0 && dataRT==null) {
             getRemainingTime(sessionId);
@@ -79,7 +81,7 @@ const SinglePlayerGame = () => {
         if(dataLG==="success") {
             navigate(-1);
         }
-    },  [timeSec, sessionId, getRemainingTime, dataRT, dataLG, navigate, dataIV, getIsPlayValid, data]);
+    },  [timeSec, sessionId, getRemainingTime, dataRT, dataLG, navigate, dataIV, getIsPlayValid, isValidated]);
 
     const handleOnCardClicks = async ({index}) => {
         if(isClickable.current) {
