@@ -9,7 +9,9 @@ import { SmallContentContainer } from "../../styles/styles";
 
 const Register = () => {
     const [toSend, setToSend] = useState({email:"", username:"", password: ""});
-    const { error, status, getSignInData } = useRegister();
+    const { error, status, getRegisterData } = useRegister();
+    const [ clientError, setClientError ] = useState(null);
+    const EMAIL_REGEX = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -21,7 +23,13 @@ const Register = () => {
     const handleCLickOnSend = (e) => {
         e.preventDefault();
         const {email, username, password} = toSend;
-        getSignInData(email, username, password);
+
+        if(username.length<4) setClientError("Username must be at least 4 characters long!");
+        else if(password.length<6) setClientError("Password must be at least 6 characters long!");
+        else if(/\s/.test(username)) setClientError("Username must not contain whitespaces!");
+        else if(/\s/.test(password)) setClientError("Password must not contain whitespaces!");
+        else if(!EMAIL_REGEX.test(email)) setClientError("Incorrect email format!");
+        else getRegisterData(email, username, password);
     }
     
     const handleChange = (e) => {
@@ -68,6 +76,7 @@ const Register = () => {
                     <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("registerPage/button")}</button>
                 </form>
                 <Error>{error}</Error>
+                <Error>{clientError}</Error>
             </SmallContentContainer>
         </PageContainer>
     );

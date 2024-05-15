@@ -6,7 +6,7 @@ const useRegister = () => {
     const [error, setError] = useState(null);
     const [status, setStatus] = useState(null);
 
-    const getSignInData = async (email, userName, password) => {
+    const getRegisterData = async (email, userName, password) => {
         try {
             const response = await axios.post(LINK + '/api/register', {username: userName, email: email, password: password});
             setStatus(response.status);
@@ -20,7 +20,7 @@ const useRegister = () => {
         }
     };
 
-    return { error, status, getSignInData };
+    return { error, status, getRegisterData };
 }
 
 export default useRegister;
