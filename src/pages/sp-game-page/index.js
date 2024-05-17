@@ -27,9 +27,9 @@ const SinglePlayerGame = () => {
     const [isValidated, setIsValidated] = useState(false);
 
     const { error, data, getCards } = useGetCards();
-    const { errorRT, dataRT, getRemainingTime } = useGetRemainingTime();
+    const { dataRT, getRemainingTime } = useGetRemainingTime();
     const { errorLG, dataLG, getLeaveGameData} = useLeaveGame();
-    const {dataIV, errorIV, getIsPlayValid} = useIsPlayValid();
+    const {dataIV, getIsPlayValid} = useIsPlayValid();
     
     useEffect(() => {
         if (data !== null) {
@@ -151,8 +151,6 @@ const SinglePlayerGame = () => {
             ) : (
             <PageContainer>
                 <GameOver won={(data!=null && data.won)}></GameOver>
-                <Error>{errorRT}</Error>
-                <Error>{errorIV}</Error>
             </PageContainer>
         )     
     );

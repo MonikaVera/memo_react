@@ -22,9 +22,13 @@ const SPStats = () => {
     }, [getSinglePlayerAllGames]);
 
     useEffect(() => {
-        fetchSummary();
-        fetchAllGames();
-    }, [fetchAllGames, fetchSummary]);
+        if(dataSPSummary==null) {
+            fetchSummary();
+        }
+        if(dataSPAll==null) {
+            fetchAllGames();
+        }
+    }, [fetchAllGames, fetchSummary, dataSPAll, dataSPSummary]);
 
     const handleOnRightArrowClick = () => {
         fetchAllGames();

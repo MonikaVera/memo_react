@@ -274,23 +274,4 @@ export const StyledCard = styled.div`
     cursor: ${({ $isActive, $isFound}) => (!$isActive && !$isFound) ? 'pointer' : 'default'};
 `;
 
-export const TimerContainer = styled.div`
-    @media (max-width: 992px) {
-        margin-top: 12em;
-    }
-
-    @media (min-width: 992px) {
-        margin-top: 5.25em;
-    }
-    color: ${colors.rich_black};
-    text-align: center;
-    position: absolute;
-    padding-top: 0.75em;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%, 0%);
-    z-index: 999;
-    width: 10em;
-`;
-
 
