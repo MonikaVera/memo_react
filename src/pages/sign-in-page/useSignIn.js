@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { LINK } from "../../config";
+import errorGetter from "../../common/errorGetter";
 
 const useSignIn = () => {
     const [error, setError] = useState(null);
@@ -21,12 +22,7 @@ const useSignIn = () => {
             setData(response.data);
             setError(null);
         } catch (error) {
-            if (error.response) {
-                const responseData = error.response.data;
-                setError(responseData);
-            } else {
-                setError("An unexpected error occurred.");
-            }
+            setError(errorGetter(error));
         }
     };
 

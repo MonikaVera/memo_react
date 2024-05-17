@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { LINK } from "../../config";
+import errorGetter from "../../common/errorGetter";
 
 const useMultiPlayerStart = () => {
     const [error, setError] = useState(null);
@@ -15,12 +16,7 @@ const useMultiPlayerStart = () => {
             });
                 setData(response.data);
         } catch (error) {
-            if (error.response) {
-                const responseData = error.response.data;
-                setError(responseData);
-            } else {
-                setError("An unexpected error occurred.");
-            }
+            setError(errorGetter(error));
         }
     }
     return {data, error, getmultiPlayerStart};

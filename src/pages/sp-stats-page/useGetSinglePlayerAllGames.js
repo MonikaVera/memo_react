@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../../common/AuthContext";
 import axios from 'axios';
 import { LINK } from "../../config";
+import errorGetter from "../../common/errorGetter";
 
 const useGetSinglePlayerAllGames = () => {
     const [errorSPAll, setErrorSPAll] = useState(null);
@@ -24,12 +25,7 @@ const useGetSinglePlayerAllGames = () => {
             setDataSPAll(response.data);
             setErrorSPAll(null);
         } catch (errorSPAll) {
-            if (errorSPAll.response) {
-                const responseData = errorSPAll.response.data;
-                setErrorSPAll(responseData);
-            } else {
-                setErrorSPAll("An unexpected error occurred.");
-            }
+            setErrorSPAll(errorGetter(errorSPAll));
         }
     };
     return { errorSPAll, dataSPAll, getSinglePlayerAllGames };

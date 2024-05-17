@@ -1,16 +1,23 @@
-import { HOME, PLAY, STATS } from "../../config";
-import { useAuth } from "../AuthContext";
+import { STATS } from "../../config";
 import { useLocation} from "react-router-dom";
-import { t } from "../translation";
-import PlayLinks from "./PlayLinks";
-import HomeLinks from "./HomeLinks";
-import StatLinks from "./StatLinks";
-import { Link } from "react-router-dom";
-import MpStatLinks from "./MpStatLinks";
+import { useEffect, useState } from "react";
+import NavbarContent from "./NavbarContent";
+import { useMediaQuery } from "react-responsive";
 
 const Navbar = () => {
-    const {isAuthenticated} = useAuth();
     const location = useLocation();
+    const [isMenuOpen, setMenuOpen] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 992});
+
+    useEffect(() => {
+      if(!isMobile) {
+        setMenuOpen(false);
+      }
+    }, [isMobile])
+
+    const handleOnMenuClick = () => {
+      setMenuOpen(!isMenuOpen);
+    }
     
     function isCurrent(path) {
       if(location.pathname===path) {
@@ -25,44 +32,17 @@ const Navbar = () => {
 
     return <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div className="container-fluid">
-      <div className="collapse navbar-collapse d-flex flex-wrap justify-content-between" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link 
-                className={`nav-link ${isCurrent(HOME) ? 'active' : ''}`} 
-                to={HOME}
-              >
-                {t("navbar/home")}
-              </Link>
-            </li>
-            { isAuthenticated && 
-              <li className="nav-item">
-                <Link 
-                  className={`nav-link ${isCurrent(PLAY) ? 'active' : ''}`} 
-                  to = {PLAY} 
-                  aria-disabled={!isAuthenticated}
-                >
-                  {t("navbar/game")}
-                </Link>
-              </li>
-            }
-            { isAuthenticated && 
-              <li className="nav-item">
-                <Link 
-                  className={`nav-link ${isCurrent(STATS) ? 'active' : ''} cursor-pointer`} 
-                  to = {STATS} 
-                  aria-disabled={!isAuthenticated}
-                >
-                  {t("navbar/stats")}
-                </Link>
-              </li>
-            }
+        <button onClick={handleOnMenuClick} className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <div className="navbar-toggler-icon"></div>
+        </button>
+        {isMenuOpen && 
+          <ul className="dropdown-menu show position-static w-100 mt-2  bg-dark border-0">
+            <NavbarContent isCurrent={isCurrent}/>
           </ul>
-          {isCurrent(PLAY) && <PlayLinks/>}
-          {isCurrent(HOME) && <HomeLinks/>}
-          {isCurrent(STATS) && <StatLinks/>}
-          {isCurrent("Leaderboard") && <MpStatLinks/>}
-        </div>
+        }
+      <div className="collapse navbar-collapse" id="navbarNav">
+          <NavbarContent isCurrent={isCurrent}/>
+      </div>
     </div>
   </nav>
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { LINK } from "../../config";
 import { useAuth } from "../../common/AuthContext";
+import errorGetter from '../../common/errorGetter';
 
 const useGetCards = () => {
     const [error, setError] = useState(null);
@@ -20,13 +21,7 @@ const useGetCards = () => {
             });
             setData(response.data);
         } catch (errorCards) {
-            if (errorCards.response) {
-                const responseData = errorCards.response.data;
-                const { status, error } = responseData;
-                setError(status + " " + error);
-            } else {
-                setError("An unexpected error occurred.");
-            }
+            setError(errorGetter(errorCards));
         }
     };
 

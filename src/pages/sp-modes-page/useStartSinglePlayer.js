@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { LINK } from "../../config";
 import { useAuth } from "../../common/AuthContext";
+import errorGetter from '../../common/errorGetter';
 
 const useStartSinglePlayer = () => {
     const [errorStartSP, setErrorStartSP] = useState(null);
@@ -22,13 +23,7 @@ const useStartSinglePlayer = () => {
             setDataStartSP(response.data);
             setErrorStartSP(null);
         } catch (errorStartSP) {
-            if (errorStartSP.response) {
-                const responseData = errorStartSP.response.data;
-                const { status, error } = responseData;
-                setErrorStartSP(status + " " + error);
-            } else {
-                setErrorStartSP("An unexpected error occurred.");
-            }
+            setErrorStartSP(errorGetter(errorStartSP));
         }
     };
     return { errorStartSP, dataStartSP, getSinglePlayerStart };

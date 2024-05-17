@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { LINK } from "../../config";
 import { useAuth } from "../../common/AuthContext";
+import errorGetter from '../../common/errorGetter';
 
 const useGetRemainingTime = () => {
     const [errorRT, setError] = useState(null);
@@ -18,13 +19,7 @@ const useGetRemainingTime = () => {
             });
             setData(response.data);
         } catch (errorRT) {
-            if (errorRT.response) {
-                const responseData = errorRT.response.data;
-                const { status, error } = responseData;
-                setError(status + " " + error);
-            } else {
-                setError("An unexpected error occurred.");
-            }
+            setError(errorGetter(errorRT));
         }
     };
 

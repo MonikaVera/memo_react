@@ -37,7 +37,6 @@ const SinglePlayerGame = () => {
             setBoard(data.guessedBoard);
             setNumOfGuessed(data.numOfGuessed);
             setCards(data.cards);
-            console.log(JSON.stringify(data));
             if(Object.keys(data.cards).length===1) {
                 setTurn(false);
             }

@@ -35,6 +35,12 @@ const SPStats = () => {
         fetchAllGames();
         page.current-=1;
     }
+
+    function toMinAndSecFromat(secondsToConvert) {
+        const minutes = Math.floor(secondsToConvert / 60);
+        const seconds = secondsToConvert % 60;
+        return (`${minutes} ${t('singlePlayerStatsPage/min')} ${seconds} ${t('singlePlayerStatsPage/sec')}`)
+    }
     
     return (
         <PageContainer>
@@ -57,12 +63,12 @@ const SPStats = () => {
                         {dataSPSummary && dataSPSummary.map((item, index) => (
                             <tr key={index}>
                                 <td>{item.pairs}</td>
-                                <td>{item.time} {t('singlePlayerStatsPage/sec')}</td>
+                                <td>{item.time/60} {t('singlePlayerStatsPage/min')}</td>
                                 <td>{item.numOfGames}</td>
                                 <td>{item.wins}</td>
                                 <td>{item.losses}</td>
                                 <td>{item.winningRate} {t('singlePlayerStatsPage/overviewTable/%')}</td>
-                                <td>{item.avgRemainingTime} {t('singlePlayerStatsPage/sec')}</td>
+                                <td>{toMinAndSecFromat(item.avgRemainingTime)}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -86,7 +92,7 @@ const SPStats = () => {
                             <tr key={index}>
                                 <td>{item.updatedAt}</td>
                                 <td>{item.pairs}</td>
-                                <td>{item.timeMax}</td>
+                                <td>{item.timeMax/60} {t('singlePlayerStatsPage/min')}</td>
                                 <td>{item.won ? (
                                         <i className="bi bi-check-square text-success">
                                             {t('singlePlayerStatsPage/gamesTable/yes')}
@@ -97,7 +103,7 @@ const SPStats = () => {
                                         </i>
                                     )}</td>
                                 <td>{item.won ? (
-                                        item.remainingTime + ' ' + t('singlePlayerStatsPage/sec') 
+                                        toMinAndSecFromat(item.remainingTime)
                                     ) : ( 
                                         t('singlePlayerStatsPage/gamesTable/-'))}</td>
                             </tr>

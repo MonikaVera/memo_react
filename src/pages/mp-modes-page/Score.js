@@ -15,7 +15,6 @@ const Score = ({receivedInfo, leaveGame, pairs, wantToPlayWithFriend}) => {
     document.execCommand('copy');
     document.body.removeChild(tempInput);
     setCopied(true);
-    console.log(isCopied);
   };
 
   return (

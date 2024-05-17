@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { LINK } from '../../config';
 import { useAuth } from "../../common/AuthContext";
+import errorGetter from "../../common/errorGetter";
 
 const useIsPlayValid = () => {
     const [errorIV, setError] = useState(null);
@@ -18,13 +19,7 @@ const useIsPlayValid = () => {
             });
             setData(response.data);
         } catch (errorSO) {
-            if (errorSO.response) {
-                const responseData = errorSO.response.data;
-                const { status, error } = responseData;
-                setError(status + " " + error);
-            } else {
-                setError("An unexpected error occurred.");
-            }
+            setError(errorGetter(errorSO));
         }
     };
     return {dataIV, errorIV, getIsPlayValid}; 
