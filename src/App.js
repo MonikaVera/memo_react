@@ -16,6 +16,10 @@ import MultiPlayerGame from './pages/mp-modes-page/index';
 import Leaderboard from './pages/mp-stats-page/index';
 import { WebSocketProvider } from './common/useWebsocket';
 
+/**
+ * Main App component that sets up routing and provides context for authentication and WebSocket connections.
+ * @returns {JSX.Element} The rendered component.
+ */
 function App() {
   return (
     <AuthProvider>
