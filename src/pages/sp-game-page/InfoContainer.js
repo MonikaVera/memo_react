@@ -2,7 +2,16 @@ import { InfoContentContainer } from "../../styles/styles";
 import { useMediaQuery } from 'react-responsive';
 import { t } from "../../common/translation";
 
-const GameTimer = ({timeSec, sessionId, pairs, leaveGame, guessed}) => {
+/**
+ * Component to display game timer and other game information.
+ * @param {number} timeSec - Remaining time in seconds.
+ * @param {number} pairs - Number of pairs in the game.
+ * @param {function} leaveGame - Function to leave the game.
+ * @param {number} guessed - Number of guessed pairs.
+ * @returns {JSX.Element} InfoContainer component
+ */
+const InfoContainer = ({timeSec, pairs, leaveGame, guessed}) => {
+    /** Check if the device is mobile */
     const isMobile = useMediaQuery({ maxWidth: pairs===24 ? 675 : 875 });
     const minutes = Math.floor(timeSec / 60);
     const seconds = timeSec % 60;
@@ -32,4 +41,4 @@ const GameTimer = ({timeSec, sessionId, pairs, leaveGame, guessed}) => {
     );
 }
 
-export default GameTimer;
+export default InfoContainer;

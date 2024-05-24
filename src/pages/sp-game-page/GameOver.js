@@ -2,6 +2,11 @@ import { StyledLink, SmallContentContainer } from "../../styles/styles";
 import { HOME, SINGLEPLAYERMODES, PLAY } from "../../config";
 import { t } from "../../common/translation";
 
+/**
+ * Component to display game over screen.
+ * @param {boolean} won - Indicates whether the player won the game.
+ * @returns {JSX.Element} GameOver component
+ */
 const GameOver = ({won}) => {
     return <SmallContentContainer className="d-flex flex-column align-items-center" $smallMT='9.5em'>
         <h2>

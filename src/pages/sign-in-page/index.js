@@ -8,12 +8,20 @@ import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
 import { SmallContentContainer } from "../../styles/styles";
 
+/**
+ * Component for user sign-in functionality.
+ * Handles user authentication and redirects to the home page upon successful sign-in.
+ * @returns {JSX.Element} The sign-in form component.
+ */
 const SignIn = () => {
+    /* State variables for user input and sign-in data **/
     const [toSend, setToSend] = useState({emailOrUsername:"", password: ""});
     const { error, data, getSignInData } = useSignIn();
     const navigate = useNavigate();
     const { handleSignIn } = useAuth(); 
 
+    
+    /* Effect hook to handle sign-in data and redirection upon successful sign-in **/
     useEffect(() => {
         if(data!==null && error === null) {
             handleSignIn(data);
@@ -21,12 +29,20 @@ const SignIn = () => {
         }
     }, [data, handleSignIn, navigate, error]);
 
+    /**
+     * Handles the form submission to initiate sign-in process.
+     * @param {Event} e - The form submit event.
+     */
     const handleCLickOnSend = (e) => {
         e.preventDefault();
         const {emailOrUsername, password} = toSend;
         getSignInData(emailOrUsername, password);
     }
     
+    /**
+     * Handles changes in the form input fields.
+     * @param {Event} e - The input change event.
+     */
     const handleChange = (e) => {
         const { id, value } = e.target;
         setToSend(prevData => ({

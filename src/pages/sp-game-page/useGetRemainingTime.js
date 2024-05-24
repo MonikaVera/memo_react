@@ -2,12 +2,21 @@ import { useState } from 'react';
 import axios from 'axios';
 import { LINK } from "../../config";
 import { useAuth } from "../../common/AuthContext";
+import errorGetter from '../../common/errorGetter';
 
+/**
+ * Custom hook to fetch remaining time for a single player game.
+ * @returns {object} An object containing errorRT, dataRT, and getRemainingTime function.
+ */
 const useGetRemainingTime = () => {
     const [errorRT, setError] = useState(null);
     const [dataRT, setData] = useState(null);
     const { token } = useAuth();
 
+    /**
+     * Function to fetch remaining time data for a single player game.
+     * @param {string} sessionId - Session ID of the game.
+     */
     const getRemainingTime = async (sessionId) => {
         try {
             const response = await axios.post(LINK + '/api/singlePlayer/getRemainingTime/' + sessionId, {},
@@ -18,13 +27,7 @@ const useGetRemainingTime = () => {
             });
             setData(response.data);
         } catch (errorRT) {
-            if (errorRT.response) {
-                const responseData = errorRT.response.data;
-                const { status, error } = responseData;
-                setError(status + " " + error);
-            } else {
-                setError("An unexpected error occurred.");
-            }
+            setError(errorGetter(errorRT));
         }
     };
 

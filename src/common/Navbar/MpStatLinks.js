@@ -2,6 +2,10 @@ import { STATS } from "../../config";
 import { StyledLink } from "../../styles/styles";
 import { t } from "../translation";
 
+/**
+ * Component for rendering multiplayer stats page links in the navigation bar.
+ * @returns {JSX.Element} The rendered component.
+ */
 const MpStatLinks = () => {
     return (
         <ul className="navbar-nav">

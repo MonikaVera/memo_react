@@ -1,6 +1,18 @@
 import { t } from "../../common/translation";
 import PageContainer from "../../common/PageContainer";
 
+/**
+ * Play Component
+ * Renders the game play options page with various sections including titles, subtitles, and descriptions.
+ * This page provides users with information on single player and multiplayer game modes.
+ *
+ * Usage:
+ * ```jsx
+ * <Play />
+ * ```
+ *
+ * Each section uses translations for multilingual support, pulling text strings from a central resource.
+ */
 const Play = () => {
     return (
         <PageContainer>

@@ -1,6 +1,10 @@
 import { t } from "../../common/translation";
 import PageContainer from "../../common/PageContainer";
 
+/**
+ * Component for displaying game statistics.
+ * @returns {JSX.Element} Stats component
+ */
 const Stats = () => {
     return (
         <PageContainer>

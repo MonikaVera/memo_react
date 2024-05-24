@@ -2,12 +2,21 @@ import { useState } from "react";
 import axios from "axios";
 import { LINK } from '../../config';
 import { useAuth } from "../../common/AuthContext";
+import errorGetter from "../../common/errorGetter";
 
+/**
+ * Custom hook to leave a single player game session.
+ * @returns {object} An object containing errorLG, dataLG, and getLeaveGameData function.
+ */
 const useLeaveGame = () => {
     const [errorLG, setError] = useState(null);
     const [dataLG, setData] = useState(null);
     const { token } = useAuth();
 
+    /**
+     * Function to leave a single player game session.
+     * @param {string} sessionId - Session ID of the game.
+     */
     const getLeaveGameData = async (sessionId) => {
         try {
             await axios.post(LINK + '/api/singlePlayer/leaveGame/' + sessionId, {},
@@ -18,13 +27,7 @@ const useLeaveGame = () => {
             });
             setData("success");
         } catch (errorSO) {
-            if (errorSO.response) {
-                const responseData = errorSO.response.data;
-                const { status, error } = responseData;
-                setError(status + " " + error);
-            } else {
-                setError("An unexpected error occurred.");
-            }
+            setError(errorGetter(errorSO));
         }
     };
     return {errorLG, dataLG, getLeaveGameData};

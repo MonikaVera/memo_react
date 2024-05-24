@@ -6,11 +6,22 @@ import { t } from "../../common/translation";
 import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
 
+/**
+ * Component for rendering options for single player mode.
+ * Handles selection of game difficulty and initiates game start.
+ * Navigates to the game page upon successful initiation of game session.
+ * @returns {JSX.Element} SinglePlayerOptions component
+ */
 const SinglePlayerOptions = () => {
     const navigate = useNavigate();
+
+    /* Custom hook for starting single player game session **/
     const { errorStartSP, dataStartSP, getSinglePlayerStart } = useStartSinglePlayer();
+
+    /* State for storing selected number of pairs and time limit **/
     const [pairsAndTime, setPairsAndTime] = useState({pairs: null, time: null});
 
+    /* Effect to navigate to game page upon successful initiation of game session **/
     useEffect(() => {
         if (errorStartSP === null && dataStartSP) {
             const { sessionId } = dataStartSP;
@@ -18,6 +29,7 @@ const SinglePlayerOptions = () => {
         }
     }, [errorStartSP, dataStartSP, pairsAndTime, navigate]);
 
+    /* Function to handle selection of game difficulty **/
     const handleOptionSelect = (newPairs, newTime) => {
         setPairsAndTime(prevState => ({
             ...prevState,

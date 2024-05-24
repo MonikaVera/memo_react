@@ -7,23 +7,50 @@ import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
 import { SmallContentContainer } from "../../styles/styles";
 
+
+/**
+ * Component for user registration.
+ * Allows users to input their email, username, and password for registration.
+ * Displays error messages for invalid inputs and server-side errors.
+ * 
+ * Example Usage:
+ * ```jsx
+ * <Register />
+ * ```
+ */
 const Register = () => {
+    /* State variables for form data, errors, and registration status **/
     const [toSend, setToSend] = useState({email:"", username:"", password: ""});
-    const { error, status, getSignInData } = useRegister();
+    const { error, status, getRegisterData } = useRegister();
+    const [ clientError, setClientError ] = useState(null);
+
+    /* Regular expression for email validation **/
+    const EMAIL_REGEX = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
+
+    /* React hook for navigation **/
     const navigate = useNavigate();
 
+    /* Effect hook to redirect to sign-in page upon successful registration **/
     useEffect(() => {
         if(status===200) {
             navigate(SIGNIN);
         }
     }, [navigate, status]);
 
+    /** Function to handle form submission */
     const handleCLickOnSend = (e) => {
         e.preventDefault();
         const {email, username, password} = toSend;
-        getSignInData(email, username, password);
+
+        if(username.length<4) setClientError("Username must be at least 4 characters long!");
+        else if(password.length<6) setClientError("Password must be at least 6 characters long!");
+        else if(/\s/.test(username)) setClientError("Username must not contain whitespaces!");
+        else if(/\s/.test(password)) setClientError("Password must not contain whitespaces!");
+        else if(!EMAIL_REGEX.test(email)) setClientError("Incorrect email format!");
+        else getRegisterData(email, username, password);
     }
     
+    /** Function to handle input changes */ 
     const handleChange = (e) => {
         const { id, value } = e.target;
         setToSend(prevData => ({
@@ -68,6 +95,7 @@ const Register = () => {
                     <button type="submit" className="btn btn-primary" onClick={handleCLickOnSend}>{t("registerPage/button")}</button>
                 </form>
                 <Error>{error}</Error>
+                <Error>{clientError}</Error>
             </SmallContentContainer>
         </PageContainer>
     );

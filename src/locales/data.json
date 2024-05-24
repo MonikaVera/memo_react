@@ -135,7 +135,7 @@
     "overviewTable" : {
       "title" : "Overview",
       "pairs" : "Pairs",
-      "time" : "Time",
+      "time" : "Maximum Time",
       "numOfGames" : "Number of Games",
       "wins" : "Wins",
       "losses" : "Losses",
@@ -147,7 +147,7 @@
       "title" : "Games",
       "when" : "when",
       "pairs" : "Pairs",
-      "time" : "Time",
+      "time" : "Maximum Time",
       "won" : "Won",
       "remTime" : "Remaining Time",
       "yes" : " Yes",
@@ -155,7 +155,8 @@
       "-" : "-"
     },
     "numOfGames" : "Number of Games:",
-    "sec" : "sec"
+    "min" : "min",
+    "sec": "sec"
   },
   "navbar" : {
     "home" : "Home",

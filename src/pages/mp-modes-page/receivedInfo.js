@@ -5,6 +5,14 @@ import Score from "./Score";
 import MpResult from "./MpResult";
 import FriendCard from "./FriendCard";
 
+/**
+ * Component for rendering received information in multiplayer games.
+ * @param {Object} receivedInfo - Information received from the game.
+ * @param {Function} leaveGame - Function to leave the game.
+ * @param {Function} joinGame - Function to join the game.
+ * @param {boolean} wantToPlayWithFriend - Indicates if the player wants to play with a friend.
+ * @returns {JSX.Element} - Received information component.
+ */
 const ReceivedInfo = ({receivedInfo, leaveGame, joinGame, wantToPlayWithFriend}) => {
     return (
         receivedInfo && !receivedInfo.gameOver ? (

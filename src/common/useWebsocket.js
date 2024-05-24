@@ -5,22 +5,47 @@ import { useLocation } from 'react-router-dom';
 import SockJS from 'sockjs-client';
 import { useAuth } from './AuthContext';
 
+/** Context for managing WebSocket connections and messages. */
 const WebSocketContext = createContext(null);
 
+/**
+ * Provider component for WebSocket connections.
+ * @param {Object} children - Components wrapped by WebSocketProvider.
+ * @returns {JSX.Element} - WebSocketProvider component.
+ */
 export const WebSocketProvider = ({ children }) => {
+    /** Received WebSocket messages */
     const [receivedMessage, setReceivedMessage] = useState(null);
-    const topicGameState = '/topic/game.state';
+    /** WebSocket connection status */
     const [isConnected, setConnected] = useState(false);
+    /** Indicates if joined a WebSocket game */
     const [isJoined, setJoined] = useState(false);
-    const stompClientRef = useRef(null);
-    const sessionId = useRef(null);
+    /** Indicates if subscribed to WebSocket topics */
     const [subscribed, setSubscribed] = useState(false);
-    const subscriptionToGame = useRef(null);
-    const subscriptionToState = useRef(null);
+    /** WebSocket error message */
     const [errorR, setErrorR] = useState(null);
+    /** Reference to the STOMP client */
+    const stompClientRef = useRef(null);
+    /** Session ID for WebSocket connection */
+    const sessionId = useRef(null);
+   
+    /** Subscription to game-related WebSocket topic */
+    const subscriptionToGame = useRef(null);
+    /** Subscription to WebSocket state topic */
+    const subscriptionToState = useRef(null);
+
+    /** Current URL location */
     const location = useLocation();
+    /** Authentication status and user ID */
     const {isAuthenticated, userId} = useAuth();
 
+    const topicGameState = '/topic/game.state';
+
+    /**
+     * Callback function to handle incoming WebSocket messages.
+     * This function parses incoming messages and updates state variables accordingly.
+     * @param {Object} message - Message received from the WebSocket server.
+     */
     const onMessage = useCallback((message) => {
             const parsedMessage = JSON.parse(message.body);
             if(parsedMessage.type==="error") {
@@ -46,6 +71,11 @@ export const WebSocketProvider = ({ children }) => {
             }
         }, [userId]);
 
+    /**
+     * Function to subscribe to a WebSocket topic.
+     * This function subscribes to a specified topic and assigns the subscription to the appropriate ref.
+     * @param {string} topic - Topic to subscribe to.
+     */
     const subscribeToTopic = useCallback((topic) => {
         const subscription = stompClientRef.current.subscribe(topic, (message) => onMessage(message))
         if(topic==="/topic/game." + sessionId.current) {
@@ -56,6 +86,11 @@ export const WebSocketProvider = ({ children }) => {
         }
     }, [ onMessage ]);
 
+    /**
+     * Effect hook to manage WebSocket connections and subscriptions.
+     * Connect to WebSocket server, subscribe to topics, and handle disconnections
+     * Update state variables based on WebSocket connection status and received messages
+     */
     useEffect(() => {
         if(isAuthenticated) {
             if(location.pathname===PLAY + "/" + MULTYPLAYERMODES && !isConnected) {

@@ -32,25 +32,15 @@ export const ContentContainer = styled.div`
 
     background-color: ${colors.silver};
     overflow-y: auto;
-
-    @media (max-width: 992px) {
-       padding-top: 9.5em; 
-    }
-
-    @media (min-width: 992px) {
-        padding-top: 4.5em;
-    }
-    
+    padding-top: 4.5em;
 `;
 
 export const SmallContentContainer = styled.div`
     @media (max-width: 992px) {
-        margin-top:  ${({ $smallMT }) => $smallMT};
         width: 90%;
     }
- 
+    margin-top: 4.5em;
     @media (min-width: 992px) {
-        margin-top: 4.5em;
         width: 60%;
     }
     
@@ -61,13 +51,7 @@ export const SmallContentContainer = styled.div`
 `;
 
 export const InfoContentContainer = styled.div`
-    @media (max-width: 992px) {
-        margin-top: 9em; 
-    }
-
-    @media (min-width: 992px) {
-        margin-top: 4.5em;
-    }
+    margin-top: 4.5em;
 
     @media (max-width: 500px) {
         margin-right: 0.5em;
@@ -288,25 +272,6 @@ export const StyledCard = styled.div`
     border: ${({ $isFound, $isActive }) => $isActive ? '3px solid ' + colors.forest_green : ($isFound ? '3px solid ' + colors.rich_black : '3px solid ' + colors.gunmetal)};
     font-size: 1em;
     cursor: ${({ $isActive, $isFound}) => (!$isActive && !$isFound) ? 'pointer' : 'default'};
-`;
-
-export const TimerContainer = styled.div`
-    @media (max-width: 992px) {
-        margin-top: 12em;
-    }
-
-    @media (min-width: 992px) {
-        margin-top: 5.25em;
-    }
-    color: ${colors.rich_black};
-    text-align: center;
-    position: absolute;
-    padding-top: 0.75em;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%, 0%);
-    z-index: 999;
-    width: 10em;
 `;
 
 
