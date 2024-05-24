@@ -3,6 +3,10 @@ import { PLAY, REGISTER, SIGNIN } from "../../config";
 import { useAuth } from "../AuthContext";
 import { t } from "../translation";
 
+/**
+ * Component for rendering homapage links in the navigation bar.
+ * @returns {JSX.Element} The rendered component.
+ */
 const HomeLinks = () => {
     const {isAuthenticated, handleSignOut} = useAuth();
 

@@ -6,13 +6,23 @@ import { t } from "../../common/translation";
 import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
 
+
+/**
+ * Component for displaying statistics of single player games.
+ * Fetches data for summary and all games of single player.
+ * Provides navigation for viewing multiple pages of game history.
+ * @returns {JSX.Element} SPStats component
+ */
 const SPStats = () => {
+    /** Custom hooks for fetching summary and all games of single player */
     const { errorSPAll, dataSPAll, getSinglePlayerAllGames } = useGetSinglePlayerAllGames();
     const { errorSPSummary, dataSPSummary, getSinglePlayerSummary } = useGetSinglePlayerSummary();
 
+    /** Refs to track pagination */ 
     const page = useRef(1);
     const size = useRef(10);
 
+    /** Callback functions for fetching summary and all games */ 
     const fetchSummary = useCallback(() => {
         getSinglePlayerSummary();
     }, [getSinglePlayerSummary]);
@@ -21,6 +31,7 @@ const SPStats = () => {
         getSinglePlayerAllGames(page.current, size.current);
     }, [getSinglePlayerAllGames]);
 
+    /** Effect to fetch data when component mounts */ 
     useEffect(() => {
         if(dataSPSummary==null) {
             fetchSummary();
@@ -30,16 +41,19 @@ const SPStats = () => {
         }
     }, [fetchAllGames, fetchSummary, dataSPAll, dataSPSummary]);
 
+    /** Function to handle clicking right arrow for pagination */
     const handleOnRightArrowClick = () => {
         fetchAllGames();
         page.current+=1;
     }
 
+    /** Function to handle clicking left arrow for pagination */
     const handleOnLeftArrowClick = () => {
         fetchAllGames();
         page.current-=1;
     }
 
+    /** Function to format seconds to minutes and seconds */
     function toMinAndSecFromat(secondsToConvert) {
         const minutes = Math.floor(secondsToConvert / 60);
         const seconds = secondsToConvert % 60;

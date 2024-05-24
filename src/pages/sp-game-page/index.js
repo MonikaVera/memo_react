@@ -3,7 +3,7 @@ import { CardContainer} from "../../styles/styles";
 import useGetCards from "./useGetCards";
 import GameOver from "./GameOver";
 import GameCard from "../../common/GameCard";
-import GameTimer from "./GameTimer";
+import InfoContainer from "./InfoContainer";
 import { useParams } from "react-router-dom";
 import useGetRemainingTime from "./useGetRemainingTime";
 import Error from "../../common/Error";
@@ -12,25 +12,42 @@ import useLeaveGame from "./useLeaveGame";
 import { useNavigate } from "react-router-dom";
 import useIsPlayValid from "./useIsPlayValid";
 
+/**
+ * Component for managing a single-player game session.
+ * @returns {JSX.Element} SinglePlayerGame component
+ */
 const SinglePlayerGame = () => {
     const navigate = useNavigate();
     const { pairs, time, sessionId } = useParams();
 
+    /** Time left in seconds */
     const [timeSec, setTime] = useState(time * 60);
+    /** Indicates whether the player is able to turn cards up*/
     const [isTurn, setTurn] = useState(true);
+    /** Represents the game board */
     const [board, setBoard] = useState(new Array(pairs*2).fill(null));
+    /** Number of pairs guessed by the player */
     const [numOfGuessed, setNumOfGuessed] = useState(0);
+    /** Represents the cards which should be turned up, but they are not guessed yet */
     const [cards, setCards] = useState(null);
 
+    /** Tracks if cards are clickable */
     const isClickable = useRef(true);
+    /** Tracks if it's an even second */
     const evenForSec = useRef(true);
+    /** Indicates if game data has been validated */
     const [isValidated, setIsValidated] = useState(false);
 
+    /** Fetches data for turning flipping a card*/
     const { error, data, getCards } = useGetCards();
+    /** Fetches remaining time */
     const { dataRT, getRemainingTime } = useGetRemainingTime();
+    /** Leaves the game */
     const { errorLG, dataLG, getLeaveGameData} = useLeaveGame();
+    /** Validates game play */
     const {dataIV, getIsPlayValid} = useIsPlayValid();
     
+    /** Effect to update game state based on fetched data */
     useEffect(() => {
         if (data !== null) {
             setTime(data.remainingTime);
@@ -52,6 +69,7 @@ const SinglePlayerGame = () => {
         }
     }, [data]);
 
+    /** Effect to update timer */
     useEffect(() => {
         const timerID = setInterval(() => tick(), 1000);
             
@@ -60,6 +78,7 @@ const SinglePlayerGame = () => {
         };
     });
 
+    /** Effects to handle game logic and navigation */
     useEffect(() => {
         if(dataIV==null) {
             getIsPlayValid(sessionId);
@@ -82,12 +101,17 @@ const SinglePlayerGame = () => {
         }
     },  [timeSec, sessionId, getRemainingTime, dataRT, dataLG, navigate, dataIV, getIsPlayValid, isValidated]);
 
+    /** 
+     * Function to handle card clicks.
+     * @param {Object} param - Object containing the index of the clicked card.
+     */
     const handleOnCardClicks = async ({index}) => {
         if(isClickable.current) {
             getCards(sessionId, index);
         }
     }
-    
+
+    /** Function to update game state based on timer tick */
     function tick() {
         setTime(prevTime => prevTime - 1);
         if(isTurn) {
@@ -100,6 +124,11 @@ const SinglePlayerGame = () => {
         }
     }
 
+    /** 
+     * Function to determine if a card is active.
+     * @param {number} index - Index of the card.
+     * @returns {boolean} - Indicates if the card is active.
+     */
     function isActiveCard(index) {
         let isActive = false;
         if(cards!==null) {
@@ -111,6 +140,12 @@ const SinglePlayerGame = () => {
         return isActive;
     }
 
+    /** 
+     * Function to get the number on a card.
+     * @param {number | null} num - Number on the card.
+     * @param {number} index - Index of the card.
+     * @returns {number | null} - Number on the card if available, otherwise null.
+     */
     function getNum(num, index) {
         if(num!==null) {
             return num;
@@ -124,6 +159,7 @@ const SinglePlayerGame = () => {
         return null;
     }
 
+    /** Function to leave the game */
     const leaveGame = () => {
         getLeaveGameData(sessionId);
     }
@@ -131,7 +167,7 @@ const SinglePlayerGame = () => {
     return (
         (data==null || (data.ended!==null && data.ended===false)) && (dataRT==null || dataRT.remainingTime!==0)? (
                 <PageContainer>
-                    <GameTimer timeSec={timeSec} sessionId={sessionId} pairs={pairs} leaveGame={leaveGame} guessed={numOfGuessed}/>
+                    <InfoContainer timeSec={timeSec} pairs={pairs} leaveGame={leaveGame} guessed={numOfGuessed}/>
                     <CardContainer $pairs={parseInt(pairs)}>
                         {board.map((num, index) => (
                             <GameCard 

@@ -11,11 +11,10 @@ import Play from './pages/play-page';
 import { AuthProvider } from './common/AuthContext';
 import Stats from './pages/stats-page';
 import SPStats from './pages/sp-stats-page';
-import Navbar from './common/Navbar/Navbar';
+import Navbar from './common/navbar/Navbar';
 import MultiPlayerGame from './pages/mp-modes-page/index';
 import Leaderboard from './pages/mp-stats-page/index';
 import { WebSocketProvider } from './common/useWebsocket';
-//npm start
 
 function App() {
   return (

@@ -5,6 +5,11 @@ import { t } from "../../common/translation";
 import Error from '../../common/Error';
 import { useParams } from 'react-router-dom';
 
+/**
+ * Component for displaying multiplayer statistics.
+ * Fetches leaderboard data for a specified number of pairs.
+ * @returns {JSX.Element} MultiPlayerStats component.
+ */
 const MultiPlayerStats = () => {
     const { pairs } = useParams();
     const {data, error, getLeaderboard} = useLeaderboard();

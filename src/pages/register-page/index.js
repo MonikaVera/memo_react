@@ -7,19 +7,37 @@ import Error from "../../common/Error";
 import PageContainer from "../../common/PageContainer";
 import { SmallContentContainer } from "../../styles/styles";
 
+
+/**
+ * Component for user registration.
+ * Allows users to input their email, username, and password for registration.
+ * Displays error messages for invalid inputs and server-side errors.
+ * 
+ * Example Usage:
+ * ```jsx
+ * <Register />
+ * ```
+ */
 const Register = () => {
+    /* State variables for form data, errors, and registration status **/
     const [toSend, setToSend] = useState({email:"", username:"", password: ""});
     const { error, status, getRegisterData } = useRegister();
     const [ clientError, setClientError ] = useState(null);
+
+    /* Regular expression for email validation **/
     const EMAIL_REGEX = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
+
+    /* React hook for navigation **/
     const navigate = useNavigate();
 
+    /* Effect hook to redirect to sign-in page upon successful registration **/
     useEffect(() => {
         if(status===200) {
             navigate(SIGNIN);
         }
     }, [navigate, status]);
 
+    /** Function to handle form submission */
     const handleCLickOnSend = (e) => {
         e.preventDefault();
         const {email, username, password} = toSend;
@@ -32,6 +50,7 @@ const Register = () => {
         else getRegisterData(email, username, password);
     }
     
+    /** Function to handle input changes */ 
     const handleChange = (e) => {
         const { id, value } = e.target;
         setToSend(prevData => ({

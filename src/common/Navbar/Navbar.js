@@ -4,21 +4,31 @@ import { useEffect, useState } from "react";
 import NavbarContent from "./NavbarContent";
 import { useMediaQuery } from "react-responsive";
 
+/**
+ * Component for the navigation bar.
+ */
 const Navbar = () => {
     const location = useLocation();
     const [isMenuOpen, setMenuOpen] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 992});
 
+    /** Effect to close the menu when switching from mobile to desktop view.*/
     useEffect(() => {
       if(!isMobile) {
         setMenuOpen(false);
       }
     }, [isMobile])
 
+    /** Function to handle the menu click event. */
     const handleOnMenuClick = () => {
       setMenuOpen(!isMenuOpen);
     }
     
+    /**
+     * Function to check if a given path is the current location.
+     * @param {string} path - The path to check.
+     * @returns {boolean} - True if the path matches the current location, false otherwise.
+     */
     function isCurrent(path) {
       if(location.pathname===path) {
         return true;

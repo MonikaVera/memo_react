@@ -1,6 +1,12 @@
 import { t } from "../../common/translation";
 import { StyledDiv } from '../../styles/styles';
 
+/**
+ * Component for rendering the score on small screens in multiplayer games.
+ * @param {Object} receivedInfo - Information received from the game.
+ * @param {Function} leaveGame - Function to leave the game.
+ * @returns {JSX.Element} - Small screen score component.
+ */
 const SmScreenScore = ({receivedInfo, leaveGame}) => {
     return (
         <div className="d-flex flex-wrap justify-content-between">

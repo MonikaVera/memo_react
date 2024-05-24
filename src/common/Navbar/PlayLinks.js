@@ -2,6 +2,10 @@ import { MULTYPLAYERMODES, PLAY, SINGLEPLAYERMODES } from "../../config";
 import { t } from "../translation";
 import { StyledLink } from "../../styles/styles";
 
+/**
+ * Component for rendering play page links in the navigation bar.
+ * @returns {JSX.Element} The rendered component.
+ */
 const PlayLinks = () => {
     return (
         <ul className="navbar-nav">

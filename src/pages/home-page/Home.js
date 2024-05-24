@@ -3,6 +3,21 @@ import { t } from "../../common/translation";
 import InfoCard from "./InfoCard";
 import PageContainer from "../../common/PageContainer";
 
+/**
+ * Home Component
+ * Renders the main homepage of the application with various sections including a title and multiple InfoCard components.
+ * Each section displays translated text content and icons using internationalization functions.
+ * 
+ * This component uses `PageContainer` for consistent layout across the app and `InfoCard` to display key points or features.
+ *
+ * The content is dynamically translated using the `t` function which fetches translations based on keys provided,
+ * ensuring the application can support multiple languages.
+ *
+ * Example Usage:
+ * ```jsx
+ * <Home />
+ * ```
+ */
 const Home = () => {
     return (
         <PageContainer>

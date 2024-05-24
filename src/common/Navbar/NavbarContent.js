@@ -7,6 +7,12 @@ import StatLinks from "./StatLinks";
 import { Link } from "react-router-dom";
 import MpStatLinks from "./MpStatLinks";
 
+/**
+ * Component for rendering the content of the navigation bar.
+ * @param {Object} props - The component props.
+ * @param {function} props.isCurrent - Function to determine if a path is the current path.
+ * @returns {JSX.Element} The rendered component.
+ */
 const NavbarContent = ({isCurrent}) => {
     const {isAuthenticated} = useAuth();
     return (

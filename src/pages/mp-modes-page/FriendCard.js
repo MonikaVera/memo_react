@@ -2,8 +2,16 @@ import { StyledDiv, StyledOption } from "../../styles/styles";
 import { t } from "../../common/translation";
 import { useState } from "react";
 
+/** FriendCard component for joining a game with a friend.
+ * @param {function} joinGame - Function to join a game.
+ */
 const FriendCard = ({joinGame}) => {
     const [toSend, setToSend] = useState({gameId : ""});
+
+    /**
+     * Function to handle changes in input fields.
+     * @param {Event} e - Change event.
+     */
     const handleChange = (e) => {
         const { id, value } = e.target;
         setToSend(prevData => ({

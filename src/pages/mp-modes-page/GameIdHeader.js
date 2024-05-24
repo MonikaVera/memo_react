@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import { t } from "../../common/translation";
 
+/**
+ * Component for displaying the game ID header and copying it.
+ * @param {string} gameId - The game ID.
+ * @returns {JSX.Element} - Game ID header component.
+ */
 const GameIdHeader = ({gameId}) => {
     const [isCopied, setCopied] = useState(false);
 
+    /**
+     * Function to handle copying the game ID to clipboard.
+     */
     const handleCopy = () => {
         const tempInput = document.createElement('input');
         tempInput.value = gameId;

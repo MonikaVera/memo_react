@@ -2,6 +2,10 @@ import { StyledLink } from "../../styles/styles";
 import { SPSTATS, STATS } from "../../config";
 import { t } from "../translation";
 
+/**
+ * Component for rendering stats page links in the navigation bar.
+ * @returns {JSX.Element} The rendered component.
+ */
 const StatLinks = () => {
     return (
         <ul className="navbar-nav">

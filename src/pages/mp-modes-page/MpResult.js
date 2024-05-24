@@ -1,5 +1,10 @@
 import { t } from "../../common/translation";
 
+/**
+ * Component for rendering multiplayer game results.
+ * @param {Object} receivedInfo - Information received from the game.
+ * @returns {JSX.Element} - Multiplayer game result component.
+ */
 const MpResult = ({receivedInfo}) => {
     return receivedInfo && receivedInfo.gameStarted ?
         <div className="w-100 p-3">
