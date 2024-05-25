@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: common/PageContainer.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: common/PageContainer.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { HOME, REGISTER, SIGNIN, PLAY, SINGLEPLAYERMODES, MULTYPLAYERMODES } from "../config";
+import { ContentContainer, BackgroundContainer } from "../styles/styles";
+import { useAuth } from "./AuthContext";
+import { Navigate, useLocation } from "react-router-dom";
+
+/**
+ * Container component for pages, controlling access and layout based on authentication status and current location.
+ * @param {Object} children - React children components to be rendered within the container.
+ * @returns {JSX.Element} - JSX element representing the page container with appropriate layout and access control.
+ */
+const PageContainer = ({children}) => {
+    const {isAuthenticated} = useAuth();
+    const location = useLocation();
+
+    /**
+     * Checks if the current page is accessible based on authentication status and location.
+     * @returns {boolean} - True if the page is accessible, false otherwise.
+     */
+    function isPageAvailable() {
+        if(isAuthenticated ||
+            location.pathname===HOME ||
+            location.pathname===REGISTER ||
+            location.pathname===SIGNIN) {
+            return true;
+        } 
+        return false;
+    }
+
+    /**
+     * Checks if the current page is a game page.
+     * @returns {boolean} - True if the page is a game page, false otherwise.
+     */
+    function isGamePage() {
+        const regex = new RegExp(`^${PLAY}/${SINGLEPLAYERMODES}/(\\d+)/(\\d+)/([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})$`);
+        const regex2 = new RegExp(`^${PLAY}/${MULTYPLAYERMODES}`)
+        return (regex.test(location.pathname) || regex2.test(location.pathname) 
+            || location.pathname===SIGNIN || location.pathname===REGISTER);
+    }
+
+    return isPageAvailable() ? (
+        isGamePage() ? (
+            &lt;div>
+                &lt;BackgroundContainer/>
+                &lt;div className="d-flex flex-column align-items-center">
+                  {children}  
+                &lt;/div>
+            &lt;/div>
+        ) : (
+            &lt;div>
+                &lt;BackgroundContainer/>
+                &lt;ContentContainer className="container">
+                    {children}
+                &lt;/ContentContainer>
+            &lt;/div>
+        )
+    ) : &lt;Navigate to={HOME}/>
+}
+
+export default PageContainer;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#App">App</a></li><li><a href="global.html#AuthContext">AuthContext</a></li><li><a href="global.html#AuthProvider">AuthProvider</a></li><li><a href="global.html#Error">Error</a></li><li><a href="global.html#FriendCard">FriendCard</a></li><li><a href="global.html#GameCard">GameCard</a></li><li><a href="global.html#GameIdHeader">GameIdHeader</a></li><li><a href="global.html#GameOver">GameOver</a></li><li><a href="global.html#Home">Home</a></li><li><a href="global.html#HomeLinks">HomeLinks</a></li><li><a href="global.html#InfoCard">InfoCard</a></li><li><a href="global.html#InfoContainer">InfoContainer</a></li><li><a href="global.html#JoinCard">JoinCard</a></li><li><a href="global.html#LgScreenScore">LgScreenScore</a></li><li><a href="global.html#MpResult">MpResult</a></li><li><a href="global.html#MpStatLinks">MpStatLinks</a></li><li><a href="global.html#MultiPlayerGame">MultiPlayerGame</a></li><li><a href="global.html#MultiPlayerStats">MultiPlayerStats</a></li><li><a href="global.html#Navbar">Navbar</a></li><li><a href="global.html#NavbarContent">NavbarContent</a></li><li><a href="global.html#Option">Option</a></li><li><a href="global.html#PageContainer">PageContainer</a></li><li><a href="global.html#Play">Play</a></li><li><a href="global.html#PlayLinks">PlayLinks</a></li><li><a href="global.html#ReceivedInfo">ReceivedInfo</a></li><li><a href="global.html#Register">Register</a></li><li><a href="global.html#SPStats">SPStats</a></li><li><a href="global.html#Score">Score</a></li><li><a href="global.html#SignIn">SignIn</a></li><li><a href="global.html#SinglePlayerGame">SinglePlayerGame</a></li><li><a href="global.html#SinglePlayerOptions">SinglePlayerOptions</a></li><li><a href="global.html#SmScreenScore">SmScreenScore</a></li><li><a href="global.html#StatLinks">StatLinks</a></li><li><a href="global.html#Stats">Stats</a></li><li><a href="global.html#WebSocketContext">WebSocketContext</a></li><li><a href="global.html#WebSocketProvider">WebSocketProvider</a></li><li><a href="global.html#errorGetter">errorGetter</a></li><li><a href="global.html#t">t</a></li><li><a href="global.html#useGetCards">useGetCards</a></li><li><a href="global.html#useGetRemainingTime">useGetRemainingTime</a></li><li><a href="global.html#useGetSinglePlayerAllGames">useGetSinglePlayerAllGames</a></li><li><a href="global.html#useGetSinglePlayerSummary">useGetSinglePlayerSummary</a></li><li><a href="global.html#useInit">useInit</a></li><li><a href="global.html#useIsPlayValid">useIsPlayValid</a></li><li><a href="global.html#useLeaderboard">useLeaderboard</a></li><li><a href="global.html#useLeaveGame">useLeaveGame</a></li><li><a href="global.html#useRegister">useRegister</a></li><li><a href="global.html#useSignIn">useSignIn</a></li><li><a href="global.html#useStartSinglePlayer">useStartSinglePlayer</a></li><li><a href="global.html#useUserInfo">useUserInfo</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.3</a> on Sat May 25 2024 14:48:01 GMT+0200 (közép-európai nyári idő)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
