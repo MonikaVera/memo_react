@@ -59,42 +59,41 @@ export const InfoContentContainer = styled.div`
     }
 
     @media (max-width: 300px) {
-        width: 230px;
+        width: 14.375em;
     }
 
     @media (min-width: 300px) {
-        width: 290px;
+        width: 18.125em;
     }
 
     @media (min-width: 400px) {
-        width: 360px;
+        width: 22.5em;
     }
 
     @media (min-width: 530px) {
         width: ${({ $pairs }) => {
             if($pairs === 24) {
-                return '510px';
+                return '31.875em';
             } else {
-                return '360px';
+                return '22.5em';
             }
         }};
     }
 
     @media (min-width: 675px) {
-        width: 660px;
-        
+        width: 41.25em;
     }
 
     @media (min-width: 875px) {
-        width: 825px;
+        width: 51.5625em;
     }
 
     @media (min-width: 1250px) {
         width: ${({ $pairs }) => {
             if($pairs === 24) {
-                return '1210px;';
+                return '75.625em';
             } else {
-                return '825px';
+                return '51.5625em';
             }
         }};
     }

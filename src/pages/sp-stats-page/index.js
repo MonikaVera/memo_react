@@ -1,6 +1,6 @@
 import useGetSinglePlayerAllGames from "./useGetSinglePlayerAllGames";
 import { IconButton } from "@mui/material";
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import useGetSinglePlayerSummary from "./useGetSinglePlayerSummary";
 import { t } from "../../common/translation";
 import Error from "../../common/Error";
@@ -19,38 +19,29 @@ const SPStats = () => {
     const { errorSPSummary, dataSPSummary, getSinglePlayerSummary } = useGetSinglePlayerSummary();
 
     /** Refs to track pagination */ 
-    const page = useRef(1);
+    const [page, setPage] = useState(1);
     const size = useRef(10);
-
-    /** Callback functions for fetching summary and all games */ 
-    const fetchSummary = useCallback(() => {
-        getSinglePlayerSummary();
-    }, [getSinglePlayerSummary]);
-
-    const fetchAllGames = useCallback(() => {
-        getSinglePlayerAllGames(page.current, size.current);
-    }, [getSinglePlayerAllGames]);
 
     /** Effect to fetch data when component mounts */ 
     useEffect(() => {
         if(dataSPSummary==null) {
-            fetchSummary();
+            getSinglePlayerSummary();
         }
         if(dataSPAll==null) {
-            fetchAllGames();
+            getSinglePlayerAllGames(page, size.current);
         }
-    }, [fetchAllGames, fetchSummary, dataSPAll, dataSPSummary]);
+    }, [page, getSinglePlayerAllGames, getSinglePlayerSummary, dataSPAll, dataSPSummary]);
 
     /** Function to handle clicking right arrow for pagination */
     const handleOnRightArrowClick = () => {
-        fetchAllGames();
-        page.current+=1;
+        getSinglePlayerAllGames(page+1, size.current);
+        setPage(prev => prev+1);
     }
 
     /** Function to handle clicking left arrow for pagination */
     const handleOnLeftArrowClick = () => {
-        fetchAllGames();
-        page.current-=1;
+        getSinglePlayerAllGames(page-1, size.current);
+        setPage(prev => prev-1);
     }
 
     /** Function to format seconds to minutes and seconds */
@@ -133,7 +124,7 @@ const SPStats = () => {
                 <div className="d-flex flex-wrap align-items-center">
                     <IconButton 
                         onClick={handleOnLeftArrowClick} 
-                        disabled={page.current===1}
+                        disabled={page===1}
                     >
                         <i className="bi bi-caret-left-fill"/>
                     </IconButton>
