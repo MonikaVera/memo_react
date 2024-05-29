@@ -15,7 +15,7 @@ export const StyledDiv = styled.div`
 `;
 
 export const StyledOption = styled.button`
-    box-shadow: 0 0 15px ${colors.forest_green};
+    box-shadow: 0 0 15px ${colors.tertiary};
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -30,7 +30,7 @@ export const ContentContainer = styled.div`
         width: 800px; 
     }
 
-    background-color: ${colors.silver};
+    background-color: ${colors.body_bg};
     overflow-y: auto;
     padding-top: 4.5em;
 `;
@@ -44,7 +44,7 @@ export const SmallContentContainer = styled.div`
         width: 60%;
     }
     
-    background-color: ${colors.silver};
+    background-color: ${colors.body_bg};
     padding: 2em;
     border-radius: 10px;
     margin-bottom: 1em;
@@ -59,47 +59,46 @@ export const InfoContentContainer = styled.div`
     }
 
     @media (max-width: 300px) {
-        width: 230px;
+        width: 14.375em;
     }
 
     @media (min-width: 300px) {
-        width: 290px;
+        width: 18.125em;
     }
 
     @media (min-width: 400px) {
-        width: 360px;
+        width: 22.5em;
     }
 
     @media (min-width: 530px) {
         width: ${({ $pairs }) => {
             if($pairs === 24) {
-                return '510px';
+                return '31.875em';
             } else {
-                return '360px';
+                return '22.5em';
             }
         }};
     }
 
     @media (min-width: 675px) {
-        width: 660px;
-        
+        width: 41.25em;
     }
 
     @media (min-width: 875px) {
-        width: 825px;
+        width: 51.5625em;
     }
 
     @media (min-width: 1250px) {
         width: ${({ $pairs }) => {
             if($pairs === 24) {
-                return '1210px;';
+                return '75.625em';
             } else {
-                return '825px';
+                return '51.5625em';
             }
         }};
     }
 
-    background-color: ${colors.silver};
+    background-color: ${colors.body_bg};
     padding: 2em;
     border-radius: 10px;
 `;
@@ -123,9 +122,9 @@ export const CardContainer = styled.div`
     padding: 1em;
     position: relative;
     margin: 1em;
-    border: 1em solid ${colors.gunmetal};
+    border: 1em solid ${colors.dark};
     border-radius: 10px;
-    background-color: ${colors.silver};
+    background-color: ${colors.body_bg};
     overflow-y: auto;
     margin-top: 0.5em;
 
@@ -250,7 +249,7 @@ export const StyledCard = styled.div`
     background-image: ${({ $num, $pairs }) => getBackgroundImage({num: $num, pairs: $pairs})};
     background-size: cover;
     background-position: center;
-    background-color: ${colors.pigment_green};
+    background-color: ${colors.primary};
     border-radius: 5px;
 
     @media (max-width: 400px) {
@@ -269,7 +268,7 @@ export const StyledCard = styled.div`
         margin: 0.5em;
     }
     text-align: center;
-    border: ${({ $isFound, $isActive }) => $isActive ? '3px solid ' + colors.forest_green : ($isFound ? '3px solid ' + colors.rich_black : '3px solid ' + colors.gunmetal)};
+    border: ${({ $isFound, $isActive }) => $isActive ? '3px solid ' + colors.tertiary : ($isFound ? '3px solid ' + colors.body_color : '3px solid ' + colors.dark)};
     font-size: 1em;
     cursor: ${({ $isActive, $isFound}) => (!$isActive && !$isFound) ? 'pointer' : 'default'};
 `;

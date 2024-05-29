@@ -12,7 +12,6 @@ const useLeaderboard = () => {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
     const { token } = useAuth();
-
     
     /**
      * Function to fetch leaderboard data.
