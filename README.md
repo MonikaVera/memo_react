@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# Echoes of Memory
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Echoes of Memory is a web-based memory game designed to enhance memory skills. The game involves flipping over pairs of cards, with the objective to find all matching pairs. Users need to register with their email, username, and password before playing.
 
-## Available Scripts
+The game offers:
+- **Single-player mode:** 6 difficulty levels with different time limits.
+- **Multiplayer mode:** 3 difficulty levels, where players take turns and the one with more matched pairs wins.
 
-In the project directory, you can run:
+Players can also view their game statistics and rankings.
 
-### `npm start`
+## Application Structure
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Echoes of Memory application is structured using the Model-View-Controller (MVC) architecture with an additional service layer. Below is an overview of each layer:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Model, Controller and Service layers
 
-### `npm test`
+**Implemented in:** `memo-java-spring`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### View Layer
 
-### `npm run build`
+**Implemented in:** `memo-react-app`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Within the `src/pages` directory, each page has its own folder:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `home-page`: Home page
+- `mp-modes-page`: Multiplayer modes
+- `mp-stats-page`: Multiplayer statistics
+- `play-page`: Gameplay page
+- `register-page`: Registration page
+- `sign-in-page`: Sign-in page
+- `sp-game-page`: Single-player game
+- `sp-modes-page`: Game modes
+- `sp-stats-page`: Single-player statistics
+- `stats-page`: Statistics pages
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In the `src/common` directory, you can find components that are used across different parts of the application. For instance, navigation bar components are located in `src/common/navbar`.
 
-### `npm run eject`
+#### AuthProvider
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The `AuthProvider` component is responsible for handling sign-in and sign-out processes. From the `AuthContext`, you can retrieve:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `isAuthenticated`: Indicates if the user is signed in
+- `token`: User's token
+- `handleSignIn`: Function to sign in
+- `handleSignOut`: Function to sign out
+- `userId`: User's ID
+- `userName`: User's name
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### WebSocketProvider
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The `WebSocketProvider` component manages WebSocket connections and messages. From the `WebSocketContext`, you can retrieve:
 
-## Learn More
+- `stompClientRef`: Reference to the STOMP client
+- `isConnected`: Indicates if the connection to the WebSocket is successful
+- `isJoined`: Indicates if the user is in a game
+- `receivedMessage`: Message received via WebSocket
+- `error`: Any errors encountered
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### SinglePlayerGame Component
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The `SinglePlayerGame` component is responsible for single-player sessions. It displays data received from the backend such as:
 
-### Code Splitting
+- Found pairs and the last flipped cards
+- Remaining time
+- Number of pairs found so far
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+If the cards are not pairs, they flip back after 2 seconds, assisted by a timer. When navigating to the single-player page, the component sends a message to the backend to verify if the game is still valid, ensuring the user cannot navigate to an already finished session.
 
-### Analyzing the Bundle Size
+#### MultiPlayerGame Component
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The `MultiPlayerGame` component handles multiplayer sessions. It retrieves data from `WebSocketContext` and displays:
 
-### Making a Progressive Web App
+- Found pairs and the last flipped cards
+- The names of the two players and the number of pairs each has found
+- The next player's turn
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+It also manages scenarios where the user wants to play with a friend, sending appropriate requests accordingly.
 
-### Advanced Configuration
+## System Requirements
+The application can run on a local server (personal computer) or a web server.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Frontend Requirements:
+- React 18.2.0
+- Node.js 16.15.1
+- Main dependencies:
+  - axios: 1.6.7
+  - bootstrap: 5.3.3
+  - bootstrap-icons: 1.11.3
+  - react-dom: 18.2.0
+  - react-responsive: 10.0.0
+  - react-router-dom: 6.22.3
+  - react-scripts: 5.0.1
+  - react-stomp: 5.1.0
+  - sass: 1.72.0
+  - sockjs-client: 1.6.1
+  - styled-components: 6.1.8
+  - web-vitals: 2.1.4
 
-### Deployment
+ Requires an internet browser (e.g., Mozilla Firefox, Google Chrome, Opera, Microsoft Edge).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Installation
 
-### `npm run build` fails to minify
+### Local Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Required Software Installation
+
+1. **Node.js and npm**
+   - Download from the Node.js website and follow the installation instructions. Verify the installation with:
+   ```powershell
+   node -v
+   npm -v
+   ```
+2. **Install dependencies with:**
+   ```powershell
+   npm install
+   ```
+   
+## Start the application:
+```powershell
+npm start
+```
+
+The application will start at http://localhost:3000.
