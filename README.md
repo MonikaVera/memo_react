@@ -1,13 +1,14 @@
 # Echoes of Memory
 
 ## Description
-Echoes of Memory is a web-based memory game designed to enhance memory skills. The game involves flipping over pairs of cards, with the objective to find all matching pairs. Users need to register with their email, username, and password before playing.
+The Echoes of Memory frontend is a dynamic, user-friendly web application built using React. It provides a interface for playing a memory game, allowing users to flip cards and find matching pairs. The application supports both single-player and multiplayer modes, and includes features such as user registration, game statistics, and rankings.
 
-The game offers:
-- **Single-player mode:** 6 difficulty levels with different time limits.
-- **Multiplayer mode:** 3 difficulty levels, where players take turns and the one with more matched pairs wins.
+## Key features
 
-Players can also view their game statistics and rankings.
+- User Authentication: Allows users to register and sign in using their email, username, and password.
+- Single-player Mode: Offers six different difficulty levels with varying time limits.
+- Multiplayer Mode: Supports turn-based gameplay, with players competing to find the most pairs.
+- Statistics and Rankings: Displays detailed statistics for single-player games and leaderboards for multiplayer games.
 
 ## Application Structure
 
