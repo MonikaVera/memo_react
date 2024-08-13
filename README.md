@@ -1,6 +1,9 @@
 # Echoes of Memory - Frontend
-This repository contains the frontend application of the Echoes of Memory project, a dynamic web interface built using React for playing a memory game allowing users to flip cards and find matching pairs. The application supports both single-player and multiplayer modes, and includes features such as user registration, game statistics, and rankings.
+
 **Note:** This frontend is designed to work in tandem with the Echoes of Memory backend, which is available in a separate repository [memo-java-spring](https://github.com/Monika52n/memo_java_spring).
+
+## Description
+This repository contains the frontend application of the Echoes of Memory project, a dynamic web interface built using React for playing a memory game allowing users to flip cards and find matching pairs. The application supports both single-player and multiplayer modes, and includes features such as user registration, game statistics, and rankings.
 
 ## Key features
 
