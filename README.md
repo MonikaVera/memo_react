@@ -15,7 +15,7 @@ The Echoes of Memory project is structured using the Model-View-Controller (MVC)
 
 ### Model, Controller and Service layers
 
-**Implemented in:** [memo-java-spring](https://github.com/Monika52n/memo_java_spring).
+**Implemented in:** [memo-java-spring](https://github.com/Monika52n/memo_java_spring)
 
 ### View Layer
 
