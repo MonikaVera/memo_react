@@ -1,7 +1,6 @@
-# Echoes of Memory
-
-## Description
-The Echoes of Memory frontend is a dynamic, user-friendly web application built using React. It provides a interface for playing a memory game, allowing users to flip cards and find matching pairs. The application supports both single-player and multiplayer modes, and includes features such as user registration, game statistics, and rankings.
+# Echoes of Memory - Frontend
+This repository contains the frontend application of the Echoes of Memory project, a dynamic web interface built using React for playing a memory game allowing users to flip cards and find matching pairs. The application supports both single-player and multiplayer modes, and includes features such as user registration, game statistics, and rankings.
+**Note:** This frontend is designed to work in tandem with the Echoes of Memory backend, which is available in a separate repository [memo-java-spring](https://github.com/Monika52n/memo_java_spring).
 
 ## Key features
 
@@ -12,11 +11,11 @@ The Echoes of Memory frontend is a dynamic, user-friendly web application built 
 
 ## Application Structure
 
-The Echoes of Memory application is structured using the Model-View-Controller (MVC) architecture with an additional service layer. Below is an overview of each layer:
+The Echoes of Memory project is structured using the Model-View-Controller (MVC) architecture with an additional service layer. Below is an overview of each layer:
 
 ### Model, Controller and Service layers
 
-**Implemented in:** `memo-java-spring`
+**Implemented in:** [memo-java-spring](https://github.com/Monika52n/memo_java_spring).
 
 ### View Layer
 
@@ -100,11 +99,17 @@ The application can run on a local server (personal computer) or a web server.
 
  Requires an internet browser (e.g., Mozilla Firefox, Google Chrome, Opera, Microsoft Edge).
 
-## Installation
+## Local Installation
 
-### Local Installation
+### Setup Instructions
+To run the Echoes of Memory project, you need to set up both the frontend and the backend:
 
-#### Required Software Installation
+1. Clone this repository and follow the instructions below to start the frontend application.
+2. Clone the [memo-java-spring](https://github.com/Monika52n/memo_java_spring) and follow the instructions there to start the backend service.
+
+Ensure that the backend is running before you start the frontend, and configure the frontend to point to the correct backend API URL.
+
+### Required Software Installation
 
 1. **Node.js and npm**
    - Download from the Node.js website and follow the installation instructions. Verify the installation with:
@@ -117,7 +122,7 @@ The application can run on a local server (personal computer) or a web server.
    npm install
    ```
    
-## Start the application:
+### Start the application:
 ```powershell
 npm start
 ```
